@@ -2,7 +2,8 @@
   "name": "webpack-example",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
   },
   "author": "RS-Lung team 10",
   "license": "MIT",
