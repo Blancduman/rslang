@@ -1,17 +1,20 @@
 import React from 'react';
-import { Route, Switch, HashRouter } from 'react-router-dom';
-import Example from './Components/Example';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import Example from "./Components/Example";
 
 const App = () => {
     return (
-        <HashRouter>
+        <Router>
             <Switch>
-                <Route exact path='/' component={Example} />
-                <Route path='/helloworld'>
+                <Route exact path="/">
                     <Example />
                 </Route>
             </Switch>
-        </HashRouter>
+        </Router>
     )
 }
 
