@@ -3,7 +3,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "eslint": "eslint . --fix"
   },
   "author": "RS-Lang team 10",
   "license": "MIT",
