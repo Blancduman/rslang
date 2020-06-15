@@ -5,12 +5,13 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
+import LoginPage from "./Components/login-page/LoginPage";
 
 const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Example />
+        <LoginPage />
       </Route>
     </Switch>
   </Router>
