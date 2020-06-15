@@ -4,13 +4,13 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Example from './Components/Example';
+import Savanna from './Components/Savanna';
 
 const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Example />
+        <Savanna />
       </Route>
     </Switch>
   </Router>
