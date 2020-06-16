@@ -12,7 +12,7 @@ const Card = (props) => {
 
   const handleKeyShowCard = (event) => {
     if (event.key === 'Enter') {
-      showCard(event)
+      showCard(event);
     }
     return false;
   };
