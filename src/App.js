@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
-import Example from './Components/Example';
+import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import LoginPage from "./Components/login-page/LoginPage";
 
 const App = () => {
-    const [user, setUser] = useState({
-        message: "Authenticated"
-    });
+    let storedUser = localStorage.getItem('user');
+    storedUser = storedUser ? JSON.parse(storedUser) : {authorized: false};
+    const [user, setUser] = useState(storedUser);
+
     useEffect(() => {
         console.log(user);
+        localStorage.setItem('user', JSON.stringify(user))
     }, [user]);
 
     return (

@@ -1,11 +1,13 @@
 import React, {useState} from "react"
-import {Button, Form, Input, Modal, Spin} from "antd";
+import {Alert, Button, Form, Input, Modal, Spin} from "antd";
 import {signIn, signUp} from "../../Services/LoginService";
 import LockOutlined from "@ant-design/icons/lib/icons/LockOutlined";
 import MailOutlined from "@ant-design/icons/lib/icons/MailOutlined";
 
 const LoginPage = ({user, setUser}) => {
+    const isAuthorized = user.authorized;
     const [form] = Form.useForm();
+    const [error, setError] = useState('');
 
     const [modal, setModal] = useState({
         visible: false,
@@ -27,34 +29,28 @@ const LoginPage = ({user, setUser}) => {
         });
     };
 
-    const handleSignIn = async () => {
-        try {
-            setModal(prev => {
-                return {...prev, loading: true}
-            });
-            await form.validateFields();
-            const data = form.getFieldsValue();
-
-            const response = await signIn(data);
-            console.log('response', response);
-            if (typeof response === 'string') {
-                throw new Error(response);
-            }
-            setUser(response);
-            form.resetFields();
-
-            setModal(prev => {
-                return {...prev, visible: false, loading: false}
-            });
-        } catch (e) {
-            console.log(e);
-            setModal(prev => {
-                return {...prev, loading: false}
-            });
-        }
+    const logout = () => {
+        setUser({authorized: false})
     };
 
-    const handleSignUp = async () => {
+    const executeSignIn = async (data) => {
+        const response = await signIn(data);
+        if (typeof response === 'string') {
+            throw new Error(response);
+        }
+        setUser({...response, authorized: true});
+        form.resetFields();
+    };
+
+    const executeSignUp = async (data) => {
+        const response = await signUp(data);
+        if (typeof response === 'string') {
+            throw new Error(response);
+        }
+        await executeSignIn(data);
+    };
+
+    const handleSign = async (method) => {
         try {
             setModal(prev => {
                 return {...prev, loading: true}
@@ -62,13 +58,17 @@ const LoginPage = ({user, setUser}) => {
             await form.validateFields();
             const data = form.getFieldsValue();
 
-            const response = await signUp(data);
-            form.resetFields();
+            if (method === 'in') {
+                await executeSignIn(data)
+            } else {
+                await executeSignUp(data)
+            }
 
             setModal(prev => {
                 return {...prev, visible: false, loading: false}
             });
         } catch (e) {
+            setError(e);
             setModal(prev => {
                 return {...prev, loading: false}
             });
@@ -77,11 +77,11 @@ const LoginPage = ({user, setUser}) => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
-                Sign in form
+            <Button type="primary" onClick={isAuthorized ? logout : showModal}>
+                {isAuthorized ? 'Logout' : 'Sign in / Sign up'}
             </Button>
             <Modal
-                title="Sign in"
+                title="Sign in / Sign up"
                 visible={modal.visible}
                 onCancel={hideModal}
                 footer={[
@@ -95,7 +95,7 @@ const LoginPage = ({user, setUser}) => {
                         key="signIn"
                         type="primary"
                         disabled={modal.loading}
-                        onClick={handleSignIn}
+                        onClick={() => handleSign('in')}
                     >
                         Sign in
                     </Button>,
@@ -103,12 +103,21 @@ const LoginPage = ({user, setUser}) => {
                         key="signUp"
                         type="primary"
                         disabled={modal.loading}
-                        onClick={handleSignUp}
+                        onClick={() => handleSign('up')}
                     >
                         Sign up
                     </Button>,
                 ]}
             >
+                {error ?
+                    <Alert
+                        className="alert"
+                        message={error}
+                        type="error"
+                        showIcon
+                    />
+                    : null
+                }
                 <Form form={form}>
                     <Form.Item
                         name="email"

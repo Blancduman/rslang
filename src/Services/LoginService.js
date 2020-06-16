@@ -7,7 +7,11 @@ export const signUp = async (data) => {
         },
         body: JSON.stringify(data)
     });
-    return rawResponse.json();
+
+    if (rawResponse.ok) {
+        return rawResponse.json();
+    }
+    return Promise.reject('This email is already used!');
 };
 
 export const signIn = async (data) => {
@@ -23,5 +27,5 @@ export const signIn = async (data) => {
     if (rawResponse.ok) {
         return rawResponse.json();
     }
-    return Promise.reject('Incorrect email or password!')
+    return Promise.reject('Incorrect email or password!');
 };
