@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cards from '../../Components/Speakit_Cards';
+import Image from '../../Components/Speakit_Image';
 import './speakit.css';
 
 const Speakit = () => {
@@ -23,8 +24,12 @@ const Speakit = () => {
     console.log(result);
   }, [result]);
 
-  return <div><Cards words={result} />
-  </div>;
+  return (
+    <div>
+      <Image />
+      <Cards words={result} />
+    </div>
+  );
 };
 
 export default Speakit;

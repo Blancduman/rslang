@@ -13,9 +13,7 @@ const Cards = (props) => {
     setWordCollection(collection);
   }, [words]);
 
-  const example = () => console.log('clicked');
-
-  return <div className="speakit__cards" onClick={example}>{ wordCollection }</div>;
+  return <div className="speakit__cards">{ wordCollection }</div>;
 };
 
 export default Cards;

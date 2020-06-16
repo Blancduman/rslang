@@ -1,0 +1,27 @@
+body {
+  padding: 0px 50px;
+}
+
+.speakit__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.speakit__cards_card {
+  width: 80px;
+  border: solid 1px #000000;
+  margin: 10px 10px;
+}
+
+.speakit__word,
+.speakit__transcription {
+  text-align: center;
+}
+
+.speakit__cards_hidden {
+  font-size: 0px;
+  color: transparent;
+  overflow: hidden;
+}
