@@ -5,12 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
+import GameSprintPage from "./Components/GameSprintPage/GameSprintPage";
 
 const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Example />
+        {/*<Example />*/}
+        <GameSprintPage/>
       </Route>
     </Switch>
   </Router>
