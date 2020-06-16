@@ -15,6 +15,12 @@ body {
   margin: 10px 10px;
 }
 
+.speakit__cards_card:hover,
+.speakit__cards_card:focus {
+  cursor: pointer;
+  background-color: wheat;
+}
+
 .speakit__word,
 .speakit__transcription {
   text-align: center;

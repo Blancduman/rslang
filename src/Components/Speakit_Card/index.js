@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
+import showCard from '../../Helper/ShowCard';
 
 const Card = (props) => {
   const {
     word, transcription, wordTranslate, image,
   } = props.word;
 
-  const test = (event) => { 
-    const picture = document.querySelector('.speakit__image_word');
-    const link = event.currentTarget.querySelector('.speakit__img').textContent;
-    const description = event.currentTarget.querySelector('.speakit__word');
-    picture.src = `https://raw.githubusercontent.com/DmitriEr/rslang-data/master/${link}`;
-    picture.alt = description.textContent;
+  const handleMouseShowCard = (event) => {
+    showCard(event);
+  };
+
+  const handleKeyShowCard = (event) => {
+    if (event.key === 'Enter') {
+      showCard(event)
+    }
+    return false;
   };
 
   return (
-    <div className="speakit__cards_card" onClick={test}>
+    <div tabIndex="0" role="button" className="speakit__cards_card" onClick={handleMouseShowCard} onKeyDown={handleKeyShowCard}>
       <p className="speakit__word">{word}</p>
       <p className="speakit__transcription">{transcription}</p>
       <p className="speakit__cards_hidden speakit__translate">{wordTranslate}</p>
