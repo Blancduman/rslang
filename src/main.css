@@ -1,0 +1,38 @@
+.savanna-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.savanna-header__life-container {
+  display: flex;
+  border: 1px solid red;
+}
+
+.savanna-header__life {
+  padding: 5px;
+}
+
+.savanna-game-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.savanna-game-field__answers {
+  display: flex;
+  margin-top: 50px;
+}
+
+.answers__answer {
+  /* border: 1px solid blue; */
+  margin-right: 10px;
+  padding: 5px
+}
+
+.right-answer {
+  background-color: green;
+}
+
+.false-answer {
+  background-color: red;
+}
