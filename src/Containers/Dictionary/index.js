@@ -1,6 +1,9 @@
-import React from 'react';
-import { Tabs, Progress } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Tabs, Spin } from 'antd';
+import NewWords from '../../Components/Dictionary_NewWords';
+import ProgressLine from '../../Components/Dictionary_ProgressLine';
 import 'antd/dist/antd.css';
+import './dictionary.css';
 
 const { TabPane } = Tabs;
 const calculate = (amount, total) => ((amount / total) * 100);
@@ -23,12 +26,49 @@ const developmentProps = {
 
 const Dictionary = () => {
   const { newWordsPerDay, maxWordsPerDay, showAnswer } = developmentProps;
+  const [loading, setLoading] = useState(true);
+  const [words, setWords] = useState([]);
+  const [errors, setErrors] = useState(null);
+
+  useEffect(() => {
+    const getWords = async (group, page) => {
+      try {
+        setLoading(true);
+        const response = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${page}`);
+        const result = await response.json();
+
+        setWords(result);
+        setErrors(null);
+      } catch (e) {
+        setErrors(e);
+      }
+    };
+    getWords(1, 1);
+  }, []);
+
+  useEffect(() => {
+    if (words.length) {
+      console.log(words);
+    }
+    if (errors) {
+      console.log(errors);
+    }
+    setLoading(false);
+  }, [words, errors]);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div>
       <Tabs defaultActiveKey="1" type="card" size="large">
         <TabPane tab="Новые" key="1">
-          <h1>{ newWordsPerDay }</h1>
+          <NewWords someValue={newWordsPerDay} />
         </TabPane>
         <TabPane tab="Сложные" key="2">
           <h1>{ maxWordsPerDay }</h1>
@@ -37,7 +77,7 @@ const Dictionary = () => {
           <h1>{ showAnswer.toString() }</h1>
         </TabPane>
       </Tabs>
-      <Progress percent={calculate(a, t)} showInfo={false} />
+      <ProgressLine percentage={calculate(a, t)} done={a} total={t} />
     </div>
   );
 };
