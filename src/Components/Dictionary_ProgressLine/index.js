@@ -1,7 +1,7 @@
 import React from 'react';
 import { Progress } from 'antd';
 import PropTypes from 'prop-types';
-import './ProgressLine.css';
+import './progressline.css';
 
 const ProgressLine = (props) => {
   const { percentage, done, total } = props;
