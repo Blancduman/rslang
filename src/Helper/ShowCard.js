@@ -1,5 +1,4 @@
 const showCard = (event) => {
-  // if (event.key !== 'Enter') return false;
   const picture = document.querySelector('.speakit__image_word');
   const translation = document.querySelector('.speakit__image_translate');
 

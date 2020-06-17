@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import showCard from '../../Helper/ShowCard';
 
 const Card = (props) => {
   const {
     word, transcription, wordTranslate, image,
   } = props.word;
+  const { speech, change } = props;
+  const voice = (text) => {
+    speech.text = text;
+    change({ word: wordTranslate, image });
+    window.speechSynthesis.speak(speech);
+  };
 
-  const handleMouseShowCard = (event) => {
-    showCard(event);
+  const handleMouseShowCard = () => {
+    voice(word);
   };
 
   const handleKeyShowCard = (event) => {
     if (event.key === 'Enter') {
-      showCard(event);
+      voice(word);
     }
     return false;
   };

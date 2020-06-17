@@ -6,6 +6,16 @@ import './speakit.css';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);
+  const [current, setCurrent] = useState({word: '', image: ''});
+
+  useEffect(() => {
+    if (result.length) {
+      setCurrent({
+        word: result[0].wordTranslate,
+        image: result[0].image,
+      });
+    }
+  }, [result]);
 
   useEffect(() => {
     const getWords = async (group, page) => {
@@ -26,15 +36,11 @@ const Speakit = () => {
     getWords(0, 0);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(result);
-  // }, [result]);
-
   return (
     <div>
-      <main>
-        <Image />
-        <Cards words={result} />
+      <main className="speakit__main">
+        <Image current={current} />
+        <Cards words={result} change={setCurrent} />
         <Control />
       </main>
     </div>

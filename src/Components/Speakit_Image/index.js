@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Image = () => {
+const path = 'https://raw.githubusercontent.com/DmitriEr/rslang-data/master/';
+
+const Image = (props) => {
+  const { current } = props;
+
   return (
     <div className="speakit__image">
-      <img src="" alt="" className="speakit__image_word" />
-      <p className="speakit__image_translate" />
+      <img src={current.image !== '' ? `${path}${current.image}` : ''} alt={current.word} className="speakit__image_word" />
+      <p className="speakit__image_translate">{current.word}</p>
     </div>
   );
 };
