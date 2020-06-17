@@ -3,6 +3,11 @@
   justify-content: space-between;
 }
 
+.savanna-header__header-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .savanna-header__life-container {
   display: flex;
   border: 1px solid red;
