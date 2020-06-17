@@ -15,10 +15,25 @@ const App = () => (
         <Example />
       </Route>
       <Route path="/dictionary">
-        <Dictionary />
+        <Example />
       </Route>
-        <Route exact path="/sprint">
+      <Route path="/speakit">
+        <Example />
+      </Route>
+      <Route path="/savannah">
+        <Example />
+      </Route>
+      <Route path="/sprint">
         <GameSprintPage />
+      </Route>
+      <Route path="/english_puzzle">
+        <Example />
+      </Route>
+      <Route path="/promo">
+        <Example/>
+      </Route>
+      <Route path="/about">
+        <Example />
       </Route>
     </Switch>
   </Router>
