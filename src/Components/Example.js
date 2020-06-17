@@ -11,7 +11,15 @@ const Example = () => {
   return (
     <div>
       <h1>{state}</h1>
-      <Link to="/dictionary">dictionary</Link>
+      <ul>
+        <li><Link to="/dictionary">dictionary</Link></li>
+        <li><Link to="/speakit">speakit</Link></li>
+        <li><Link to="/savannah">savannah</Link></li>
+        <li><Link to="/sprint">sprint</Link></li>
+        <li><Link to="/english_puzzle">english_puzzle</Link></li>
+        <li><Link to="/promo">promo</Link></li>
+        <li><Link to="/about">about</Link></li>
+      </ul>
     </div>
   );
 };
