@@ -4,13 +4,13 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Example from './Components/Example';
+import Audiochallenge_main from './Components/audichallenge/Audiochallenge_main';
 
 const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Example />
+        <Audiochallenge_main />
       </Route>
     </Switch>
   </Router>
