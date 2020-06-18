@@ -4,7 +4,7 @@ const Example = () => {
   const [state, setState] = useState('Hello World');
 
   useEffect(() => {
-    setState('Hello "React" World');
+    setState('Hello  RSLang');
   }, []);
 
   return <h1>{state}</h1>;
