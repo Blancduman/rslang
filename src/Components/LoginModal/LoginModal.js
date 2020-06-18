@@ -156,7 +156,11 @@ const LoginModal = ({ setUser, modal, setModal }) => {
 
 LoginModal.propTypes = {
   setUser: PropTypes.func.isRequired,
-  modal: PropTypes.objectOf(PropTypes.any).isRequired,
+  modal: PropTypes.shape({
+    visible: PropTypes.bool,
+    loading: PropTypes.bool,
+    type: PropTypes.string,
+  }).isRequired,
   setModal: PropTypes.func.isRequired,
 };
 
