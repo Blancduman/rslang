@@ -6,7 +6,7 @@ import './speakit.css';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);
-  const [current, setCurrent] = useState({word: '', image: ''});
+  const [current, setCurrent] = useState({ word: '', image: '' });
 
   useEffect(() => {
     if (result.length) {

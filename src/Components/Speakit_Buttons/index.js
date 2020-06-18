@@ -1,10 +1,19 @@
 import React from 'react';
+import { Button } from 'antd';
+import { ForwardOutlined, AudioOutlined, FundProjectionScreenOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
 
 const Control = () => (
   <div className="speakit__controll">
-    <div tabIndex="0" role="button" title="Restart the game" className="speakit__controll_restart"><span>Restart</span></div>
-    <div tabIndex="0" role="button" title="Enable speech recognition" className="speakit__controll_speak"><span>Speak</span></div>
-    <div tabIndex="0" role="button" title="Show result" className="speakit__controll_result"><span>Result</span></div>
+    <Button type="primary" icon={<ForwardOutlined />} shape="round" className="speakit__controll_button">
+      Restart
+    </Button>
+    <Button type="primary" icon={<AudioOutlined />} shape="round" className="speakit__controll_button speakit__speak">
+      Speak
+    </Button>
+    <Button type="primary" icon={<FundProjectionScreenOutlined />} shape="round" className="speakit__controll_button">
+      Result
+    </Button>
   </div>
 );
 

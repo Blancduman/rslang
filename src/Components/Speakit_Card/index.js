@@ -1,13 +1,20 @@
 import React from 'react';
-import showCard from '../../Helper/ShowCard';
+import PropTypes from 'prop-types';
+import { NotificationOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
 
-const Card = (props) => {
-  const {
+const Card = ({
+  word: {
     word, transcription, wordTranslate, image,
-  } = props.word;
-  const { speech, change } = props;
-  const voice = (text) => {
-    speech.text = text;
+  }, change,
+}) => {
+  const voice = (value) => {
+    const speech = new SpeechSynthesisUtterance();
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
+    speech.lang = 'en-EN';
+    speech.text = value;
     change({ word: wordTranslate, image });
     window.speechSynthesis.speak(speech);
   };
@@ -25,12 +32,18 @@ const Card = (props) => {
 
   return (
     <div tabIndex="0" role="button" className="speakit__cards_card" onClick={handleMouseShowCard} onKeyDown={handleKeyShowCard}>
+      <NotificationOutlined sie="large" className="speakit__play_word" />
       <p className="speakit__word">{word}</p>
       <p className="speakit__transcription">{transcription}</p>
       <p className="speakit__cards_hidden speakit__translate">{wordTranslate}</p>
       <p className="speakit__cards_hidden speakit__img">{image}</p>
     </div>
   );
+};
+
+Card.propTypes = {
+  change: PropTypes.func.isRequired,
+  word: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Card;
