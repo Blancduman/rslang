@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {
   Alert, Button, Form, Input, Modal, Tooltip,
 } from 'antd';
-import LockOutlined from '@ant-design/icons/lib/icons/LockOutlined';
-import MailOutlined from '@ant-design/icons/lib/icons/MailOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
+import MailOutlined from '@ant-design/icons/MailOutlined';
 import { signIn, signUp } from '../../Services/LoginService';
 
 const LoginModal = ({ setUser, modal, setModal }) => {
