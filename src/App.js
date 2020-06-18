@@ -29,7 +29,7 @@ const App = () => (
         <Example />
       </Route>
       <Route path="/promo">
-        <Example/>
+        <Example />
       </Route>
       <Route path="/about">
         <Example />
