@@ -1,9 +1,8 @@
 import React from 'react';
 import { Progress } from 'antd';
 import PropTypes from 'prop-types';
+import { calculatePercent } from '../../../utls';
 import './progressline.css';
-
-const calculatePercent = (amount, total) => ((amount / total) * 100);
 
 const ProgressLine = (props) => {
   const { done, total } = props;
@@ -12,7 +11,7 @@ const ProgressLine = (props) => {
     <div className="dictionary__progressline">
       { done }
       {' '}
-      <Progress percent={calculatePercent(done, total)} showInfo={false} style={{ width: '80%' }} />
+      <Progress className="dictionary__progressline_progress" percent={calculatePercent(done, total)} showInfo={false} />
       {' '}
       { total }
     </div>
