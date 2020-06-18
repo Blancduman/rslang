@@ -11,6 +11,7 @@
 .savanna-header__life-container {
   display: flex;
   border: 1px solid red;
+  height: 30px;
 }
 
 .savanna-header__life {

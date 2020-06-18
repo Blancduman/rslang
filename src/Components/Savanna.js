@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../main.css';
 import PropTypes from 'prop-types';
 
@@ -23,6 +23,16 @@ const initData = [
     answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
     rightAnswerIndex: 2,
   },
+  {
+    word: 'stop',
+    answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
+    rightAnswerIndex: 2,
+  },
+  {
+    word: 'stop',
+    answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
+    rightAnswerIndex: 2,
+  },
 ];
 
 const GameComponent = (props) => {
@@ -32,7 +42,7 @@ const GameComponent = (props) => {
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
   const [isRightAnswer, setIsRightAnswer] = useState('');
-  const [winStreak, setWinStreak] = useState(0);
+  const winStreak = useRef(0);
 
   function nextRound() {
     setIsRightAnswer('');
@@ -41,55 +51,74 @@ const GameComponent = (props) => {
 
   function fail() {
     setHealth(health - 1);
-    setTimeout(() => nextRound(), 1500);
+    if ((health - 1) === 0) setTimeout(() => setGameover(true), 1500);
+    else setTimeout(() => nextRound(), 1500);
   }
 
   function giveAnswer(index) {
     if (index === initData[currentRound].rightAnswerIndex) {
-      setWinStreak(winStreak + 1);
+      winStreak.current += 1;
       setIsRightAnswer(true);
-      if (winStreak >= 4) setScore(score + 20);
+      if (winStreak.current >= 4) setScore(score + 20);
       else setScore(score + 10);
       setTimeout(() => nextRound(), 1500);
     } else {
-      setWinStreak(0);
+      winStreak.current = 0;
       setIsRightAnswer(false);
       fail();
     }
   }
 
   return (
-    <div className="wrapper savanna-wrapper">
-      <header className="savanna-header">
-        <div className="savanna-header__header-container">
-          <Health health={health} />
-          <Score score={score} />
-        </div>
-      </header>
-      <div className="savanna-game-field">
-        <Word
+    gameover
+      ? <div>Game Over</div>
+      : (
+        <div className="wrapper savanna-wrapper">
+          <header className="savanna-header">
+            <div className="savanna-header__header-container">
+              <Health health={health} />
+              <Score score={score} />
+              <Timer go={gameover} />
+            </div>
+          </header>
+          <div className="savanna-game-field">
+            <Word
           // key={currentRound}
-          fail={fail}
-          word={initData[currentRound].word}
-        />
-        <Answers
-          answers={initData[currentRound].answers}
-          giveAnswer={giveAnswer}
-          isRightAnswer={isRightAnswer}
-          key={currentRound}
-        />
-      </div>
-    </div>
+              fail={fail}
+              word={initData[currentRound].word}
+            />
+            <Answers
+              answers={initData[currentRound].answers}
+              giveAnswer={giveAnswer}
+              isRightAnswer={isRightAnswer}
+              key={currentRound}
+            />
+          </div>
+        </div>
+      )
   );
 };
 
 export default GameComponent;
 
+const Timer = (props) => {
+  const { go } = props;
+  const [timer, setTimer] = useState(60);
+  useEffect(() => {
+    setTimeout(() => setTimer(timer - 1), 1000);
+  }, [timer]);
+  return (
+    <div className="savanna-header__timer-container timer-container">
+      <span className="timer-container__timer">{`Осталось: ${timer}`}</span>
+    </div>
+  );
+};
+
 const Score = (props) => {
   const { score } = props;
   return (
     <div className="savanna-header__score-container score-container">
-      <span className="score-container__titel">Score: </span>
+      <span className="score-container__titel">Очки: </span>
       <span className="score-container__score">{score}</span>
     </div>
   );
@@ -100,9 +129,10 @@ Score.propTypes = {
 
 const Health = (props) => {
   const { health } = props;
+  const hearts = new Array(health).fill('').map((item, index) => <div className="savanna-header__life" key={`${index * 1}`}>&lt;3</div>);
   return (
     <div className="savanna-header__life-container">
-      {new Array(health).fill(<div className="savanna-header__life">&lt;3</div>)}
+      {hearts}
     </div>
   );
 };
@@ -143,7 +173,7 @@ const Answers = (props) => {
               setLastPressIndex(index);
             }
           }}
-          key={(item + index)}
+          key={(item)}
         >
           {item}
         </button>
