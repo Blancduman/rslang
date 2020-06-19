@@ -1,4 +1,4 @@
-const getWordsNew = async (group, page) => {
+const getWords = async (group, page) => {
   try {
     const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${page}&wordsPerExampleSentenceLTE=20`;
     const response = await fetch(url);
@@ -14,4 +14,4 @@ const getWordsNew = async (group, page) => {
   }
 };
 
-export { getWordsNew };
+export { getWords };
