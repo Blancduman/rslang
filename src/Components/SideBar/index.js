@@ -3,20 +3,14 @@ import { NavLink } from 'react-router-dom';
 import {
   Layout, Menu,
 } from 'antd';
+import './side-bar.css';
 
 const {
   Sider,
 } = Layout;
 
 const SideBar = () => (
-  <Sider
-    style={{
-      overflow: 'auto',
-      height: '100vh',
-      position: 'fixed',
-      left: 0,
-    }}
-  >
+  <Sider className="basic-layout_side_bar">
     <Menu theme="dark" mode="inline">
       <Menu.Item key="1">
         <NavLink to="/">Home</NavLink>

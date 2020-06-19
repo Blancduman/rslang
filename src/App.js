@@ -9,16 +9,17 @@ import Example from './Components/Example';
 import SideBar from './Components/SideBar';
 import HeaderBar from './Components/Header';
 import 'antd/dist/antd.css';
+import './main.css';
 
 const { Content } = Layout;
 
 const App = () => (
   <Router>
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className="basic-layout_wrapper">
       <SideBar />
-      <Layout style={{ marginLeft: 200 }}>
+      <Layout className="basic-layout_layout">
         <HeaderBar />
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+        <Content className="basic-layout_content">
           <Switch>
             <Route exact path="/">
               <Example />

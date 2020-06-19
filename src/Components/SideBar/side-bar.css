@@ -1,0 +1,6 @@
+.basic-layout_side_bar {
+    overflow: 'auto';
+    height: '100vh';
+    position: 'fixed';
+    left: 0;
+}
