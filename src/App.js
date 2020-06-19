@@ -5,6 +5,8 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
+import GameSprintPage from "./Components/GameSprintPage/GameSprintPage";
+
 import 'antd/dist/antd.css';
 
 const App = () => (
@@ -23,7 +25,7 @@ const App = () => (
         <Example />
       </Route>
       <Route path="/sprint">
-        <Example />
+        <GameSprintPage />
       </Route>
       <Route path="/english_puzzle">
         <Example />
