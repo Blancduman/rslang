@@ -25,5 +25,3 @@ Image.propTypes = {
 };
 
 export default Image;
-
-//   current: PropTypes.objectOf(PropTypes.string).isRequired,
