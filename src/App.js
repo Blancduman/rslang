@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Button } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
+import Example from './Components/Example';
 import LoginModal from './Components/LoginModal/LoginModal';
 
 const App = () => {
@@ -53,6 +54,27 @@ const App = () => {
             setModal={setModal}
           />
         </Route>
+          <Route path="/dictionary">
+              <Example />
+          </Route>
+          <Route path="/speakit">
+              <Example />
+          </Route>
+          <Route path="/savannah">
+              <Example />
+          </Route>
+          <Route path="/sprint">
+              <Example />
+          </Route>
+          <Route path="/english_puzzle">
+              <Example />
+          </Route>
+          <Route path="/promo">
+              <Example />
+          </Route>
+          <Route path="/about">
+              <Example />
+          </Route>
       </Switch>
     </Router>
   );
