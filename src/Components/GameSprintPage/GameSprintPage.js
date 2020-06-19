@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { StarTwoTone } from '@ant-design/icons';
 import { useKeyPress } from 'use-hooks/dist/commonjs/use-key-press';
+import StartMenu from './StartMenu';
 
 const GameSprintPage = () => {
+  const [gameParams, setGameParams] = useState({
+    stage: 'starting',
+    level: '0',
+  });
   const [game, setGame] = useState({
     score: 0,
     winSequence: [false, false, false, false],
@@ -129,6 +135,11 @@ const GameSprintPage = () => {
   return (
     <>
       <div className="game-sprint__container">
+        {
+          gameParams.stage === 'starting'
+              ? <StartMenu setGameParams={setGameParams} />
+              : gameParams.level
+        }
         <label className="game-sprint__label">{game.score}</label>
         <Card>
           <Card.Grid className="game-sprint__card-layout">
@@ -171,6 +182,24 @@ const GameSprintPage = () => {
         </Card>
       </div>
     </>
+=======
+import React, { useState } from 'react';
+import StartMenu from './StartMenu';
+
+const GameSprintPage = () => {
+  const [gameParams, setGameParams] = useState({
+    stage: 'starting',
+    level: '0',
+  });
+  return (
+    <div className="game-sprint__container">
+      {
+                gameParams.stage === 'starting'
+                  ? <StartMenu setGameParams={setGameParams} />
+                  : gameParams.level
+            }
+    </div>
+>>>>>>> feat: add base for game sprint page, add start menu.
   );
 };
 

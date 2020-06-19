@@ -47,3 +47,7 @@
 .game-sprint__button_wrong {
     background: darkred;
 }
+
+.ant-select.game-sprint__select-level {
+    width: 120px;
+}
