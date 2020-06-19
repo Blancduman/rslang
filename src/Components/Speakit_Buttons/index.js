@@ -4,14 +4,14 @@ import { ForwardOutlined, AudioOutlined, FundProjectionScreenOutlined } from '@a
 import 'antd/dist/antd.css';
 
 const Control = () => (
-  <div className="speakit__controll">
-    <Button type="primary" icon={<ForwardOutlined />} shape="round" className="speakit__controll_button">
+  <div className="speakit__control">
+    <Button type="primary" icon={<ForwardOutlined />} shape="round" className="speakit__control_button">
       Restart
     </Button>
-    <Button type="primary" icon={<AudioOutlined />} shape="round" className="speakit__controll_button speakit__speak">
+    <Button type="primary" icon={<AudioOutlined />} shape="round" className="speakit__control_button speakit__speak">
       Speak
     </Button>
-    <Button type="primary" icon={<FundProjectionScreenOutlined />} shape="round" className="speakit__controll_button">
+    <Button type="primary" icon={<FundProjectionScreenOutlined />} shape="round" className="speakit__control_button">
       Result
     </Button>
   </div>

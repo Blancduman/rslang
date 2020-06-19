@@ -7,17 +7,23 @@ const Image = ({
   current: { word, image },
 }) => {
   const link = `${path}${image}`;
+  const showImage = (image !== '' ? <img src={link} alt={word} className="speakit__image_word" /> : null);
 
   return (
     <div className="speakit__image">
-      <img src={image !== '' ? link : ''} alt={word} className="speakit__image_word" />
+      {showImage}
       <p className="speakit__image_translate">{word}</p>
     </div>
   );
 };
 
 Image.propTypes = {
-  current: PropTypes.objectOf(PropTypes.any).isRequired,
+  current: PropTypes.shape({
+    word: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
 };
 
 export default Image;
+
+//   current: PropTypes.objectOf(PropTypes.string).isRequired,
