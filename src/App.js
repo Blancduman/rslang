@@ -5,8 +5,9 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
-import Dictionary from './Containers/Dictionary';
-import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
+import GameSprintPage from "./Components/GameSprintPage/GameSprintPage";
+
+import 'antd/dist/antd.css';
 
 const App = () => (
   <Router>
