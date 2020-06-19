@@ -1,0 +1,36 @@
+.game-sprint__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+    padding: 2rem;
+    background: url("../../assets/img/sprint.svg") no-repeat right;
+    background-size: 76vh;
+}
+
+.game-sprint__card-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+}
+
+.game-sprint__button-group {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+    border-top: darkslategrey 1px dotted;
+}
+
+.game-sprint__button {
+    margin: 0 0.5rem;
+    color: white;
+}
+
+.ant-select.game-sprint__select-level {
+    width: 120px;
+}
