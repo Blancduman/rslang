@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
+import Speakit from './Containers/Speakit';
 import 'antd/dist/antd.css';
 
 const App = () => (
@@ -17,7 +18,7 @@ const App = () => (
         <Example />
       </Route>
       <Route path="/speakit">
-        <Example />
+        <Speakit />
       </Route>
       <Route path="/savannah">
         <Example />
