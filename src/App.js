@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Example from './Components/Example';
 import Speakit from './Containers/Speakit';
+import 'antd/dist/antd.css';
 
 const App = () => (
   <Router>
@@ -13,8 +14,26 @@ const App = () => (
       <Route exact path="/">
         <Example />
       </Route>
+      <Route path="/dictionary">
+        <Example />
+      </Route>
       <Route path="/speakit">
         <Speakit />
+      </Route>
+      <Route path="/savannah">
+        <Example />
+      </Route>
+      <Route path="/sprint">
+        <Example />
+      </Route>
+      <Route path="/english_puzzle">
+        <Example />
+      </Route>
+      <Route path="/promo">
+        <Example />
+      </Route>
+      <Route path="/about">
+        <Example />
       </Route>
     </Switch>
   </Router>
