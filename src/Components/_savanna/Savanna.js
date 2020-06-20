@@ -25,8 +25,16 @@ const initData = [
   },
 ];
 
+const getWords = async (level, round) => {
+  const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/words?page=2&group=0');
+  const words = await rawResponse.json();
+  return words;
+};
+
 const GameComponent = (props) => {
+  const [words, setWords] = useState([]);
   const [currentLevel, setLevel] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
   const [health, setHealth] = useState(5);
   const [score, setScore] = useState(0);
@@ -34,13 +42,24 @@ const GameComponent = (props) => {
   const [isRightAnswer, setIsRightAnswer] = useState('');
   const winStreak = useRef(0);
 
+  useEffect(() => {
+    async function loadWords(level, page) {
+      setRound(0);
+      const res = await getWords(level, page);
+      res.sort(() => Math.random() - 0.5);
+      setWords(res);
+    }
+    loadWords(currentLevel, currentPage);
+  }, [currentLevel, currentPage]);
+  console.log(words);
+
   function GameOver() {
     setGameover(true);
   }
 
   function nextRound() {
     setIsRightAnswer('');
-    if (currentRound === initData.length - 1) GameOver();
+    if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
     else setRound(currentRound + 1);
   }
 
@@ -63,7 +82,7 @@ const GameComponent = (props) => {
       fail();
     }
   }
-
+  
   return (
     gameover
       ? <Gameover />
