@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Cards from '../../Components/Speakit_Cards';
-import Image from '../../Components/Speakit_Image';
-import Control from '../../Components/Speakit_Buttons';
+import Cards from '../../Components/Speakit/Cards';
+import Image from '../../Components/Speakit/Image';
+import Control from '../../Components/Speakit/Buttons';
 import { getWords } from '../../Services/DataService';
-import './speakit.css';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);

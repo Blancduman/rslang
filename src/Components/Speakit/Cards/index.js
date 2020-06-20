@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Word from '../Speakit_Card';
+import Word from '../Card';
 
 const Cards = (props) => {
   const { words, change } = props;

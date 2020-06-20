@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Example from './Components/Example';
 import Speakit from './Containers/Speakit';
-import 'antd/dist/antd.css';
+import './main.css';
 
 const App = () => (
   <Router>

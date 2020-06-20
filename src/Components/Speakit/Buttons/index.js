@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
 import { ForwardOutlined, AudioOutlined, FundProjectionScreenOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
 
 const Control = () => (
   <div className="speakit__control">

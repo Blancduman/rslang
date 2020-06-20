@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NotificationOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
-import 'antd/dist/antd.css';
 
 const { Meta } = Card;
 
