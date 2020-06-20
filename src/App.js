@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
+import Dictionary from './Containers/Dictionary';
 import 'antd/dist/antd.css';
 
 const App = () => (
@@ -14,7 +15,7 @@ const App = () => (
         <Example />
       </Route>
       <Route path="/dictionary">
-        <Example />
+        <Dictionary />
       </Route>
       <Route path="/speakit">
         <Example />
