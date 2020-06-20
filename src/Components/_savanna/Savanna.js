@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../main.css';
-import PropTypes from 'prop-types';
+import './savanna.css';
+import PropTypes, { func } from 'prop-types';
 
 const initData = [
   {
@@ -23,16 +23,6 @@ const initData = [
     answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
     rightAnswerIndex: 2,
   },
-  {
-    word: 'stop',
-    answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
-    rightAnswerIndex: 2,
-  },
-  {
-    word: 'stop',
-    answers: ['видеть', 'хлопать', 'останавливаться', 'падать'],
-    rightAnswerIndex: 2,
-  },
 ];
 
 const GameComponent = (props) => {
@@ -44,14 +34,19 @@ const GameComponent = (props) => {
   const [isRightAnswer, setIsRightAnswer] = useState('');
   const winStreak = useRef(0);
 
+  function GameOver() {
+    setGameover(true);
+  }
+
   function nextRound() {
     setIsRightAnswer('');
-    setRound(currentRound + 1);
+    if (currentRound === initData.length - 1) GameOver();
+    else setRound(currentRound + 1);
   }
 
   function fail() {
     setHealth(health - 1);
-    if ((health - 1) === 0) setTimeout(() => setGameover(true), 1500);
+    if ((health - 1) === 0) setTimeout(() => GameOver(), 1500);
     else setTimeout(() => nextRound(), 1500);
   }
 
@@ -71,14 +66,14 @@ const GameComponent = (props) => {
 
   return (
     gameover
-      ? <div>Game Over</div>
+      ? <Gameover />
       : (
         <div className="wrapper savanna-wrapper">
           <header className="savanna-header">
             <div className="savanna-header__header-container">
               <Health health={health} />
               <Score score={score} />
-              <Timer go={gameover} />
+              <Timer setGameOver={GameOver} />
             </div>
           </header>
           <div className="savanna-game-field">
@@ -102,10 +97,11 @@ const GameComponent = (props) => {
 export default GameComponent;
 
 const Timer = (props) => {
-  const { go } = props;
+  const { setGameOver } = props;
   const [timer, setTimer] = useState(60);
   useEffect(() => {
-    setTimeout(() => setTimer(timer - 1), 1000);
+    if (timer === 0) setGameOver();
+    else setTimeout(() => setTimer(timer - 1), 1000);
   }, [timer]);
   return (
     <div className="savanna-header__timer-container timer-container">
@@ -113,6 +109,15 @@ const Timer = (props) => {
     </div>
   );
 };
+Timer.propTypes = {
+  setGameOver: PropTypes.func.isRequired,
+};
+
+const Gameover = () => (
+  <div className="game-over-container">
+    <span className="game-over-container__game-over">Game over</span>
+  </div>
+);
 
 const Score = (props) => {
   const { score } = props;
@@ -157,7 +162,6 @@ const Answers = (props) => {
   const { answers, isRightAnswer, giveAnswer } = props;
   const [lastPressIndex, setLastPressIndex] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
-  // console.log(lastPressIndex);
   return (
     <div className="savanna-game-field__answers answers">
       {answers.map((item, index) => (

@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Savanna from './Components/Savanna';
+import Savanna from './Components/_savanna/Savanna';
 
 const App = () => (
   <Router>
