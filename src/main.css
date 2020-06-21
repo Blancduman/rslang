@@ -1,12 +1,10 @@
-.basic-layout_wrapper {
-    min-height: 100vh;
-}
-
-.basic-layout_layout {
-    margin-left: 150px;
+.basic-layout_header {
+    position: fixed;
+    width: 100%;
 }
 
 .basic-layout_content {
-    margin: 24px 16px 0;
-    overflow: initial;
+    padding-top: 80px;
+    margin-left: 250px;
+    height: 100vh;
 }
