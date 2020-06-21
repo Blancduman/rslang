@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import './savanna.css';
 import PropTypes, { func } from 'prop-types';
+import Loading from '../Loading/index';
 
 const initData = [
   {
@@ -31,6 +33,10 @@ const getWords = async (level, round) => {
   return words;
 };
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 const GameComponent = (props) => {
   const [words, setWords] = useState([]);
   const [currentLevel, setLevel] = useState(0);
@@ -40,7 +46,17 @@ const GameComponent = (props) => {
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
   const [isRightAnswer, setIsRightAnswer] = useState('');
+  const [answers, setAnswers] = useState([]);
   const winStreak = useRef(0);
+
+  function shuffleAnswers() {
+    setAnswers(answers.splice(0, answers.length));
+    for (let i = 0; i <= 2; i += 1) {
+      setAnswers(answers.push(words[getRandomInt(19)].wordTranslate));
+    }
+    console.log(currentRound);
+    setAnswers(answers.push(words[currentRound].wordTranslate));
+  }
 
   useEffect(() => {
     async function loadWords(level, page) {
@@ -51,7 +67,6 @@ const GameComponent = (props) => {
     }
     loadWords(currentLevel, currentPage);
   }, [currentLevel, currentPage]);
-  console.log(words);
 
   function GameOver() {
     setGameover(true);
@@ -60,7 +75,11 @@ const GameComponent = (props) => {
   function nextRound() {
     setIsRightAnswer('');
     if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
-    else setRound(currentRound + 1);
+    else {
+      setRound(currentRound + 1);
+      shuffleAnswers();
+      console.log(answers);
+    }
   }
 
   function fail() {
@@ -82,34 +101,34 @@ const GameComponent = (props) => {
       fail();
     }
   }
-  
+  console.log(words);
   return (
-    gameover
-      ? <Gameover />
-      : (
-        <div className="wrapper savanna-wrapper">
-          <header className="savanna-header">
-            <div className="savanna-header__header-container">
-              <Health health={health} />
-              <Score score={score} />
-              <Timer setGameOver={GameOver} />
-            </div>
-          </header>
-          <div className="savanna-game-field">
-            <Word
+    words.length === 0 ? <Loading />
+      : gameover ? <Gameover />
+        : (
+          <div className="wrapper savanna-wrapper">
+            <header className="savanna-header">
+              <div className="savanna-header__header-container">
+                <Health health={health} />
+                <Score score={score} />
+                <Timer setGameOver={GameOver} />
+              </div>
+            </header>
+            <div className="savanna-game-field">
+              <Word
           // key={currentRound}
-              fail={fail}
-              word={initData[currentRound].word}
-            />
-            <Answers
-              answers={initData[currentRound].answers}
-              giveAnswer={giveAnswer}
-              isRightAnswer={isRightAnswer}
-              key={currentRound}
-            />
+                fail={fail}
+                word={words[currentRound].word}
+              />
+              <Answers
+                answers={initData[currentRound].answers}
+                giveAnswer={giveAnswer}
+                isRightAnswer={isRightAnswer}
+                key={currentRound}
+              />
+            </div>
           </div>
-        </div>
-      )
+        )
   );
 };
 
