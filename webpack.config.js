@@ -3,10 +3,12 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
+  watch: true,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -26,6 +28,9 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
