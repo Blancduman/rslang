@@ -11,7 +11,7 @@ export const signUp = async (data) => {
   if (rawResponse.ok) {
     return rawResponse.json();
   }
-  return Promise.reject(new Error('Этот e-mail уже используется!'));
+  throw new Error('Этот e-mail уже используется!');
 };
 
 export const signIn = async (data) => {
@@ -27,5 +27,5 @@ export const signIn = async (data) => {
   if (rawResponse.ok) {
     return rawResponse.json();
   }
-  return Promise.reject(new Error('Неверный e-mail или пароль!'));
+  throw new Error('Неверный e-mail или пароль!');
 };

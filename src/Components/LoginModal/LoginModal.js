@@ -7,81 +7,76 @@ import LockOutlined from '@ant-design/icons/LockOutlined';
 import MailOutlined from '@ant-design/icons/MailOutlined';
 import { signIn, signUp } from '../../Services/LoginService';
 
-const LoginModal = ({ setUser, modal, setModal }) => {
+import './login-modal.css';
+
+const LoginModal = ({
+  loginModalVisible, setAuthorized, hideModal, type,
+}) => {
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
 
-  const hideModal = () => {
-    if (!modal.loading) {
+  const closeModal = () => {
+    if (!loading) {
       form.resetFields();
       setError('');
-      setModal((prev) => ({ ...prev, visible: false }));
+      hideModal();
     }
   };
 
   const executeSignIn = async (data) => {
     const response = await signIn(data);
-    if (response instanceof Error) {
-      throw response;
-    }
-    setUser({ ...response, authorized: true });
+    localStorage.setItem('token', response.token);
+    setAuthorized(true);
   };
 
   const executeSignUp = async (data) => {
-    const response = await signUp(data);
-    if (response instanceof Error) {
-      throw response;
-    }
-  };
-
-  const clearModal = () => {
-    form.resetFields();
-    setError('');
+    await signUp(data);
   };
 
   const handleClickOkButton = async () => {
     try {
-      setModal((prev) => ({ ...prev, loading: true }));
+      setLoading(true);
       await form.validateFields();
       const data = form.getFieldsValue();
 
-      if (modal.type === 'SignIn') {
+      if (type === 'SignIn') {
         await executeSignIn(data);
       } else {
         await executeSignUp(data);
       }
 
-      clearModal();
-      setModal((prev) => ({ ...prev, visible: false, loading: false }));
+      setLoading(false);
+      closeModal();
     } catch (e) {
       if (e.message) {
         setError(e.message);
       } else {
         setError('Введены некорректные данные');
       }
-      setModal((prev) => ({ ...prev, loading: false }));
+      setLoading(false);
     }
   };
 
   return (
     <Modal
-      title={modal.type === 'SignIn' ? 'Вход' : 'Регистрация'}
-      visible={modal.visible}
-      onCancel={hideModal}
+      title={type === 'SignIn' ? 'Вход' : 'Регистрация'}
+      visible={loginModalVisible}
+      onCancel={closeModal}
       footer={[
         <Button
           key="cancel"
           type="default"
-          disabled={modal.loading}
-          onClick={hideModal}
+          disabled={loading}
+          onClick={closeModal}
         >
           Отмена
         </Button>,
         <Button
           key="ok"
           type="primary"
-          loading={modal.loading}
-          disabled={modal.loading}
+          loading={loading}
+          disabled={loading}
           onClick={handleClickOkButton}
         >
           OK
@@ -154,14 +149,15 @@ const LoginModal = ({ setUser, modal, setModal }) => {
   );
 };
 
+LoginModal.defaultProps = {
+  type: 'SignIn',
+};
+
 LoginModal.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  modal: PropTypes.shape({
-    visible: PropTypes.bool,
-    loading: PropTypes.bool,
-    type: PropTypes.string,
-  }).isRequired,
-  setModal: PropTypes.func.isRequired,
+  loginModalVisible: PropTypes.bool.isRequired,
+  setAuthorized: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
 export default LoginModal;
