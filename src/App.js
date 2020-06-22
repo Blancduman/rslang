@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Example from './Components/Example';
-import GameSprintPage from "./Components/GameSprintPage/GameSprintPage";
+import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 
 import 'antd/dist/antd.css';
 

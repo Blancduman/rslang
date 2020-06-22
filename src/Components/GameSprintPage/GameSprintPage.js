@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import StartMenu from './StartMenu';
 
+import './game-sprint-page.css';
+
 const GameSprintPage = () => {
-  const [gameParams, setGameParams] = useState({
-    stage: 'starting',
-    level: '0',
-  });
+  const [stage, setStage] = useState('starting');
+  const [level, setLevel] = useState('0');
   return (
     <div className="game-sprint__container">
       {
-                gameParams.stage === 'starting'
-                  ? <StartMenu setGameParams={setGameParams} />
-                  : gameParams.level
-            }
+        stage === 'starting'
+          ? <StartMenu setStage={setStage} setLevel={setLevel} />
+          : level
+      }
     </div>
   );
 };
