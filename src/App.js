@@ -7,15 +7,14 @@ import LoginModal from './Components/LoginModal/LoginModal';
 
 import 'antd/dist/antd.css';
 
-let loginType;
-
 const App = () => {
   const isAuthorized = !!localStorage.getItem('token');
   const [authorized, setAuthorized] = useState(isAuthorized);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [loginType, setLoginType] = useState('SignIn');
 
   const showModal = (type) => {
-    loginType = type;
+    setLoginType(type);
     setLoginModalVisible(true);
   };
 

@@ -83,16 +83,17 @@ const LoginModal = ({
         </Button>,
       ]}
     >
-      {error
-        ? (
+      {
+        error
+          && (
           <Alert
             className="login-modal__alert"
             message={error}
             type="error"
             showIcon
           />
-        )
-        : null}
+          )
+      }
       <Form form={form}>
         <Form.Item
           name="email"
@@ -149,15 +150,11 @@ const LoginModal = ({
   );
 };
 
-LoginModal.defaultProps = {
-  type: 'SignIn',
-};
-
 LoginModal.propTypes = {
   loginModalVisible: PropTypes.bool.isRequired,
   setAuthorized: PropTypes.func.isRequired,
   hideModal: PropTypes.func.isRequired,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
 
 export default LoginModal;
