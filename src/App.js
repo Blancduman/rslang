@@ -29,9 +29,9 @@ const App = () => (
             <div>Словарь</div>
           </Route>
           <Route path="/speakit">
-            <div>Speakit</div>
+            <div>Говорить на нем</div>
           </Route>
-          <Route path="/savanna">
+          <Route path="/savannah">
             <div>Саванна</div>
           </Route>
           <Route path="/sprint">

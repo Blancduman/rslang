@@ -40,7 +40,7 @@ const SideBar = () => {
       >
         <Menu.Item key="1" icon={<HomeOutlined />}>
           <NavLink to="/">
-            Home
+            Главная
           </NavLink>
         </Menu.Item>
 
@@ -52,25 +52,25 @@ const SideBar = () => {
 
         <SubMenu key="sub1" icon={<RocketOutlined />} title="Мини-игры">
           <Menu.Item key="3">
-            <NavLink to="/speakit">
-              Speakit
+            <NavLink to="/speakit" target="_blank" rel="noreferrer noopener">
+              Говорить на нем
             </NavLink>
           </Menu.Item>
 
           <Menu.Item key="4">
-            <NavLink to="/savanna">
+            <NavLink to="/savannah" target="_blank" rel="noreferrer noopener">
               Саванна
             </NavLink>
           </Menu.Item>
 
           <Menu.Item key="5">
-            <NavLink to="/sprint">
+            <NavLink to="/sprint" target="_blank" rel="noreferrer noopener">
               Спринт
             </NavLink>
           </Menu.Item>
 
           <Menu.Item key="6">
-            <NavLink to="/english_puzzle">
+            <NavLink to="/english_puzzle" target="_blank" rel="noreferrer noopener">
               Головоломка
             </NavLink>
           </Menu.Item>
