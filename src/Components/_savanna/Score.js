@@ -1,0 +1,18 @@
+import React from 'react';
+import './savanna.css';
+import PropTypes from 'prop-types';
+
+const Score = (props) => {
+  const { score } = props;
+  return (
+    <div className="savanna-header__score-container score-container">
+      <span className="score-container__titel">Очки: </span>
+      <span className="score-container__score">{score}</span>
+    </div>
+  );
+};
+Score.propTypes = {
+  score: PropTypes.number.isRequired,
+};
+
+export default Score;
