@@ -9,7 +9,7 @@ import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import 'antd/dist/antd.css';
 
 const App = () => {
-  const isAuthorized = !!localStorage.getItem('token');
+  const isAuthorized = !!localStorage.getItem('user');
   const [authorized, setAuthorized] = useState(isAuthorized);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [loginType, setLoginType] = useState('SignIn');
@@ -25,7 +25,7 @@ const App = () => {
 
   const logout = () => {
     setAuthorized(false);
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
   return (
