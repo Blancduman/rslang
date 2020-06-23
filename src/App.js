@@ -5,6 +5,8 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import Example from './Components/Example';
 import LoginModal from './Components/LoginModal/LoginModal';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
+import Speakit from './Containers/Speakit';
+import './main.css';
 
 import 'antd/dist/antd.css';
 
@@ -59,7 +61,7 @@ const App = () => {
           <Example />
         </Route>
         <Route path="/speakit">
-          <Example />
+          <Speakit />
         </Route>
         <Route path="/savannah">
           <Example />
