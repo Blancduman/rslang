@@ -3,6 +3,16 @@ import './savanna.css';
 import PropTypes from 'prop-types';
 import getRandomInt from './helpers/getRandomInt';
 
+function markWord(lastPressIndex, index, rightAnswer) {
+  if (lastPressIndex !== null) {
+    if (lastPressIndex === index) {
+      return lastPressIndex === rightAnswer ? 'right-answer' : 'false-answer';
+    }
+    return index === rightAnswer && 'right-answer';
+  }
+  return '';
+}
+
 const Answers = (props) => {
   const {
     words, currentRound, giveAnswer,
@@ -33,7 +43,8 @@ const Answers = (props) => {
         <button
           type="submit"
           className={
-            `answers__answer ${lastPressIndex === index && (lastPressIndex === rightAnswer.current ? 'right-answer' : 'false-answer')}`
+            `answers__answer ${
+              markWord(lastPressIndex, index, rightAnswer.current)}`
           }
           onClick={() => {
             if (!isClicked) {

@@ -1,32 +1,93 @@
+.savanna-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .savanna-header {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
-.savanna-header__header-container {
+.savanna-header__sound {
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.savanna-header__health-container {
+  display: flex;
 }
 
 .savanna-header__life-container {
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 30px;
+  width: 150px;
 }
 
 .savanna-header__life {
+  display: flex;
   padding: 5px;
+  font-size: 20px;
+}
+
+.savanna-header__score-container {
+  margin-right: 30px;
+  min-width: 90px;
+}
+
+.score-container__titel, .score-container__score {
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 20px;
+}
+
+.savanna-header__timer-container {
+  margin-right: 30px;
+}
+
+.timer-container__timer {
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 20px;
 }
 
 .savanna-game-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.savanna-game-field__question {
+  position: absolute;
+  /* animation-iteration-count: infinite; */
+  /* animation-timing-function: linear;
+  animation-duration: 3s;
+  animation-name: fall; */
+  /* margin-top: 0; */
+  transition: all 3s linear;
+}
+
+.savanna-game-field__question-active {
+  transform: translateY(214px);
+}
+
+/* @keyframes fall {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: 214px;
+  }
+} */
+
 .savanna-game-field__answers {
   display: flex;
-  margin-top: 50px;
+  margin-top: 250px;
 }
 
 .answers__answer {

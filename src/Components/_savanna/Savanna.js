@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import './savanna.css';
+import { SoundTwoTone, SoundOutlined } from '@ant-design/icons';
 import Loading from '../Loading/index';
 import getWords from './getWords';
 import Health from './Health';
@@ -18,6 +19,7 @@ const GameComponent = () => {
   const [health, setHealth] = useState(5);
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const winStreak = useRef(0);
 
   useEffect(() => {
@@ -64,16 +66,28 @@ const GameComponent = () => {
         : (
           <div className="wrapper savanna-wrapper">
             <header className="savanna-header">
-              <div className="savanna-header__header-container">
-                <Health health={health} />
-                <Score score={score} />
+              <div className="savanna-header__sound-container">
+                <button
+                  type="submit"
+                  className="savanna-header__sound"
+                  onClick={() => {
+                    setSoundOn(!soundOn);
+                  }}
+                >
+                  {soundOn ? <SoundTwoTone /> : <SoundOutlined />}
+                </button>
+              </div>
+              <div className="savanna-header__health-container">
                 <Timer setGameOver={GameOver} />
+                <Score score={score} />
+                <Health health={health} />
               </div>
             </header>
             <div className="savanna-game-field">
               <Word
                 fail={fail}
                 word={words[currentRound].word}
+                key={currentRound + 100}
               />
               <Answers
                 giveAnswer={giveAnswer}
