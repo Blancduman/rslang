@@ -17,12 +17,9 @@ const Speakit = () => {
     }
   }, [result]);
 
-  const x = 0;
-  const y = 0;
-
   useEffect(() => {
-    getWords(x, y).then((value) => setResult(value));
-  }, [x, y]);
+    getWords(0, 0).then((value) => setResult(value));
+  }, []);
 
   return (
     <div>

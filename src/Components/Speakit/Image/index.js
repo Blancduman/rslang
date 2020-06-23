@@ -6,12 +6,9 @@ const path = 'https://raw.githubusercontent.com/DmitriEr/rslang-data/master/';
 const Image = ({
   current: { word, image },
 }) => {
-  const link = `${path}${image}`;
-  const showImage = (image !== '' ? <img src={link} alt={word} className="speakit__image_word" /> : null);
-
   return (
     <div className="speakit__image">
-      {showImage}
+      <img src={image !== '' ? `${path}${image}` : null} alt={word} className="speakit__image_word" />
       <p className="speakit__image_translate">{word}</p>
     </div>
   );
