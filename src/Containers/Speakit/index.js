@@ -6,14 +6,15 @@ import { getWords } from '../../Services/DataService';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);
-  const [current, setCurrent] = useState({ word: '', image: '' });
+  const [inactive, setInactive] = useState('');
+  const [picture, setPicture] = useState('');
+  const [letter, setLetter] = useState('');
+  const [voice, setVoice] = useState('');
 
   useEffect(() => {
     if (result.length) {
-      setCurrent({
-        word: result[0].wordTranslate,
-        image: result[0].image,
-      });
+      setPicture(result[0].image);
+      setLetter(result[0].wordTranslate);
     }
   }, [result]);
 
@@ -24,9 +25,23 @@ const Speakit = () => {
   return (
     <div>
       <main className="speakit__main">
-        <Image current={current} />
-        <Cards words={result} change={setCurrent} />
-        <Control />
+        <Image
+          checkPronunciations={voice}
+          currentLetter={letter}
+          currentPicture={picture}
+        />
+        <Cards
+          words={result}
+          cardOff={inactive}
+          checkPronunciations={voice}
+          changeLetter={setLetter}
+          changePicture={setPicture}
+        />
+        <Control
+          voice={setVoice}
+          offActive={setInactive}
+          changeLetter={setLetter}
+        />
       </main>
     </div>
   );
