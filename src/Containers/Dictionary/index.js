@@ -72,7 +72,6 @@ const Dictionary = () => {
   };
 
   const onSettingsCancel = () => {
-    console.log('closed');
     closeSettings();
   };
 
