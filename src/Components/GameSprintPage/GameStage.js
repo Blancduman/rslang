@@ -8,15 +8,14 @@ import { loadWords } from '../../Services/WordsService';
 import Loading from '../Loading';
 import { createUniqueKey, getWordTranslateFromArrayWithChance, reproduceAudioBySource } from '../../utls';
 
-const GameStage = ({ setGameParams, level }) => {
-  const [game, setGame] = useState({
-    score: 0,
-    winSequence: [false, false, false, false],
-    multiplier: 10,
-  });
+const GameStage = ({
+  setStage, score, setScore, level,
+}) => {
+  const [winSequence, setWinSequence] = useState([false, false, false, false]);
   const [words, setWords] = useState([]);
   const [word, setWord] = useState({});
   const [time, setTime] = useState(60);
+  const [multiplier, setMultiplier] = useState(10);
   const [wordTranslate, setWordTranslate] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -34,25 +33,24 @@ const GameStage = ({ setGameParams, level }) => {
   };
 
   const handleCorrectAnswer = () => {
-    let { winSequence, multiplier, score } = game;
-    const index = winSequence.indexOf(false);
+    let newWinSequence = winSequence;
+    let newMultiplier = multiplier;
+    const index = newWinSequence.indexOf(false);
     if (index >= 0) {
-      winSequence.splice(index, 1, true);
+      newWinSequence.splice(index, 1, true);
     } else {
-      multiplier *= 2;
-      winSequence = [false, false, false, false];
+      newMultiplier *= 2;
+      newWinSequence = [false, false, false, false];
     }
-    score += multiplier;
-    setGame({
-      ...game, winSequence, score, multiplier,
-    });
+    setScore((prev) => prev + newMultiplier);
+    setWinSequence(newWinSequence);
+    setMultiplier(newMultiplier);
     reproduceAudioBySource('../src/assets/audio/correct.mp3');
   };
 
   const handleIncorrectAnswer = () => {
-    const winSequence = [false, false, false, false];
-    const multiplier = 10;
-    setGame({ ...game, winSequence, multiplier });
+    setWinSequence([false, false, false, false]);
+    setMultiplier(10);
     reproduceAudioBySource('../src/assets/audio/error.mp3');
   };
 
@@ -80,7 +78,7 @@ const GameStage = ({ setGameParams, level }) => {
 
   useEffect(() => {
     if (time === 0) {
-      setGameParams((prev) => ({ ...prev, stage: 'finished', score: game.score }));
+      setStage('finished');
     }
   }, [time]);
 
@@ -94,7 +92,7 @@ const GameStage = ({ setGameParams, level }) => {
         setWords(res);
         passNextWord(res);
       })
-      .catch(() => setGameParams((prev) => ({ ...prev, stage: 'starting' })))
+      .catch(() => setStage('starting'))
       .finally(() => setLoading(false));
 
     return () => clearInterval(idTime);
@@ -106,7 +104,7 @@ const GameStage = ({ setGameParams, level }) => {
         .then((res) => {
           setWords((prev) => prev.concat(res));
         })
-        .catch(() => setGameParams((prev) => ({ ...prev, stage: 'starting' })));
+        .catch(() => setStage('starting'));
     }
   }, [words]);
 
@@ -115,26 +113,27 @@ const GameStage = ({ setGameParams, level }) => {
       ? <Loading />
       : (
         <>
-          <h4 className="game-sprint__label">{game.score}</h4>
+          <h4 className="game-sprint__label">{score}</h4>
           <Card>
             <Card.Grid className="game-sprint__card-layout">
               <div className="game-sprint__star-container">
                 {
-                                game.winSequence.map((value) => (value
-                                  ? (
-                                    <StarTwoTone
-                                      key={createUniqueKey()}
-                                      twoToneColor="#006400"
-                                      className="game-sprint__star-icon"
-                                    />
-                                  )
-                                  : (
-                                    <StarTwoTone
-                                      key={createUniqueKey()}
-                                      className="game-sprint__star-icon"
-                                    />
-                                  )))
-                            }
+                  winSequence.map((value) => (value
+                    ? (
+                      <StarTwoTone
+                        key={createUniqueKey()}
+                        twoToneColor="#006400"
+                        className="game-sprint__star-icon"
+                      />
+                    )
+                    : (
+                      <StarTwoTone
+                        key={createUniqueKey()}
+                        className="game-sprint__star-icon"
+                      />
+                    )
+                  ))
+                }
               </div>
               <h4 className="game-sprint__label">{time}</h4>
               <p>{word.word}</p>
@@ -161,7 +160,9 @@ const GameStage = ({ setGameParams, level }) => {
 };
 
 GameStage.propTypes = {
-  setGameParams: PropTypes.func.isRequired,
+  setStage: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
+  setScore: PropTypes.func.isRequired,
   level: PropTypes.string.isRequired,
 };
 

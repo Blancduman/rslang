@@ -15,7 +15,7 @@ const GameSprintPage = () => {
         return <StartMenu setStage={setStage} setLevel={setLevel} />;
       }
       case 'started': {
-        return <GameStage setStage={setStage} setScore={setScore} level={level} />;
+        return <GameStage setStage={setStage} score={score} setScore={setScore} level={level} />;
       }
       case 'finished': {
         return score;
@@ -29,9 +29,7 @@ const GameSprintPage = () => {
   return (
     <>
       <div className="game-sprint__container">
-        {
-                    showActualPage()
-                }
+        {showActualPage()}
       </div>
     </>
   );
