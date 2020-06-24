@@ -8,11 +8,9 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-import './main.css';
 
 const { Content } = Layout;
 
-<<<<<<< HEAD
 const App = () => (
   <Router>
     <Layout className="basic-layout_header">
@@ -29,7 +27,7 @@ const App = () => (
             <div>Словарь</div>
           </Route>
           <Route path="/speakit">
-            <div>Говорить на нем</div>
+            <Speakit />
           </Route>
           <Route path="/savannah">
             <div>Саванна</div>
@@ -51,59 +49,5 @@ const App = () => (
     </Layout>
   </Router>
 );
-=======
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          {authorized
-            ? (
-              <Button type="primary" onClick={logout}>
-                Выйти
-              </Button>
-            )
-            : (
-              <ButtonGroup>
-                <Button type="primary" onClick={() => showModal('SignIn')}>
-                  Войти
-                </Button>
-                <Button type="primary" onClick={() => showModal('SignUp')}>
-                  Регистрация
-                </Button>
-              </ButtonGroup>
-            )}
-          <LoginModal
-            loginModalVisible={loginModalVisible}
-            setAuthorized={setAuthorized}
-            hideModal={hideModal}
-            type={loginType}
-          />
-        </Route>
-        <Route path="/dictionary">
-          <Example />
-        </Route>
-        <Route path="/speakit">
-          <Speakit />
-        </Route>
-        <Route path="/savannah">
-          <Example />
-        </Route>
-        <Route path="/sprint">
-          <GameSprintPage />
-        </Route>
-        <Route path="/english_puzzle">
-          <Example />
-        </Route>
-        <Route path="/promo">
-          <Example />
-        </Route>
-        <Route path="/about">
-          <Example />
-        </Route>
-      </Switch>
-    </Router>
-  );
-};
->>>>>>> develop
 
 export default App;

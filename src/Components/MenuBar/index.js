@@ -8,7 +8,7 @@ import {
   RocketOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
   Layout, Menu, Button,
 } from 'antd';
@@ -20,6 +20,7 @@ const {
 
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <Layout className="basic-layout_menu_wrapper">
@@ -31,58 +32,58 @@ const SideBar = () => {
         {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
       </Button>
       <Menu
-        defaultSelectedKeys={['1']}
+        selectedKeys={[pathname]}
         defaultOpenKeys={['sub1']}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
         className="menu_bar"
       >
-        <Menu.Item key="1" icon={<HomeOutlined />}>
+        <Menu.Item key="/" icon={<HomeOutlined />}>
           <NavLink to="/">
             Главная
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="2" icon={<ReadOutlined />}>
+        <Menu.Item key="/dictionary" icon={<ReadOutlined />}>
           <NavLink to="/dictionary">
             Словарь
           </NavLink>
         </Menu.Item>
 
         <SubMenu key="sub1" icon={<RocketOutlined />} title="Мини-игры">
-          <Menu.Item key="3">
+          <Menu.Item key="/speakit">
             <NavLink to="/speakit" target="_blank" rel="noreferrer noopener">
               Говорить на нем
             </NavLink>
           </Menu.Item>
 
-          <Menu.Item key="4">
+          <Menu.Item key="/savannah">
             <NavLink to="/savannah" target="_blank" rel="noreferrer noopener">
               Саванна
             </NavLink>
           </Menu.Item>
 
-          <Menu.Item key="5">
+          <Menu.Item key="/sprint">
             <NavLink to="/sprint" target="_blank" rel="noreferrer noopener">
               Спринт
             </NavLink>
           </Menu.Item>
 
-          <Menu.Item key="6">
+          <Menu.Item key="/english_puzzle">
             <NavLink to="/english_puzzle" target="_blank" rel="noreferrer noopener">
               Головоломка
             </NavLink>
           </Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="7" icon={<InfoCircleOutlined />}>
+        <Menu.Item key="/promo" icon={<InfoCircleOutlined />}>
           <NavLink to="/promo">
             О приложении
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="8" icon={<TeamOutlined />}>
+        <Menu.Item key="/about" icon={<TeamOutlined />}>
           <NavLink to="/about">
             О команде
           </NavLink>
