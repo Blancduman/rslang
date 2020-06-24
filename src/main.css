@@ -1,3 +1,3 @@
-@import "~antd/dist/antd.css";
+@import '~antd/dist/antd.css';
 
-@import "../src/Components/GameSprintPage/game-sprint-page.css";
+@import './Containers/Speakit/speakit.css';
