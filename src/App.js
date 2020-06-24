@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
-import Audiochallenge_main from './Components/audichallenge/Audiochallenge_main';
-
-const App = () => (
-  <Router>
-    <Switch>
-      <Route exact path="/">
-        <Audiochallenge_main />
-      </Route>
-    </Switch>
-  </Router>
-);
-=======
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Button } from 'antd';
@@ -24,6 +5,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import Example from './Components/Example';
 import LoginModal from './Components/LoginModal/LoginModal';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
+import Audiochallenge from './Components/audiochallenge/Audiochallenge_main';
 
 import 'antd/dist/antd.css';
 
@@ -89,6 +71,9 @@ const App = () => {
         <Route path="/english_puzzle">
           <Example />
         </Route>
+        <Route path="/audiochallenge">
+          <Audiochallenge />
+        </Route>
         <Route path="/promo">
           <Example />
         </Route>
@@ -99,6 +84,5 @@ const App = () => {
     </Router>
   );
 };
->>>>>>> develop
 
 export default App;

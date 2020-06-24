@@ -17,8 +17,8 @@ return(
         <div className="wrapper">     
         
          <Switch>
-          <Route  exact  path='/' component={Audiochallenge_startPage} />
-          <Route  path='/game' component={Audiochallenge_game} />
+          <Route  exact  path='/audiochallenge' component={Audiochallenge_startPage} />
+          <Route  path='/audiochallenge_game' component={Audiochallenge_game} />
          
         </Switch>
        

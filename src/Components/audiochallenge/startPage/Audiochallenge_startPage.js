@@ -12,7 +12,7 @@ return(
         <Title strong >AUDIOCHALLENGE</Title>
         <Paragraph className="myText"><Text strong >  Improves your listening skills in English.</Text></Paragraph>
 
-         <Link to="/game"><Button  type="default"  size="large" >start </Button></Link>
+         <Link to="/audiochallenge_game"><Button  type="default"  size="large" >start </Button></Link>
 
         </Space>
 )
