@@ -12,6 +12,8 @@ const defaultOptions = {
     difficult: false,
     ratingWord: false,
     onlyNew: false,
+    wordExplaining: false,
+    sentenceExample: false,
   },
 };
 
