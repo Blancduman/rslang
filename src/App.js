@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+import './main.css';
 import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
-import 'antd/dist/antd.css';
-import './main.css';
 
 const { Content } = Layout;
 
