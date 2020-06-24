@@ -5,7 +5,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import Example from './Components/Example';
 import LoginModal from './Components/LoginModal/LoginModal';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
-import Audiochallenge from './Components/audiochallenge/Audiochallenge_main';
+import Audiochallenge_game from './Components/audiochallenge/game/Audiochallenge_game';
 
 import 'antd/dist/antd.css';
 
@@ -71,8 +71,8 @@ const App = () => {
         <Route path="/english_puzzle">
           <Example />
         </Route>
-        <Route path="/audiochallenge">
-          <Audiochallenge />
+        <Route path="/audiochallenge_game">
+          <Audiochallenge_game />
         </Route>
         <Route path="/promo">
           <Example />

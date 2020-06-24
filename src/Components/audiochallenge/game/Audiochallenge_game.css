@@ -1,0 +1,11 @@
+.audiochallenge_header{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  
+}
+.autoplay_box{
+    display: flex;
+    flex-direction: column;
+}
