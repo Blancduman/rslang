@@ -6,7 +6,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import { useKeyPress } from 'use-hooks/dist/commonjs/use-key-press';
 import { loadWords } from '../../Services/WordsService';
 import Loading from '../Loading';
-import {createUniqueKey, getWordTranslateFromArrayWithChance, reproduceAudioBySource} from '../../utls';
+import { createUniqueKey, getWordTranslateFromArrayWithChance, reproduceAudioBySource } from '../../utls';
 
 const GameStage = ({ setGameParams, level }) => {
   const [game, setGame] = useState({
@@ -16,7 +16,6 @@ const GameStage = ({ setGameParams, level }) => {
   });
   const [words, setWords] = useState([]);
   const [word, setWord] = useState({});
-  const [page, setPage] = useState(0);
   const [time, setTime] = useState(60);
   const [wordTranslate, setWordTranslate] = useState('');
   const [loading, setLoading] = useState(true);
@@ -34,29 +33,35 @@ const GameStage = ({ setGameParams, level }) => {
     }
   };
 
+  const handleCorrectAnswer = () => {
+    let { winSequence, multiplier, score } = game;
+    const index = winSequence.indexOf(false);
+    if (index >= 0) {
+      winSequence.splice(index, 1, true);
+    } else {
+      multiplier *= 2;
+      winSequence = [false, false, false, false];
+    }
+    score += multiplier;
+    setGame({
+      ...game, winSequence, score, multiplier,
+    });
+    reproduceAudioBySource('../src/assets/audio/correct.mp3');
+  };
+
+  const handleIncorrectAnswer = () => {
+    const winSequence = [false, false, false, false];
+    const multiplier = 10;
+    setGame({ ...game, winSequence, multiplier });
+    reproduceAudioBySource('../src/assets/audio/error.mp3');
+  };
+
   const handleAnswer = (code) => {
     const isMatch = wordTranslate === word.wordTranslate;
-    let { winSequence } = game;
-    let { multiplier } = game;
-    let { score } = game;
     if (isMatch === code) {
-      const index = winSequence.indexOf(false);
-      if (index >= 0) {
-        winSequence.splice(index, 1, true);
-      } else {
-        multiplier *= 2;
-        winSequence = [false, false, false, false];
-      }
-      score += multiplier;
-      setGame({
-        ...game, winSequence, score, multiplier,
-      });
-      reproduceAudioBySource('../src/assets/audio/correct.mp3');
+      handleCorrectAnswer();
     } else {
-      winSequence = [false, false, false, false];
-      multiplier = 10;
-      setGame({ ...game, winSequence, multiplier });
-      reproduceAudioBySource('../src/assets/audio/error.mp3');
+      handleIncorrectAnswer();
     }
     passNextWord(words);
   };
@@ -73,38 +78,33 @@ const GameStage = ({ setGameParams, level }) => {
     }
   }, [leftArrowPressed]);
 
-  const idTime = setTimeout(() => {
-    if (time !== 0) {
-      setTime(time - 1);
-    }
-  }, 1000);
-
   useEffect(() => {
     if (time === 0) {
-      clearTimeout(idTime);
-      setTimeout(() => setGameParams((prev) => ({ ...prev, stage: 'finished', score: game.score })), 1000);
+      setGameParams((prev) => ({ ...prev, stage: 'finished', score: game.score }));
     }
   }, [time]);
 
   useEffect(() => {
-    const tempPage = page + 1;
-    loadWords(tempPage, level)
+    const idTime = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    loadWords(level)
       .then((res) => {
         setWords(res);
         passNextWord(res);
-        setPage(tempPage);
       })
       .catch(() => setGameParams((prev) => ({ ...prev, stage: 'starting' })))
       .finally(() => setLoading(false));
+
+    return () => clearInterval(idTime);
   }, []);
 
   useEffect(() => {
     if (words.length < 10) {
-      const tempPage = page + 1;
-      loadWords(tempPage, level)
+      loadWords(level)
         .then((res) => {
           setWords((prev) => prev.concat(res));
-          setPage(tempPage);
         })
         .catch(() => setGameParams((prev) => ({ ...prev, stage: 'starting' })));
     }

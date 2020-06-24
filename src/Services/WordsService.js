@@ -1,6 +1,6 @@
 const getRandomPage = () => Math.random() * 30;
 
-export const loadWords = async (page, level) => {
+export const loadWords = async (level) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?page=${getRandomPage()}&group=${level}`, {
     method: 'GET',
     headers: {
