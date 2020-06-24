@@ -6,6 +6,7 @@ import {
   Form,
   Select,
   Switch,
+  Button,
 } from 'antd';
 import './settingsmodal.css';
 
@@ -13,29 +14,52 @@ const SettingsModal = (props) => {
   const {
     visible, onOk, onCancel, options, loading,
   } = props;
-
+  const [form] = Form.useForm();
   const [settings, setSettings] = useState(options);
+
+  const cancelModal = () => {
+    setTimeout(() => {
+      form.resetFields();
+      setSettings(options);
+      form.setFieldsValue(options);
+    }, 1000);
+    onCancel();
+  };
 
   return (
     <Modal
       title="Настройки"
       visible={visible}
-      onOk={() => {
-        if (settings.cardSettings.length) {
-          onOk(settings);
-        }
-      }}
-      onCancel={onCancel}
+      onCancel={cancelModal}
+      footer={[
+        <Button
+          key="cancel"
+          type="default"
+          onClick={cancelModal}
+        >
+          Отменить
+        </Button>,
+        <Button
+          key="ok"
+          type="primary"
+          onClick={() => {
+            if (settings.cardSettings.length) {
+              onOk(settings);
+            }
+          }}
+        >
+          Сохранить
+        </Button>,
+      ]}
       okText="Применить"
       cancelText="Отменить"
       confirmLoading={loading}
     >
       <Form
-        name="userSettings"
+        form={form}
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         initialValues={settings}
-        onFinish={onOk}
       >
         <Form.Item label="Новых изучаемых слов за день" fieldKey={1}>
           <Form.Item name="wordsPerDay" noStyle>
@@ -91,35 +115,35 @@ const SettingsModal = (props) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label={'Показывать кнопку "Показать ответ"'} fieldKey={4}>
+        <Form.Item label={'Показывать кнопку "Показать ответ"'} name="showAnswer" fieldKey={4}>
           <Switch
             checked={settings.showAnswer}
             onChange={(e) => setSettings({ ...settings, showAnswer: e })}
           />
         </Form.Item>
 
-        <Form.Item label={'Показывать кнопку "Удалить слово"'} fieldKey={5}>
+        <Form.Item label={'Показывать кнопку "Удалить слово"'} name="deleteWord" fieldKey={5}>
           <Switch
             checked={settings.deleteWord}
             onChange={(e) => setSettings({ ...settings, deleteWord: e })}
           />
         </Form.Item>
 
-        <Form.Item label={'Показывать кнопку "Добавить в сложное"'} fieldKey={6}>
+        <Form.Item label={'Показывать кнопку "Добавить в сложное"'} name="difficult" fieldKey={6}>
           <Switch
             checked={settings.difficult}
             onChange={(e) => setSettings({ ...settings, difficult: e })}
           />
         </Form.Item>
 
-        <Form.Item label="Возможность оценить слово" fieldKey={7}>
+        <Form.Item label="Возможность оценить слово" name="ratingWord" fieldKey={7}>
           <Switch
             checked={settings.ratingWord}
             onChange={(e) => setSettings({ ...settings, ratingWord: e })}
           />
         </Form.Item>
 
-        <Form.Item label="Изучать только новые слова" fieldKey={8}>
+        <Form.Item label="Изучать только новые слова" name="onlyNew" fieldKey={8}>
           <Switch
             checked={settings.onlyNew}
             onChange={(e) => setSettings({ ...settings, onlyNew: e })}
