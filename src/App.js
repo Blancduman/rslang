@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-import Example from './Components/Example';
 import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
+import Example from './Components/Example';
+import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import 'antd/dist/antd.css';
 import './main.css';
 
@@ -35,7 +32,7 @@ const App = () => (
             <div>Саванна</div>
           </Route>
           <Route path="/sprint">
-            <div>Спринт</div>
+            <GameSprintPage />
           </Route>
           <Route path="/english_puzzle">
             <div>Головоломка</div>
