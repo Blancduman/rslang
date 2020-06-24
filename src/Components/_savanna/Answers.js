@@ -3,19 +3,20 @@ import './savanna.css';
 import PropTypes from 'prop-types';
 import getRandomInt from './helpers/getRandomInt';
 
-function markWord(lastPressIndex, index, rightAnswer) {
+function markWord(lastPressIndex, index, rightAnswer, isFailed) {
   if (lastPressIndex !== null) {
     if (lastPressIndex === index) {
       return lastPressIndex === rightAnswer ? 'right-answer' : 'false-answer';
     }
     return index === rightAnswer && 'right-answer';
-  }
+  } if (lastPressIndex === null && isFailed === true && index === rightAnswer) return 'right-answer';
+
   return '';
 }
 
 const Answers = (props) => {
   const {
-    words, currentRound, giveAnswer,
+    words, currentRound, giveAnswer, isFailed,
   } = props;
   const [lastPressIndex, setLastPressIndex] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
@@ -44,13 +45,13 @@ const Answers = (props) => {
           type="submit"
           className={
             `answers__answer ${
-              markWord(lastPressIndex, index, rightAnswer.current)}`
+              markWord(lastPressIndex, index, rightAnswer.current, isFailed)}`
           }
           onClick={() => {
             if (!isClicked) {
               setIsClicked(true);
               setLastPressIndex(index);
-              giveAnswer(index === rightAnswer.current, isClicked);
+              giveAnswer(index === rightAnswer.current, isFailed);
             }
           }}
           key={(item)}
@@ -65,6 +66,7 @@ Answers.propTypes = {
   words: PropTypes.arrayOf(PropTypes.any).isRequired,
   giveAnswer: PropTypes.func.isRequired,
   currentRound: PropTypes.number.isRequired,
+  isFailed: PropTypes.bool.isRequired,
 };
 
 export default Answers;

@@ -1,12 +1,21 @@
+body {
+  background-image: url("../../assets/img/savannah-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .savanna-wrapper {
+  height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .savanna-header {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .savanna-header__sound {
@@ -18,6 +27,13 @@
 
 .savanna-header__health-container {
   display: flex;
+  color: white;
+}
+
+@media screen and (max-width: 510px) {
+  .savanna-header__health-container {
+    flex-direction: column;
+  }
 }
 
 .savanna-header__life-container {
@@ -64,42 +80,66 @@
 .savanna-game-field__question {
   position: absolute;
   /* animation-iteration-count: infinite; */
-  /* animation-timing-function: linear;
+  animation-timing-function: linear;
   animation-duration: 3s;
-  animation-name: fall; */
+  animation-name: fall;
+  animation-fill-mode: forwards;
   /* margin-top: 0; */
-  transition: all 3s linear;
+  /* transition: all 3s linear; */
 }
 
-.savanna-game-field__question-active {
+.savanna-game-field__question h1 {
+  font-size: 50px;
+  color: white;
+}
+
+/* .savanna-game-field__question-active {
   transform: translateY(214px);
-}
+} */
 
-/* @keyframes fall {
+@keyframes fall {
   from {
     margin-top: 0;
   }
 
   to {
-    margin-top: 214px;
+    margin-top: 185px;
   }
-} */
+}
 
 .savanna-game-field__answers {
   display: flex;
-  margin-top: 250px;
+  flex-wrap: wrap;
+  margin-top: 260px;
 }
 
 .answers__answer {
-  /* border: 1px solid blue; */
+  font-size: 20px;
   margin-right: 10px;
-  padding: 5px
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.answers__answer, 
+.answers__answer:active, 
+.answers__answer:focus {
+    outline: none;
 }
 
 .right-answer {
-  background-color: green;
+  background-color: rgba(25, 238, 18, 0.65);
 }
 
 .false-answer {
   background-color: red;
+}
+
+.ant-modal-title {
+  text-align: center;
+}
+
+.ant-modal-close {
+  display: none;
 }

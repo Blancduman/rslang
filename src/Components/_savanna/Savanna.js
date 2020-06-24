@@ -16,11 +16,12 @@ const GameComponent = () => {
   const [currentLevel, setLevel] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
-  const [health, setHealth] = useState(5);
+  const [health, setHealth] = useState(1);
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const winStreak = useRef(0);
+  const isFailed = useRef(false);
 
   useEffect(() => {
     async function loadWords(level, page) {
@@ -36,7 +37,13 @@ const GameComponent = () => {
     setGameover(true);
   }
 
-  function nextRound() {
+  function nextRound(resume) {
+    if (resume) {
+      setHealth(5);
+      setScore(0);
+      setGameover(false);
+    }
+    isFailed.current = false;
     if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
     else {
       setRound(currentRound + 1);
@@ -44,27 +51,29 @@ const GameComponent = () => {
   }
 
   function fail() {
+    isFailed.current = true;
     setHealth(health - 1);
-    if ((health - 1) === 0) setTimeout(() => GameOver(), 1500);
+    if ((health - 1) === 0 || health === 0) setTimeout(() => GameOver(), 1500);
     else setTimeout(() => nextRound(), 1500);
   }
-
-  function giveAnswer(isRight) {
-    if (isRight) {
-      winStreak.current += 1;
-      if (winStreak.current >= 4) setScore(score + 20);
-      else setScore(score + 10);
-      setTimeout(() => nextRound(), 1500);
-    } else {
-      winStreak.current = 0;
-      fail();
+  function giveAnswer(isRight, isFail) {
+    if (isFail === false) {
+      if (isRight) {
+        winStreak.current += 1;
+        if (winStreak.current >= 4) setScore(score + 20);
+        else setScore(score + 10);
+        setTimeout(() => nextRound(), 1500);
+      } else {
+        winStreak.current = 0;
+        fail();
+      }
     }
   }
   return (
-    words.length === 0 ? <Loading />
-      : gameover ? <Gameover />
+    <div className="wrapper savanna-wrapper">
+      {words.length === 0 ? <Loading />
         : (
-          <div className="wrapper savanna-wrapper">
+          <div>
             <header className="savanna-header">
               <div className="savanna-header__sound-container">
                 <button
@@ -90,6 +99,7 @@ const GameComponent = () => {
                 key={currentRound + 100}
               />
               <Answers
+                isFailed={isFailed.current}
                 giveAnswer={giveAnswer}
                 words={words}
                 currentRound={currentRound}
@@ -97,7 +107,9 @@ const GameComponent = () => {
               />
             </div>
           </div>
-        )
+        )}
+      {gameover && <Gameover nextRound={nextRound} />}
+    </div>
   );
 };
 
