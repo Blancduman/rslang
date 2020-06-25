@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
 import LoginModal from '../LoginModal/LoginModal';
+import './header.css';
 
 const { Content } = Layout;
 
@@ -28,36 +29,38 @@ const HeaderPage = () => {
   };
 
   return (
-    <PageHeader
-      className="site-page-header"
-      extra={[
-        authorized
-          ? (
-            <Button type="primary" onClick={logout}>
-              Выйти
-            </Button>
-          )
-          : (
-            <ButtonGroup>
-              <Button type="primary" onClick={() => showModal('SignIn')}>
-                Войти
+    <Layout className="basic-layout_header">
+      <PageHeader
+        className="site-page-header"
+        extra={[
+          authorized
+            ? (
+              <Button type="primary" onClick={logout}>
+                Выйти
               </Button>
-              <Button type="primary" onClick={() => showModal('SignUp')}>
-                Регистрация
-              </Button>
-            </ButtonGroup>
-          ),
-      ]}
-    >
-      <Content>
-        <LoginModal
-          loginModalVisible={loginModalVisible}
-          setAuthorized={setAuthorized}
-          hideModal={hideModal}
-          type={loginType}
-        />
-      </Content>
-    </PageHeader>
+            )
+            : (
+              <ButtonGroup>
+                <Button key="signIn" type="primary" onClick={() => showModal('SignIn')}>
+                  Войти
+                </Button>
+                <Button key="signUp" type="primary" onClick={() => showModal('SignUp')}>
+                  Регистрация
+                </Button>
+              </ButtonGroup>
+            ),
+        ]}
+      >
+        <Content>
+          <LoginModal
+            loginModalVisible={loginModalVisible}
+            setAuthorized={setAuthorized}
+            hideModal={hideModal}
+            type={loginType}
+          />
+        </Content>
+      </PageHeader>
+    </Layout>
   );
 };
 export default HeaderPage;

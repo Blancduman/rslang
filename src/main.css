@@ -1,15 +1,6 @@
 @import '~antd/dist/antd.css';
-
 @import './Containers/Speakit/speakit.css';
+@import './Components/MenuBar/menu_bar.css';
 
-.basic-layout_header {
-    position: fixed;
-    width: 100%;
-}
 
-.basic-layout_content {
-    padding-top: 80px;
-    margin-left: 250px;
-    height: 100vh;
-}
 

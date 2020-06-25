@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-import 'antd/dist/antd.css';
 import './main.css';
 import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
@@ -13,9 +12,7 @@ const { Content } = Layout;
 
 const App = () => (
   <Router>
-    <Layout className="basic-layout_header">
-      <HeaderBar />
-    </Layout>
+    <HeaderBar />
     <Layout>
       <MenuBar />
       <Content className="basic-layout_content">
