@@ -9,3 +9,10 @@
     display: flex;
     flex-direction: column;
 }
+.btn_start_game{
+    display: flex;
+    justify-content: center;
+
+
+
+}

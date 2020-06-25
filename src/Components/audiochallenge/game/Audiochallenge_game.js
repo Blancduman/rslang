@@ -35,14 +35,14 @@ const Audiochallenge_game =()=> {
        <Tooltip placement="bottom" title='Click to on/off autoplay sound' color="magenta"> <Switch checkedChildren="ON" unCheckedChildren="OFF" defaultChecked  /> </Tooltip>
         </div>
         <div className="close_btn">
-       <Button onClick={fetchSearchWord}>close</Button>
+       <Button >close</Button>
         </div>
       </header>
 
 <main className="audiochallenge_main">
   <Card></Card>
   
- { (listWords===0)? <div>ddd</div>
+ { (listWords===0)? <div className="btn_start_game">  <Button onClick={fetchSearchWord}>СТАРТ</Button> </div>
 : <WordBtn words={listWords}> </WordBtn>
 }
 </main>
