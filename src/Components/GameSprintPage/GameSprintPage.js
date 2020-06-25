@@ -3,7 +3,7 @@ import StartMenu from './StartMenu';
 import GameStage from './GameStage';
 
 import './game-sprint-page.css';
-import Statistics from "./Statistics";
+import Statistics from './Statistics';
 
 const GameSprintPage = () => {
   const [stage, setStage] = useState('starting');
@@ -19,7 +19,7 @@ const GameSprintPage = () => {
         return <GameStage setStage={setStage} score={score} setScore={setScore} level={level} />;
       }
       case 'finished': {
-        return <Statistics score={score}/>;
+        return <Statistics score={score} setStage={setStage} setScore={setScore} />;
       }
       default: {
         return <StartMenu setStage={setStage} setLevel={setLevel} />;
