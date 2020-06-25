@@ -2,14 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NotificationOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
+import speechRecognition from '../Sound/Sound';
 
 const { Meta } = Card;
-
-const speech = new SpeechSynthesisUtterance();
-speech.volume = 1;
-speech.rate = 1;
-speech.pitch = 1;
-speech.lang = 'en-EN';
 
 const Word = ({
   letter: {
@@ -22,13 +17,13 @@ const Word = ({
   cardOff,
   changeLetter,
   changePicture,
+  addCorrect,
 }) => {
   const [right, setRight] = useState('');
-  const voice = (value) => {
-    speech.text = value;
+  const voice = (text) => {
     changeLetter(wordTranslate);
     changePicture(image);
-    window.speechSynthesis.speak(speech);
+    speechRecognition(text);
   };
 
   useEffect(() => {
@@ -36,6 +31,8 @@ const Word = ({
       changeLetter(word);
       changePicture(image);
       setRight('speakit__card_right');
+      const value = `${word} ${transcription} ${wordTranslate}`;
+      addCorrect((prev) => prev.concat(value));
     }
     if (checkPronunciations !== word && checkPronunciations.length) {
       changeLetter(checkPronunciations);
@@ -58,7 +55,12 @@ const Word = ({
     }
   };
   return (
-    <Card tabIndex="0" className={`speakit__cards_card ${cardOff} ${right}`} onClick={handleMouseShowCard} onKeyDown={handleKeyShowCard}>
+    <Card
+      tabIndex="0"
+      className={`speakit__cards_card ${cardOff} ${right}`}
+      onClick={handleMouseShowCard}
+      onKeyDown={handleKeyShowCard}
+    >
       <Meta
         avatar={
           <NotificationOutlined />
@@ -81,6 +83,7 @@ Word.propTypes = {
   cardOff: PropTypes.string.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
+  addCorrect: PropTypes.func.isRequired,
 };
 
 export default Word;

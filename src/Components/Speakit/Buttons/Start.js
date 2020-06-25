@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SpeechRecognition from 'react-speech-recognition';
 import { Button } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, ForwardOutlined } from '@ant-design/icons';
 
 const options = {
   autoStart: false,
@@ -18,10 +18,20 @@ const Start = ({
   recognition,
   voice,
   offActive,
+  newErrorGame,
+  newResultGame,
+  correctAnswer,
 }) => {
   if (!browserSupportsSpeechRecognition) return null;
 
   recognition.lang = 'en-US';
+
+  const restart = () => {
+    offActive('');
+    newErrorGame((prev) => prev.concat(correctAnswer));
+    newResultGame([]);
+    stopListening();
+  };
 
   const speakOn = () => {
     startListening();
@@ -39,6 +49,15 @@ const Start = ({
 
   return (
     <div className="speakit__control_recognition">
+      <Button
+        type="primary"
+        icon={<ForwardOutlined />}
+        shape="round"
+        className="speakit__control_button speakit__speak"
+        onClick={restart}
+      >
+        Начать сначала
+      </Button>
       <Button
         type="primary"
         icon={<AudioOutlined />}
@@ -70,6 +89,9 @@ Start.propTypes = {
   recognition: PropTypes.objectOf(PropTypes.string).isRequired,
   voice: PropTypes.func.isRequired,
   offActive: PropTypes.func.isRequired,
+  newErrorGame: PropTypes.func.isRequired,
+  newResultGame: PropTypes.func.isRequired,
+  correctAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SpeechRecognition(options)(Start);

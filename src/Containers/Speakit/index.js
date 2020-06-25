@@ -10,17 +10,29 @@ const Speakit = () => {
   const [picture, setPicture] = useState('');
   const [letter, setLetter] = useState('');
   const [voice, setVoice] = useState('');
+  const [nextGame, setNextGame] = useState({ group: 0, page: 0 });
+  const [correct, setCorrect] = useState([]);
+  const [error, setError] = useState([]);
 
   useEffect(() => {
     if (result.length) {
       setPicture(result[0].image);
       setLetter(result[0].wordTranslate);
+      result.forEach((value) => {
+        setError((prev) => prev.concat(`${value.word} ${value.transcription} ${value.wordTranslate}`));
+      });
     }
   }, [result]);
 
   useEffect(() => {
-    getWords(0, 0).then((value) => setResult(value));
-  }, []);
+    const currentWord = correct[correct.length - 1];
+    const currentIndex = error.indexOf(currentWord);
+    error.splice(currentIndex, 1);
+  }, [correct]);
+
+  useEffect(() => {
+    getWords(nextGame.group, nextGame.page).then((value) => setResult(value));
+  }, [nextGame.group, nextGame.page]);
 
   return (
     <div>
@@ -36,11 +48,18 @@ const Speakit = () => {
           checkPronunciations={voice}
           changeLetter={setLetter}
           changePicture={setPicture}
+          addCorrect={setCorrect}
         />
         <Control
           voice={setVoice}
           offActive={setInactive}
           changeLetter={setLetter}
+          currentGame={nextGame}
+          switchGame={setNextGame}
+          correctAnswer={correct}
+          newResultGame={setCorrect}
+          errorAnswer={error}
+          newErrorGame={setError}
         />
       </main>
     </div>

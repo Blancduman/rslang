@@ -67,3 +67,11 @@
   border: 1px solid rgb(7, 10, 10);
   background-color: rgba(167, 190, 189, 0.747);
 }
+
+.speakit__speak {
+  margin-right: 30px;
+}
+
+.speakit__statistiks_list {
+  cursor: pointer;
+}

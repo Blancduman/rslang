@@ -9,8 +9,9 @@ const Cards = (props) => {
     cardOff,
     changeLetter,
     changePicture,
+    addCorrect,
   } = props;
- 
+
   return (
     <div className="speakit__cards">
       {words.map((element) => (
@@ -21,6 +22,7 @@ const Cards = (props) => {
           cardOff={cardOff}
           changeLetter={changeLetter}
           changePicture={changePicture}
+          addCorrect={addCorrect}
         />
       ))}
     </div>
@@ -35,6 +37,7 @@ Cards.propTypes = {
   checkPronunciations: PropTypes.string.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
+  addCorrect: PropTypes.func.isRequired,
 };
 
 export default Cards;
