@@ -5,12 +5,9 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import Example from './Components/Example';
 import LoginModal from './Components/LoginModal/LoginModal';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
-<<<<<<< HEAD
 import Audiochallenge_game from './Components/audiochallenge/game/Audiochallenge_game';
-=======
 import Speakit from './Containers/Speakit';
 import './main.css';
->>>>>>> develop
 
 import 'antd/dist/antd.css';
 

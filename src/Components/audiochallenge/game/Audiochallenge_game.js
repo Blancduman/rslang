@@ -2,7 +2,8 @@ import 'antd/dist/antd.css';
 import React, {useState, useEffect} from 'react';
 import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from 'antd';
 import './Audiochallenge_game.css';
-
+import Card from '../card/Card'
+import WordBtn from '../button/WordBtn'
 
 const Audiochallenge_game =()=> {
    const [listWords,setWords]=useState(0)
@@ -11,17 +12,15 @@ const Audiochallenge_game =()=> {
         
        console.log({listWords})
        if(listWords){
-      //  const one= listWords[0]
-      // //  const {audio}=one
-      //   console.log(one.id)
       listWords.forEach(e=>{
         console.log(e.id)
       })
     }
       },[{listWords}])
-    // const { Text, Title ,Paragraph } = Typography;
-  const fetchSearchWord =()=> {
-        fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=1&page=1`)
+
+  const fetchSearchWord =(e,group=1,page=1)=> {
+   
+        fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${page}`)
         .then(response => response.json())
         .then(result => setWords(result))
         .catch(error => error)
@@ -41,14 +40,11 @@ const Audiochallenge_game =()=> {
       </header>
 
 <main className="audiochallenge_main">
-<ul>
-  {/* {listWords ?
-    listWords.forEach(e=>{
-        <li>e[audio]</li>})
-        : <li>not result</li>
-    } */}
-    {console.log(`aaa=`)}
-</ul>
+  <Card></Card>
+  
+ { (listWords===0)? <div>ddd</div>
+: <WordBtn words={listWords}> </WordBtn>
+}
 </main>
 </div>
 )

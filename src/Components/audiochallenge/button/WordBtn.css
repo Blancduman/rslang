@@ -1,0 +1,11 @@
+.list_button_words{
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.button_words{
+    width: 100px;
+    height: 50px;
+}
