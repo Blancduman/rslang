@@ -23,6 +23,8 @@ const GameComponent = () => {
   const winStreak = useRef(0);
   const isFailed = useRef(false);
 
+  const [toggle, setToggle] = useState();
+
   useEffect(() => {
     async function loadWords(level, page) {
       setRound(0);
@@ -39,6 +41,7 @@ const GameComponent = () => {
 
   function nextRound(resume) {
     if (resume) {
+      setToggle(!toggle);
       setHealth(5);
       setScore(0);
       setGameover(false);
@@ -87,7 +90,7 @@ const GameComponent = () => {
                 </button>
               </div>
               <div className="savanna-header__health-container">
-                <Timer setGameOver={GameOver} />
+                <Timer setGameOver={GameOver} key={toggle} />
                 <Score score={score} />
                 <Health health={health} />
               </div>
@@ -96,7 +99,7 @@ const GameComponent = () => {
               <Word
                 fail={fail}
                 word={words[currentRound].word}
-                key={currentRound + 100}
+                key={words[currentRound].word}
               />
               <Answers
                 isFailed={isFailed.current}
