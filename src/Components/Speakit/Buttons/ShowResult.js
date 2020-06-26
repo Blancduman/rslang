@@ -12,7 +12,7 @@ const Result = (props) => {
   return (
     <div>
       <Divider orientation="left">
-        Error answer
+        {`Ошибки: ${errorAnswer.length}`}
       </Divider>
       <List
         size="small"
@@ -21,7 +21,7 @@ const Result = (props) => {
         renderItem={(item) => <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
       />
       <Divider orientation="left">
-        Correct answer
+        {`Правильные ответы: ${correctAnswer.length}`}
       </Divider>
       <List
         size="small"

@@ -17,10 +17,16 @@ const Control = ({
   newResultGame,
   errorAnswer,
   newErrorGame,
+  words,
 }) => {
   const [visual, setVisual] = useState(false);
+  const [levelUp, setLevelUp] = useState(true);
+
   const openModal = () => {
     setVisual(true);
+    if (correctAnswer.length === 10) {
+      setLevelUp(false);
+    }
   };
 
   const closeModal = () => {
@@ -46,6 +52,8 @@ const Control = ({
         newErrorGame={newErrorGame}
         newResultGame={newResultGame}
         correctAnswer={correctAnswer}
+        errorAnswer={errorAnswer}
+        words={words}
       />
       <Button
         type="primary"
@@ -71,6 +79,7 @@ const Control = ({
             key="submit"
             type="primary"
             onClick={nextGame}
+            disabled={levelUp}
           >
             Новая игра
           </Button>,
@@ -98,6 +107,7 @@ Control.propTypes = {
   errorAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
   newResultGame: PropTypes.func.isRequired,
   newErrorGame: PropTypes.func.isRequired,
+  words: PropTypes.objectOf().isRequired,
 };
 
 export default Control;

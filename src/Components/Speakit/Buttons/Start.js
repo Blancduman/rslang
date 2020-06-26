@@ -21,6 +21,7 @@ const Start = ({
   newErrorGame,
   newResultGame,
   correctAnswer,
+  words,
 }) => {
   if (!browserSupportsSpeechRecognition) return null;
 
@@ -28,7 +29,10 @@ const Start = ({
 
   const restart = () => {
     offActive('');
-    newErrorGame((prev) => prev.concat(correctAnswer));
+    newErrorGame([]);
+    words.forEach((value) => {
+      newErrorGame((prev) => prev.concat(`${value.word} ${value.transcription} ${value.wordTranslate}`));
+    });
     newResultGame([]);
     stopListening();
   };
@@ -92,6 +96,7 @@ Start.propTypes = {
   newErrorGame: PropTypes.func.isRequired,
   newResultGame: PropTypes.func.isRequired,
   correctAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
+  words: PropTypes.objectOf().isRequired,
 };
 
 export default SpeechRecognition(options)(Start);

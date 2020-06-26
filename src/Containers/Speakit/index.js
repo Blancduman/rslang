@@ -60,6 +60,7 @@ const Speakit = () => {
           newResultGame={setCorrect}
           errorAnswer={error}
           newErrorGame={setError}
+          words={result}
         />
       </main>
     </div>
