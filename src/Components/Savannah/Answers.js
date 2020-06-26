@@ -10,7 +10,6 @@ function markWord(lastPressIndex, index, rightAnswer, isFailed) {
     }
     return index === rightAnswer && 'right-answer';
   } if (lastPressIndex === null && isFailed === true && index === rightAnswer) return 'right-answer';
-
   return '';
 }
 
@@ -22,6 +21,7 @@ const Answers = (props) => {
   const [isClicked, setIsClicked] = useState(false);
   const [answers, setAnswers] = useState([]);
   const rightAnswer = useRef(Number);
+
   useEffect(() => {
     const ans = [];
     function shuffleAnswers() {
@@ -38,6 +38,7 @@ const Answers = (props) => {
     }
     shuffleAnswers();
   }, [words, currentRound]);
+
   return (
     <div className="savanna-game-field__answers answers">
       {answers.map((item, index) => (

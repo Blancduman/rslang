@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './savanna.css';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
 
 // const Gameover = () => (
@@ -13,7 +14,6 @@ import { Modal, Button } from 'antd';
 const Gameover = (props) => {
   const { nextRound } = props;
   const [visible, setVisible] = useState(true);
-  const [isContinue, setContinue] = useState(false);
 
   const handleOk = () => {
     setVisible(false);
@@ -44,6 +44,9 @@ const Gameover = (props) => {
       </Modal>
     </div>
   );
+};
+Gameover.propTypes = {
+  nextRound: PropTypes.func.isRequired,
 };
 
 export default Gameover;

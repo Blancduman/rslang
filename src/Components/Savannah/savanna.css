@@ -1,4 +1,5 @@
-body {
+.savanna-background {
+  z-index: -1;
   background-image: url("../../assets/img/savannah-background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -38,7 +39,6 @@ body {
 
 .savanna-header__life-container {
   display: flex;
-  /* border: 1px solid red; */
   height: 30px;
   width: 150px;
 }
@@ -79,23 +79,16 @@ body {
 
 .savanna-game-field__question {
   position: absolute;
-  /* animation-iteration-count: infinite; */
   animation-timing-function: linear;
   animation-duration: 3s;
   animation-name: fall;
   animation-fill-mode: forwards;
-  /* margin-top: 0; */
-  /* transition: all 3s linear; */
 }
 
 .savanna-game-field__question h1 {
   font-size: 50px;
   color: white;
 }
-
-/* .savanna-game-field__question-active {
-  transform: translateY(214px);
-} */
 
 @keyframes fall {
   from {

@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
+  watch: true,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,7 +20,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|svg|jpe?g)$/i,
+        test: /\.(png|svg|jpe?g|mp3)$/i,
         use: ['file-loader'],
       },
       {

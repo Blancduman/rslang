@@ -3,11 +3,11 @@ import './savanna.css';
 import PropTypes from 'prop-types';
 
 const Timer = (props) => {
-  const { setGameOver } = props;
+  const { setGameOver, gameover } = props;
   const [timer, setTimer] = useState(60);
   useEffect(() => {
     if (timer === 0) setGameOver();
-    else {
+    else if (!gameover) {
       const timerId = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(timerId);
     }
@@ -20,6 +20,7 @@ const Timer = (props) => {
 };
 Timer.propTypes = {
   setGameOver: PropTypes.func.isRequired,
+  gameover: PropTypes.bool.isRequired,
 };
 
 export default Timer;

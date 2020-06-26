@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './savanna.css';
 import { SoundTwoTone, SoundOutlined } from '@ant-design/icons';
+import playSound from './helpers/playSound';
 import Loading from '../Loading/index';
 import getWords from './getWords';
 import Health from './Health';
@@ -16,7 +17,7 @@ const GameComponent = () => {
   const [currentLevel, setLevel] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
-  const [health, setHealth] = useState(1);
+  const [health, setHealth] = useState(5);
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
@@ -54,29 +55,32 @@ const GameComponent = () => {
   }
 
   function fail() {
+    playSound(false, soundOn);
+    winStreak.current = 0;
     isFailed.current = true;
     setHealth(health - 1);
     if ((health - 1) === 0 || health === 0) setTimeout(() => GameOver(), 1500);
     else setTimeout(() => nextRound(), 1500);
   }
+
   function giveAnswer(isRight, isFail) {
     if (isFail === false) {
       if (isRight) {
+        playSound(true, soundOn);
         winStreak.current += 1;
         if (winStreak.current >= 4) setScore(score + 20);
         else setScore(score + 10);
         setTimeout(() => nextRound(), 1500);
       } else {
-        winStreak.current = 0;
         fail();
       }
     }
   }
   return (
-    <div className="wrapper savanna-wrapper">
+    <div className="savanna-background">
       {words.length === 0 ? <Loading />
         : (
-          <div>
+          <div className="wrapper savanna-wrapper">
             <header className="savanna-header">
               <div className="savanna-header__sound-container">
                 <button
@@ -90,7 +94,7 @@ const GameComponent = () => {
                 </button>
               </div>
               <div className="savanna-header__health-container">
-                <Timer setGameOver={GameOver} key={toggle} />
+                <Timer setGameOver={GameOver} gameover={gameover} key={toggle} />
                 <Score score={score} />
                 <Health health={health} />
               </div>
@@ -99,6 +103,7 @@ const GameComponent = () => {
               <Word
                 fail={fail}
                 word={words[currentRound].word}
+                gameover={gameover}
                 key={words[currentRound].word}
               />
               <Answers
