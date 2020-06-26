@@ -31,16 +31,15 @@ const HeaderPage = () => {
   return (
     <Layout className="basic-layout_header">
       <PageHeader
-        className="site-page-header"
         extra={[
           authorized
             ? (
-              <Button type="primary" onClick={logout}>
+              <Button key="signExit" type="primary" onClick={logout}>
                 Выйти
               </Button>
             )
             : (
-              <ButtonGroup>
+              <ButtonGroup key="1">
                 <Button key="signIn" type="primary" onClick={() => showModal('SignIn')}>
                   Войти
                 </Button>
