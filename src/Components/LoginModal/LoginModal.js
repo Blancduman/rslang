@@ -26,7 +26,8 @@ const LoginModal = ({
 
   const executeSignIn = async (data) => {
     const response = await signIn(data);
-    localStorage.setItem('token', response.token);
+    const user = { token: response.token, userId: response.userId };
+    localStorage.setItem('user', JSON.stringify(user));
     setAuthorized(true);
   };
 
