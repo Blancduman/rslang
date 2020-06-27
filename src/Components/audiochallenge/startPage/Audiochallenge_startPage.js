@@ -11,9 +11,7 @@ return(
         <Space align="center" direction="vertical">
         <Title strong >AUDIOCHALLENGE</Title>
         <Paragraph className="myText"><Text strong >  Improves your listening skills in English.</Text></Paragraph>
-
          <Link to="/audiochallenge_game"><Button  type="default"  size="large" >start </Button></Link>
-
         </Space>
 )
 
