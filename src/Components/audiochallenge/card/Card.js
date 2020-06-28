@@ -1,6 +1,6 @@
-import './node_modules/antd/dist/antd.css';
-import React, {useState, useEffect,Component} from './node_modules/react';
-import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from './node_modules/antd';
+import 'antd/dist/antd.css';
+import React, {useState, useEffect,Component} from 'react';
+import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from 'antd';
 import './Card.css';
 import backgroundCard from '../../../assets/img/play_sound.png'
 
