@@ -1,23 +1,49 @@
-import 'antd/dist/antd.css';
-import React, {useState, useEffect,Component} from 'react';
-import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from 'antd';
-import './Card.css';
-import backgroundCard from '../../../assets/img/play_sound.png'
+import "antd/dist/antd.css";
+import React, { useState, useEffect } from "react";
+import { Tooltip, Space, Switch, Button, Typography, Checkbox } from "antd";
+import "./Card.css";
+import backgroundPlaySound from "../../../assets/img/play_sound.png";
 
-export default class Card extends Component{
+const Card = (props) => {
+  const { currentWord, isChosed, isSound } = props;
+  const rsLangData =
+    "https://raw.githubusercontent.com/kli2m/rslang-data/master";
+  const srcAudio = `${rsLangData}/${currentWord.audio}`;
+  const backgroundImage = `${rsLangData}/${currentWord.image}`;
 
- 
-render(){
-   const isChosed=true;
-   const styleCard={
-      BackgroundImage:`url("${backgroundCard}")`
-   }
-return (
-   isChosed 
-   ? 
-   <div className="card_image" style={styleCard}>     
-   </div>
-   :
-   <div>aa</div>
-)}
-}
+  const stylePlayVoice = {
+    backgroundImage: `url(${backgroundPlaySound})`,
+    backgroundSize: "context",
+  };
+  const styleViewPicture = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+  };
+
+  const playVoice = (e) => {
+    const audio = new Audio(e.target.dataset.url);
+    audio.play();
+  };
+
+  return isChosed ? (
+    <div className="card">
+      <button
+        className="card_image"
+        style={styleViewPicture}
+        onClick={playVoice}
+        data-url={srcAudio}
+      ></button>
+      <p>{currentWord.transcription}</p>
+    </div>
+  ) : (
+    <button
+      className="card_speaker"
+      style={stylePlayVoice}
+      onClick={playVoice}
+      data-url={srcAudio}
+    >
+      {isSound && <audio src={srcAudio} autoPlay></audio>}
+    </button>
+  );
+};
+export default Card;

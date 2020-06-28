@@ -1,18 +1,23 @@
-.audiochallenge_header{
+.audiochallenge_header {
     margin: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-  
 }
-.autoplay_box{
+
+.autoplay_box {
     display: flex;
     flex-direction: column;
 }
-.btn_start_game{
+
+.start_game {
     display: flex;
     justify-content: center;
-
-
-
+    flex-direction: column;
+    align-items: center;
+}
+.start_game-btn{
+    width: 100px;
+    height: 50px;
+    margin: 50px;
 }
