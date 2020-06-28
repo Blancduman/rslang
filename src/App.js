@@ -7,7 +7,7 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-
+import Audiochallenge from './Components/Audiochallenge/Audiochallenge'
 const { Content } = Layout;
 
 const App = () => (
@@ -35,6 +35,9 @@ const App = () => (
           <Route path="/english_puzzle">
             <div>Головоломка</div>
           </Route>
+          <Router path="/audiochallenge">
+<Audiochallenge></Audiochallenge>
+          </Router>
           <Route path="/promo">
             <div>О приложении</div>
           </Route>

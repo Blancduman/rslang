@@ -1,9 +1,9 @@
-import 'antd/dist/antd.css';
-import React, {useState, useEffect,Component} from 'react';
-import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from 'antd';
+import '../../../../node_modules/antd/dist/antd.css';
+import React, {useState, useEffect,Component} from '../../../../node_modules/react';
+import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from '../../../../node_modules/antd';
 
-import Card from '../card/Card'
-import WordBtn from '../button/WordBtn'
+import Card from '../Card/Card'
+import WordBtn from '../WordBtn/WordBtn'
 
 
 

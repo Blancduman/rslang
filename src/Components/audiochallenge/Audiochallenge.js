@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import React, {useState, useEffect, Component} from 'react';
 import {Tooltip, Space,Switch,Button,Typography,Checkbox  } from 'antd';
 import './Audiochallenge.css';
-import Context from '../context/Context'
+import Context from './Context/Context'
 
 const Audiochallenge =()=> {
    const [isStarted,setStart]=useState(false)
