@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Cards from '../../Components/Speakit/Cards';
 import Image from '../../Components/Speakit/Image';
 import Buttons from '../../Components/Speakit/Buttons/Buttons';
+import Header from '../../Components/Speakit/Header';
 import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
+import { Button, Card, Form, Layout } from 'antd';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);
@@ -13,6 +15,7 @@ const Speakit = () => {
   const [nextGame, setNextGame] = useState({ group: 0, page: 0 });
   const [correct, setCorrect] = useState([]);
   const [error, setError] = useState([]);
+  const [stage, setStage] = useState('starting')
 
   useEffect(() => {
     if (result.length) {
@@ -36,35 +39,72 @@ const Speakit = () => {
     getWordsSpeakit(nextGame.group, nextGame.page).then((value) => setResult(value));
   }, [nextGame.group, nextGame.page]);
 
+//   <Card className="speakit__start_screen">
+//   <Card.Grid>
+//     <h1>Мини-игра &quot;Аудиовызов&quot;</h1>
+//       <Header
+//         switchGame={setNextGame}
+//       />
+//       <Button type="primary" onClick={() => {setStage('game')}}>
+//         Старт
+//       </Button>
+//   </Card.Grid>
+// </Card>
+
+  const showActualPage = () => {
+    switch(stage) {
+      case 'starting': {
+        return (
+          <Layout className="speakit__start_screen">
+            <h1>Мини-игра &quot;Аудиовызов&quot;</h1>
+            <Header
+              switchGame={setNextGame}
+            />
+            <Button type="primary" onClick={() => {setStage('game')}}>
+              Старт
+            </Button>
+          </Layout>
+        )
+      }
+      break;
+
+      case 'game': {
+        return (
+        <main className="speakit__main">
+          <Image
+            checkPronunciations={voice}
+            currentLetter={letter}
+            currentPicture={picture}
+          />
+          <Cards
+            words={result}
+            cardOff={inactive}
+            checkPronunciations={voice}
+            changeLetter={setLetter}
+            changePicture={setPicture}
+            addCorrect={setCorrect}
+          />
+          <Buttons
+            voice={setVoice}
+            offActive={setInactive}
+            changeLetter={setLetter}
+            currentGame={nextGame}
+            switchGame={setNextGame}
+            correctAnswer={correct}
+            newResultGame={setCorrect}
+            errorAnswer={error}
+            newErrorGame={setError}
+            words={result}
+          />
+        </main>
+        )
+      }
+    }
+  }
+
   return (
     <div>
-      <main className="speakit__main">
-        <Image
-          checkPronunciations={voice}
-          currentLetter={letter}
-          currentPicture={picture}
-        />
-        <Cards
-          words={result}
-          cardOff={inactive}
-          checkPronunciations={voice}
-          changeLetter={setLetter}
-          changePicture={setPicture}
-          addCorrect={setCorrect}
-        />
-        <Buttons
-          voice={setVoice}
-          offActive={setInactive}
-          changeLetter={setLetter}
-          currentGame={nextGame}
-          switchGame={setNextGame}
-          correctAnswer={correct}
-          newResultGame={setCorrect}
-          errorAnswer={error}
-          newErrorGame={setError}
-          words={result}
-        />
-      </main>
+        {showActualPage()}
     </div>
   );
 };

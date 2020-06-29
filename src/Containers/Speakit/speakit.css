@@ -75,3 +75,22 @@
 .speakit__statistiks_list {
   cursor: pointer;
 }
+
+.speakit__header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.speakit__header_level {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.speakit__start_screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+}
