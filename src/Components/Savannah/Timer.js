@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './savanna.css';
 import PropTypes from 'prop-types';
 
 const Timer = (props) => {
@@ -11,6 +10,7 @@ const Timer = (props) => {
       const timerId = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(timerId);
     }
+    return '';
   }, [timer]);
   return (
     <div className="savanna-header__timer-container timer-container">

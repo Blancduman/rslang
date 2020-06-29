@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './savanna.css';
 import PropTypes from 'prop-types';
-import getRandomInt from './helpers/getRandomInt';
+import { getRandomInt } from '../../utls/index';
 
 function markWord(lastPressIndex, index, rightAnswer, isFailed) {
   if (lastPressIndex !== null) {

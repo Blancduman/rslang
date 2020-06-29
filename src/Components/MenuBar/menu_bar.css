@@ -1,0 +1,21 @@
+.basic-layout_menu_wrapper {
+    width: 200px;
+    position: fixed;
+    height: 100vh;
+}
+
+.menu_bar {
+    height: 100%;
+    border-right: 0px;
+}
+
+.btn_collapsed {
+    margin-bottom: 16px;
+    width: 40px;
+}
+
+.basic-layout_content {
+    padding-top: 80px;
+    margin-left: 250px;
+    height: 100vh;
+}

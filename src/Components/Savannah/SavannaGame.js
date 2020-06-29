@@ -1,8 +1,7 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import './savanna.css';
 import { SoundTwoTone, SoundOutlined } from '@ant-design/icons';
-import playSound from './helpers/playSound';
+import { playSound } from './helpers/index';
 import Loading from '../Loading/index';
 import getWords from './getWords';
 import Health from './Health';
@@ -21,6 +20,7 @@ const GameComponent = () => {
   const [score, setScore] = useState(0);
   const [gameover, setGameover] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
+  const [isAnswered, setIsAnswered] = useState(false);
   const winStreak = useRef(0);
   const isFailed = useRef(false);
 
@@ -36,7 +36,7 @@ const GameComponent = () => {
     loadWords(currentLevel, currentPage);
   }, [currentLevel, currentPage]);
 
-  function GameOver() {
+  function finishGame() {
     setGameover(true);
   }
 
@@ -47,6 +47,7 @@ const GameComponent = () => {
       setScore(0);
       setGameover(false);
     }
+    setIsAnswered(false);
     isFailed.current = false;
     if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
     else {
@@ -59,11 +60,12 @@ const GameComponent = () => {
     winStreak.current = 0;
     isFailed.current = true;
     setHealth(health - 1);
-    if ((health - 1) === 0 || health === 0) setTimeout(() => GameOver(), 1500);
+    if ((health - 1) === 0 || health === 0) setTimeout(() => finishGame(), 1500);
     else setTimeout(() => nextRound(), 1500);
   }
 
   function giveAnswer(isRight, isFail) {
+    setIsAnswered(true);
     if (isFail === false) {
       if (isRight) {
         playSound(true, soundOn);
@@ -94,7 +96,7 @@ const GameComponent = () => {
                 </button>
               </div>
               <div className="savanna-header__health-container">
-                <Timer setGameOver={GameOver} gameover={gameover} key={toggle} />
+                <Timer setGameOver={finishGame} gameover={gameover} key={toggle} />
                 <Score score={score} />
                 <Health health={health} />
               </div>
@@ -102,8 +104,10 @@ const GameComponent = () => {
             <div className="savanna-game-field">
               <Word
                 fail={fail}
+                IsAnswered={isAnswered}
                 word={words[currentRound].word}
                 gameover={gameover}
+                currentRound={currentRound}
                 key={words[currentRound].word}
               />
               <Answers

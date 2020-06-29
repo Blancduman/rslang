@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
-import './savanna.css';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
-
-// const Gameover = () => (
-//   <div className="game-over-container">
-//     <span className="game-over-container__game-over">Game over</span>
-//   </div>
-// );
-
-// export default Gameover;
 
 const Gameover = (props) => {
   const { nextRound } = props;

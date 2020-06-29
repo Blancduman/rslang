@@ -1,5 +1,4 @@
 import React from 'react';
-import './savanna.css';
 import PropTypes from 'prop-types';
 import { HeartTwoTone } from '@ant-design/icons';
 

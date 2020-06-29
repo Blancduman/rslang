@@ -1,4 +1,4 @@
-function playSound(isRight, soundOn) {
+export function playSound(isRight, soundOn) {
   if (soundOn) {
     let soundUrl = '';
     if (isRight) soundUrl = '../src/assets/audio/savanna_success.mp3';
@@ -7,5 +7,3 @@ function playSound(isRight, soundOn) {
     audioObj.play();
   }
 }
-
-export default playSound;
