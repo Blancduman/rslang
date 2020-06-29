@@ -10,6 +10,10 @@ const Card = (props) => {
     "https://raw.githubusercontent.com/kli2m/rslang-data/master";
   const srcAudio = `${rsLangData}/${currentWord.audio}`;
   const backgroundImage = `${rsLangData}/${currentWord.image}`;
+  let styleRight =
+    isChosed.isChosed && isChosed.isRight
+      ? "card_image right"
+      : "card_image wrong";
 
   const stylePlayVoice = {
     backgroundImage: `url(${backgroundPlaySound})`,
@@ -25,15 +29,16 @@ const Card = (props) => {
     audio.play();
   };
 
-  return isChosed ? (
+  return isChosed.isChosed ? (
     <div className="card">
       <button
-        className="card_image"
+        className={styleRight}
         style={styleViewPicture}
         onClick={playVoice}
         data-url={srcAudio}
       ></button>
       <p>{currentWord.transcription}</p>
+      <p>{currentWord.wordTranslate}</p>
     </div>
   ) : (
     <button

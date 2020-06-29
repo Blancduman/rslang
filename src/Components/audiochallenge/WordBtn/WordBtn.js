@@ -3,23 +3,23 @@ import React, { useState, useEffect, Component } from "react";
 import { Tooltip, Space, Switch, Typography, Checkbox, Button } from "antd";
 import "./WordBtn.css";
 
-export default class WordBtn extends Component {
-  constructor(props) {
-    super(props);
-    this.addWordBtn = this.addWordBtn.bind(this);
-  }
+const WordBtn = (props) => {
+  var { words, verificationWord } = props;
 
-  addWordBtn(item) {
+  const addWordBtn = (item) => {
     return (
-      <Button className="button_words" key={item.id}>
+      <Button
+        className="button_words"
+        onClick={verificationWord}
+        value={item.word}
+        key={item.id}
+      >
         {item.word}
       </Button>
     );
-  }
+  };
 
-  render() {
-    var { words } = this.props;
-    var listWords = words.map(this.addWordBtn);
-    return <div className="list_button_words">{listWords}</div>;
-  }
-}
+  return <div className="list_button_words">{words.map(addWordBtn)}</div>;
+};
+
+export default WordBtn;
