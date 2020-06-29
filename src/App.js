@@ -10,6 +10,7 @@ import SavannahStartPage from './Components/Savannah/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
 import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
+import About from './Components/About';
 import './main.css';
 
 const { Content } = Layout;
@@ -46,7 +47,7 @@ const App = () => (
             <Example />
           </Route>
           <Route path="/about">
-            <Example />
+            <About />
           </Route>
         </Switch>
       </Content>

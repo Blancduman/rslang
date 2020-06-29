@@ -1,0 +1,75 @@
+.about_wrapper {
+    width: 100%;
+}
+
+.about_wrapper p {
+    color: #a8a7a7;
+}
+
+.about_title {
+    font-size: 1.6rem;
+    margin-left: 10px;
+}
+
+.about_persons_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about_card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 320px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #3B4451;
+    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
+}
+
+.about_card_header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.about_card_block-name {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 0 10px;
+}
+
+.about_card_block-name h3,
+.about_card_block-name h4 {
+    color: wheat;
+}
+
+.about_card_position p {
+    color: gray;
+}
+
+.about_card_avatar img {
+    border-radius: 50%;
+    width: 115px;
+    height: 115px;
+}
+
+.about_card_about_person {
+    font-style: italic;
+    text-align: justify;
+}
+
+.about_card_about_person::first-letter,
+.about_card_contribution::first-letter {
+    margin-left: 20px;
+}
+
+.about_card_contribution {
+    text-align: justify;
+}
+
+.about_card_link_git_hub {
+    display: flex;
+    align-self: center;
+}
