@@ -40,7 +40,7 @@
   text-transform: uppercase;
 }
 
-.speakit__control {
+.speakit__control_recognition {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -60,7 +60,7 @@
 }
 
 .speakit__cards_true {
-  pointer-events: none; /* new */
+  pointer-events: none;
 }
 
 .speakit__cards_true.speakit__card_right {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Word from '../Card';
+import Word from '../Word';
 
 const Cards = (props) => {
   const {
@@ -33,7 +33,7 @@ Cards.propTypes = {
   words: PropTypes.arrayOf(PropTypes.shape({
     word: PropTypes.string,
   })).isRequired,
-  cardOff: PropTypes.string.isRequired,
+  cardOff: PropTypes.bool.isRequired,
   checkPronunciations: PropTypes.string.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,

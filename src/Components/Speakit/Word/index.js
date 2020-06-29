@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NotificationOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
-import speechRecognition from '../Sound/Sound';
+import speechRecognition from '../../../utls/Speakit/Sound/Sound';
 
 const { Meta } = Card;
 
@@ -40,7 +40,7 @@ const Word = ({
   }, [checkPronunciations]);
 
   useEffect(() => {
-    if (cardOff === '') {
+    if (!cardOff) {
       setRight('');
     }
   }, [cardOff]);
@@ -57,7 +57,7 @@ const Word = ({
   return (
     <Card
       tabIndex="0"
-      className={`speakit__cards_card ${cardOff} ${right}`}
+      className={`speakit__cards_card ${cardOff ? 'speakit__cards_true' : ''} ${right}`}
       onClick={handleMouseShowCard}
       onKeyDown={handleKeyShowCard}
     >
@@ -80,7 +80,7 @@ Word.propTypes = {
     image: PropTypes.string,
   }).isRequired,
   checkPronunciations: PropTypes.string.isRequired,
-  cardOff: PropTypes.string.isRequired,
+  cardOff: PropTypes.bool.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
   addCorrect: PropTypes.func.isRequired,

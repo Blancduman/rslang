@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
-import { FundProjectionScreenOutlined } from '@ant-design/icons';
 import SpeechRecognition from './Start';
-import Result from './ShowResult';
+import Result from './Result';
 
-const Control = ({
+const Buttons = ({
   voice,
   offActive,
   changeLetter,
+  switchGame,
   currentGame: {
     group,
     page,
-  }, switchGame,
-  correctAnswer,
+  },
   newResultGame,
   errorAnswer,
   newErrorGame,
+  correctAnswer,
   words,
 }) => {
   const [visual, setVisual] = useState(false);
   const [levelUp, setLevelUp] = useState(true);
-
-  const openModal = () => {
-    setVisual(true);
-    if (correctAnswer.length === 10) {
-      setLevelUp(false);
-    }
-  };
 
   const closeModal = () => {
     setVisual(false);
@@ -54,16 +47,9 @@ const Control = ({
         correctAnswer={correctAnswer}
         errorAnswer={errorAnswer}
         words={words}
+        setVisual={setVisual}
+        setLevelUp={setLevelUp}
       />
-      <Button
-        type="primary"
-        icon={<FundProjectionScreenOutlined />}
-        shape="round"
-        className="speakit__control_button"
-        onClick={openModal}
-      >
-        Результат
-      </Button>
       <Modal
         visible={visual}
         title="Результаты игры"
@@ -81,7 +67,7 @@ const Control = ({
             onClick={nextGame}
             disabled={levelUp}
           >
-            Новая игра
+            Следующий уровень
           </Button>,
         ]}
       >
@@ -94,7 +80,7 @@ const Control = ({
   );
 };
 
-Control.propTypes = {
+Buttons.propTypes = {
   voice: PropTypes.func.isRequired,
   offActive: PropTypes.func.isRequired,
   changeLetter: PropTypes.func.isRequired,
@@ -107,7 +93,9 @@ Control.propTypes = {
   errorAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
   newResultGame: PropTypes.func.isRequired,
   newErrorGame: PropTypes.func.isRequired,
-  words: PropTypes.objectOf().isRequired,
+  words: PropTypes.arrayOf(PropTypes.shape({
+    word: PropTypes.string,
+  })).isRequired,
 };
 
-export default Control;
+export default Buttons;

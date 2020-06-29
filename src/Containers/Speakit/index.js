@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Cards from '../../Components/Speakit/Cards';
 import Image from '../../Components/Speakit/Image';
-import Control from '../../Components/Speakit/Buttons';
-import { getWords } from '../../Services/DataService';
+import Buttons from '../../Components/Speakit/Buttons/Buttons';
+import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
 
 const Speakit = () => {
   const [result, setResult] = useState([]);
-  const [inactive, setInactive] = useState('');
+  const [inactive, setInactive] = useState(false);
   const [picture, setPicture] = useState('');
   const [letter, setLetter] = useState('');
   const [voice, setVoice] = useState('');
@@ -25,13 +25,15 @@ const Speakit = () => {
   }, [result]);
 
   useEffect(() => {
+    const wrongWords = error;
     const currentWord = correct[correct.length - 1];
-    const currentIndex = error.indexOf(currentWord);
-    error.splice(currentIndex, 1);
+    const currentIndex = wrongWords.indexOf(currentWord);
+    wrongWords.splice(currentIndex, 1);
+    setError(wrongWords);
   }, [correct]);
 
   useEffect(() => {
-    getWords(nextGame.group, nextGame.page).then((value) => setResult(value));
+    getWordsSpeakit(nextGame.group, nextGame.page).then((value) => setResult(value));
   }, [nextGame.group, nextGame.page]);
 
   return (
@@ -50,7 +52,7 @@ const Speakit = () => {
           changePicture={setPicture}
           addCorrect={setCorrect}
         />
-        <Control
+        <Buttons
           voice={setVoice}
           offActive={setInactive}
           changeLetter={setLetter}
