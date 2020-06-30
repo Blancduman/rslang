@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Tooltip, Space, Switch, Button, Typography, Checkbox } from "antd";
 import "./Card.css";
 import backgroundPlaySound from "../../../assets/img/play_sound.png";
+// import soundRight from "../../../assets/sound/right_answer.mp3";
+// import soundWrong from "../../../assets/sound/wrong-answer.mp3";
 
 const Card = (props) => {
   const { currentWord, isChosed, isSound } = props;
@@ -29,6 +31,14 @@ const Card = (props) => {
     audio.play();
   };
 
+  const playAnswer = (e) => {
+    const music = isChosed.isRight
+      ? "../../../assets/sound/right_answer.mp3"
+      : "../../../assets/sound/wrong-answer.mp3";
+    const audio = new Audio(music);
+    audio.play();
+  };
+
   return isChosed.isChosed ? (
     <div className="card">
       <button
@@ -41,14 +51,17 @@ const Card = (props) => {
       <p>{currentWord.wordTranslate}</p>
     </div>
   ) : (
-    <button
-      className="card_speaker"
-      style={stylePlayVoice}
-      onClick={playVoice}
-      data-url={srcAudio}
-    >
-      {isSound && <audio src={srcAudio} autoPlay></audio>}
-    </button>
+    <div className="card">
+      <button
+        className="card_speaker"
+        style={stylePlayVoice}
+        onClick={playVoice}
+        onChange={playAnswer}
+        data-url={srcAudio}
+      >
+        {isSound && <audio src={srcAudio} autoPlay></audio>}
+      </button>
+    </div>
   );
 };
 export default Card;

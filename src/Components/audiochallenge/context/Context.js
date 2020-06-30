@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import WordBtn from "../WordBtn/WordBtn";
 import "./Context.css";
+import { Button } from "antd";
 
 const Context = (props) => {
   const { isSound } = props;
@@ -25,7 +26,7 @@ const Context = (props) => {
 
       shuffle(result);
       setWords(result);
-      setCurrentWord(result[count]);
+      setCurrentWord(result[0]);
     };
     fetchData();
   }, [level]);
@@ -33,8 +34,7 @@ const Context = (props) => {
   useEffect(() => {
     setOutputWord(
       shuffle(
-        listWords
-          .filter((e, i) => i !== count)
+        shuffle(listWords.filter((e, i) => e.word !== currentWord.word))
           .filter((e, i) => i < 4)
           .concat(currentWord)
       )
@@ -61,10 +61,19 @@ const Context = (props) => {
 
   const statistic = (result) => {
     setIsChosed({ isChosed: true, isRight: result });
-    setCount(count + 1);
     setListUsedWord(
       listUsedWord.concat({ word: currentWord.word, guessed: result })
     );
+  };
+
+  const nextWord = () => {
+    setCount(count + 1);
+    setIsChosed({ isChosed: false, isRight: false });
+    setCurrentWord(listWords[count + 1]);
+    if (count > 20) {
+      setCount(1);
+      setLevel({ group: 1, page: level.page + 1 });
+    }
   };
 
   return (
@@ -81,6 +90,9 @@ const Context = (props) => {
       >
         {" "}
       </WordBtn>
+      <div>
+        {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}
+      </div>
     </div>
   );
 };
