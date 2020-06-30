@@ -15,15 +15,19 @@ const teamInfo = [
   Object.freeze({
     id: '2',
     name: {
-      first: 'alpolesh',
-      sur: 'alpolesh',
+      first: 'Андрей',
+      sur: 'Полещук',
       nick: 'alpolesh',
     },
     position: 'Разработчик',
     linkGitHub: 'https://github.com/alpolesh',
     avatar: 'https://avatars0.githubusercontent.com/u/60234718?s=400&v=4',
-    aboutPerson: 'Немного о себе, можно любимую цитату',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    aboutPerson: `"Не позволяй душе лениться,
+    чтоб в ступе воду не толочь,
+    душа обязана трудиться
+    и день, и ночь,
+    и день, и ночь"`,
+    contribution: 'Внесённый вклад: мини-игра "Саванна".',
   }),
   Object.freeze({
     id: '3',
@@ -61,8 +65,8 @@ const teamInfo = [
     position: 'Разработчик',
     linkGitHub: 'https://github.com/Garbua',
     avatar: 'https://avatars1.githubusercontent.com/u/40141926?s=400&u=aa18add377d95bcf1d921f9c3d773898f6763c0b&v=4',
-    aboutPerson: 'Падает тот, кто бежит. Тот, кто ползет, не падает.',
-    contribution: `Внесённый вклад : базовая разметка (меню навигации), страница "О команде", 
+    aboutPerson: '"Падает тот, кто бежит. Тот, кто ползет, не падает."',
+    contribution: `Внесённый вклад: базовая разметка (меню навигации), страница "О команде", 
     страница "О приложении".`,
   }),
   Object.freeze({
