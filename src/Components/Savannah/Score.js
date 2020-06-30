@@ -1,5 +1,4 @@
 import React from 'react';
-import './savanna.css';
 import PropTypes from 'prop-types';
 
 const Score = (props) => {

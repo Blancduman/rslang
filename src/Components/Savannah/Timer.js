@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 const Timer = (props) => {
   const { setGameOver, gameover } = props;
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(5);
   useEffect(() => {
     if (timer === 0) setGameOver();
     else if (!gameover) {
       const timerId = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(timerId);
     }
-    return '';
   }, [timer]);
   return (
     <div className="savanna-header__timer-container timer-container">

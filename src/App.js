@@ -7,7 +7,8 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-import Savannah from './Components/Savannah/SavannaGame';
+// import Savannah from './Components/Savannah/SavannahGame';
+import SavannahStartPage from './Components/Savannah/SavannahStartPage';
 
 const { Content } = Layout;
 
@@ -28,7 +29,7 @@ const App = () => (
             <Speakit />
           </Route>
           <Route path="/savannah">
-            <Savannah />
+            <SavannahStartPage />
           </Route>
           <Route path="/sprint">
             <GameSprintPage />
