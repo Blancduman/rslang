@@ -10,14 +10,14 @@ const Buttons = ({
   changeLetter,
   switchGame,
   currentGame: {
-    group,
     page,
   },
-  newResultGame,
-  errorAnswer,
-  newErrorGame,
-  correctAnswer,
   words,
+  showCorrectAnswer,
+  showErrorAnswer,
+  addCorrectAnswer,
+  addErrorAnswer,
+  numberGroup,
 }) => {
   const [visual, setVisual] = useState(false);
   const [levelUp, setLevelUp] = useState(true);
@@ -29,11 +29,30 @@ const Buttons = ({
   const nextGame = () => {
     setVisual(false);
     switchGame({
-      group: page === 6 && group <= 6 ? group + 1 : 0,
+      group: numberGroup,
       page: page <= 5 ? page + 1 : 0,
     });
-    newResultGame([]);
-    newErrorGame([]);
+  };
+
+  const showButton = () => {
+    switch (showCorrectAnswer.size) {
+      case 10: {
+        return (
+          <Button
+            key="submit"
+            type="primary"
+            onClick={nextGame}
+            disabled={levelUp}
+          >
+            Следующий уровень
+          </Button>
+        );
+      }
+
+      default: {
+        return null;
+      }
+    }
   };
 
   return (
@@ -42,13 +61,12 @@ const Buttons = ({
         voice={voice}
         offActive={offActive}
         changeLetter={changeLetter}
-        newErrorGame={newErrorGame}
-        newResultGame={newResultGame}
-        correctAnswer={correctAnswer}
-        errorAnswer={errorAnswer}
         words={words}
         setVisual={setVisual}
         setLevelUp={setLevelUp}
+        showCorrectAnswer={showCorrectAnswer}
+        addCorrectAnswer={addCorrectAnswer}
+        addErrorAnswer={addErrorAnswer}
       />
       <Modal
         visible={visual}
@@ -61,19 +79,12 @@ const Buttons = ({
           >
             Вернуться
           </Button>,
-          <Button
-            key="submit"
-            type="primary"
-            onClick={nextGame}
-            disabled={levelUp}
-          >
-            Следующий уровень
-          </Button>,
+          showButton(),
         ]}
       >
         <Result
-          correctAnswer={correctAnswer}
-          errorAnswer={errorAnswer}
+          showCorrectAnswer={showCorrectAnswer}
+          showErrorAnswer={showErrorAnswer}
         />
       </Modal>
     </div>
@@ -89,13 +100,14 @@ Buttons.propTypes = {
     page: PropTypes.number,
   }).isRequired,
   switchGame: PropTypes.func.isRequired,
-  correctAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
-  errorAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
-  newResultGame: PropTypes.func.isRequired,
-  newErrorGame: PropTypes.func.isRequired,
   words: PropTypes.arrayOf(PropTypes.shape({
     word: PropTypes.string,
   })).isRequired,
+  numberGroup: PropTypes.number.isRequired,
+  showCorrectAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
+  showErrorAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
+  addCorrectAnswer: PropTypes.func.isRequired,
+  addErrorAnswer: PropTypes.func.isRequired,
 };
 
 export default Buttons;

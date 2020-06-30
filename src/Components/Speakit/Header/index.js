@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Form, Select } from 'antd';
 import PropTypes from 'prop-types';
 
-const Header = ({ switchGame }) => {
-  const [groupNumber, setGroup] = useState(Number);
-  const [pageNumber, setPage] = useState(Number);
+const Header = ({
+  switchGame,
+  returnGroup,
+}) => {
+  const [groupNumber, setGroup] = useState(0);
+  const [pageNumber, setPage] = useState(0);
 
   useEffect(() => {
-    switchGame({ group: groupNumber, page: pageNumber })
+    switchGame({ group: groupNumber, page: pageNumber });
   }, [groupNumber, pageNumber]);
 
   return (
@@ -16,8 +19,11 @@ const Header = ({ switchGame }) => {
         <Select
           defaultValue="0"
           className="level-dropdown"
-          size="large"
-          onChange={(value) => setGroup(parseInt(value, 10))}
+          style={{ width: 200 }}
+          onChange={(value) => {
+            setGroup(parseInt(value, 10));
+            returnGroup(parseInt(value, 10));
+          }}
         >
           <Select.Option value="0">Начальный уровень </Select.Option>
           <Select.Option value="1">Элементарный уровень</Select.Option>
@@ -47,6 +53,7 @@ const Header = ({ switchGame }) => {
 
 Header.prototype = {
   switchGame: PropTypes.func.isRequired,
+  returnGroup: PropTypes.number.isRequired,
 };
 
 export default Header;

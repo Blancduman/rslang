@@ -18,21 +18,19 @@ const Start = ({
   recognition,
   voice,
   offActive,
-  newErrorGame,
-  newResultGame,
   words,
   setVisual,
   setLevelUp,
-  correctAnswer,
+  showCorrectAnswer,
+  addCorrectAnswer,
+  addErrorAnswer,
 }) => {
   const restart = () => {
     offActive(false);
-    newErrorGame([]);
     words.forEach((value) => {
-      newErrorGame((prev) => prev.concat(`${value.word} ${value.transcription} ${value.wordTranslate}`));
+      addErrorAnswer((prev) => new Set(prev.add(`${value.word} ${value.transcription} ${value.wordTranslate}`)));
     });
-    newErrorGame((prev) => prev.concat(`${words[9].word} ${words[9].transcription} ${words[9].wordTranslate}`));
-    newResultGame([]);
+    addCorrectAnswer((prev) => new Set(prev.clear()));
     stopListening();
   };
 
@@ -47,7 +45,7 @@ const Start = ({
 
   const openModal = () => {
     setVisual(true);
-    if (correctAnswer.length === 10) {
+    if (showCorrectAnswer.size === 10) {
       setLevelUp(false);
       speakOff();
     }
@@ -113,12 +111,12 @@ Start.propTypes = {
   recognition: PropTypes.objectOf(PropTypes.string).isRequired,
   voice: PropTypes.func.isRequired,
   offActive: PropTypes.func.isRequired,
-  newErrorGame: PropTypes.func.isRequired,
-  newResultGame: PropTypes.func.isRequired,
   setVisual: PropTypes.func.isRequired,
   setLevelUp: PropTypes.func.isRequired,
-  correctAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
   words: PropTypes.arrayOf(PropTypes.any).isRequired,
+  showCorrectAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
+  addCorrectAnswer: PropTypes.func.isRequired,
+  addErrorAnswer: PropTypes.func.isRequired,
 };
 
 export default SpeechRecognition(options)(Start);

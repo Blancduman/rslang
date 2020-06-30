@@ -1,5 +1,5 @@
 .speakit__main {
-  padding: 0px 50px;
+  padding: 30px 50px;
   font-size: 15px;
   letter-spacing: .03em;
   font-weight: 400;
@@ -26,10 +26,6 @@
   justify-content: center;
   align-items: center;
   height: 300px;
-}
-
-.speakit__image_word {
-  clip-path: circle(50% at 50% 50%);
 }
 
 .speakit__image_translate {
@@ -88,9 +84,28 @@
   margin-left: 50px;
 }
 
-.speakit__start_screen {
+.speakit__start-screen {
   display: flex;
   align-items: center;
   justify-content: center;
   height: inherit;
+}
+
+.speakit__start-screen_title {
+  font-size: 30px;
+}
+
+.speakit__start-screen_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 200px;
+  border: solid 1px #000;
+  background-color: rgb(229, 235, 243);
+}
+
+.speakit__start-screen_level {
+  width: 100%;
 }
