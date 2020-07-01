@@ -73,22 +73,18 @@
 }
 
 .speakit__header {
+  margin-top: 30px;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-}
-
-.speakit__header_level {
-  margin-top: 20px;
-  margin-left: 50px;
 }
 
 .speakit__start-screen {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: inherit;
+  align-items: center;
 }
 
 .speakit__start-screen_title {

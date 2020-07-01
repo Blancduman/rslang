@@ -20,7 +20,6 @@ const Buttons = ({
   numberGroup,
 }) => {
   const [visual, setVisual] = useState(false);
-  const [levelUp, setLevelUp] = useState(true);
 
   const closeModal = () => {
     setVisual(false);
@@ -30,7 +29,7 @@ const Buttons = ({
     setVisual(false);
     switchGame({
       group: numberGroup,
-      page: page <= 5 ? page + 1 : 0,
+      page: page + 1,
     });
   };
 
@@ -42,7 +41,6 @@ const Buttons = ({
             key="submit"
             type="primary"
             onClick={nextGame}
-            disabled={levelUp}
           >
             Следующий уровень
           </Button>
@@ -63,7 +61,6 @@ const Buttons = ({
         changeLetter={changeLetter}
         words={words}
         setVisual={setVisual}
-        setLevelUp={setLevelUp}
         showCorrectAnswer={showCorrectAnswer}
         addCorrectAnswer={addCorrectAnswer}
         addErrorAnswer={addErrorAnswer}

@@ -20,7 +20,6 @@ const Start = ({
   offActive,
   words,
   setVisual,
-  setLevelUp,
   showCorrectAnswer,
   addCorrectAnswer,
   addErrorAnswer,
@@ -46,7 +45,6 @@ const Start = ({
   const openModal = () => {
     setVisual(true);
     if (showCorrectAnswer.size === 10) {
-      setLevelUp(false);
       speakOff();
     }
   };
@@ -112,7 +110,6 @@ Start.propTypes = {
   voice: PropTypes.func.isRequired,
   offActive: PropTypes.func.isRequired,
   setVisual: PropTypes.func.isRequired,
-  setLevelUp: PropTypes.func.isRequired,
   words: PropTypes.arrayOf(PropTypes.any).isRequired,
   showCorrectAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,

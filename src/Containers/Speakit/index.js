@@ -18,10 +18,18 @@ const Speakit = () => {
   const [errorAnswer, setErrorAnswer] = useState(new Set());
   const [selectGroup, setSelectGroup] = useState(0);
 
+  const createList = () => {
+    result.forEach((value) => {
+      setErrorAnswer((prev) => new Set(prev.add(`${value.word} ${value.transcription} ${value.wordTranslate}`)));
+    });
+  };
+
   useEffect(() => {
     if (result.length) {
       setPicture(result[0].image);
       setLetter(result[0].wordTranslate);
+      createList();
+      setCorrectAnswer((prev) => new Set(prev.clear()));
     }
   }, [result]);
 
@@ -42,13 +50,11 @@ const Speakit = () => {
                 returnGroup={setSelectGroup}
               />
               <Button
-                type="primary" 
+                type="primary"
                 onClick={() => {
                   setStage('game');
-                  result.forEach((value) => {
-                    setErrorAnswer((prev) => new Set(prev.add(`${value.word} ${value.transcription} ${value.wordTranslate}`)));
-                  });
-                  setCorrectAnswer((prev) => new Set(prev.clear()));
+                  setErrorAnswer((prev) => new Set(prev.clear()));
+                  createList();
                 }}
               >
                 Старт
