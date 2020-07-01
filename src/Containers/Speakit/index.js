@@ -86,7 +86,7 @@ const Speakit = () => {
               Вернуться в главное меню
             </Button>
           </Layout>
-        )
+        );
       }
 
       default: {

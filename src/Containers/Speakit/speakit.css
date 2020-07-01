@@ -69,6 +69,10 @@
 }
 
 .speakit__statistiks_list {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: nowrap;
   cursor: pointer;
 }
 
@@ -114,4 +118,8 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 200px 200px;
+}
+
+.speakit__list-inner {
+  display: inline;
 }
