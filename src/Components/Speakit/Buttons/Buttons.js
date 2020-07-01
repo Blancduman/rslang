@@ -18,6 +18,7 @@ const Buttons = ({
   addCorrectAnswer,
   addErrorAnswer,
   numberGroup,
+  main,
 }) => {
   const [visual, setVisual] = useState(false);
 
@@ -27,30 +28,29 @@ const Buttons = ({
 
   const nextGame = () => {
     setVisual(false);
-    switchGame({
-      group: numberGroup,
-      page: page + 1,
-    });
+    if (page < 5) {
+      switchGame({
+        group: numberGroup,
+        page: page + 1,
+      });
+    } else {
+      main('completed');
+    }
   };
 
   const showButton = () => {
-    switch (showCorrectAnswer.size) {
-      case 10: {
-        return (
-          <Button
-            key="submit"
-            type="primary"
-            onClick={nextGame}
-          >
-            Следующий уровень
-          </Button>
-        );
-      }
-
-      default: {
-        return null;
-      }
+    if (showCorrectAnswer.size === 10) {
+      return (
+        <Button
+          key="submit"
+          type="primary"
+          onClick={nextGame}
+        >
+          Следующий уровень
+        </Button>
+      );
     }
+    return null;
   };
 
   return (
@@ -105,6 +105,7 @@ Buttons.propTypes = {
   showErrorAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,
   addErrorAnswer: PropTypes.func.isRequired,
+  main: PropTypes.func.isRequired,
 };
 
 export default Buttons;

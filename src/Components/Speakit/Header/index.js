@@ -18,7 +18,7 @@ const Header = ({
           returnGroup(parseInt(level[0], 10));
         }}
       >
-        <Select.Option value="0,0">Первый</Select.Option>
+        <Select.Option value="0,1">Первый</Select.Option>
         <Select.Option value="1,0">Второй</Select.Option>
         <Select.Option value="2,0">Третий</Select.Option>
         <Select.Option value="3,0">Четвертый</Select.Option>

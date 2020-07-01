@@ -6,6 +6,15 @@ import Buttons from '../../Components/Speakit/Buttons/Buttons';
 import Header from '../../Components/Speakit/Header';
 import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
 
+const levels = {
+  0: 'Первый',
+  1: 'Второй',
+  2: 'Третий',
+  3: 'Четвертый',
+  4: 'Пятый',
+  5: 'Шестой',
+};
+
 const Speakit = () => {
   const [result, setResult] = useState([]);
   const [inactive, setInactive] = useState(false);
@@ -42,7 +51,7 @@ const Speakit = () => {
       case 'starting': {
         return (
           <Layout className="speakit__start-screen">
-            <h1 className="speakit__start-screen_title">Мини-игра &quot;Говорить на нем&quot;</h1>
+            <h1 className="speakit__title">Мини-игра &quot;Говорить на нем&quot;</h1>
             <div className="speakit__start-screen_content">
               <Header
                 className="speakit__start-screen_level"
@@ -62,6 +71,22 @@ const Speakit = () => {
             </div>
           </Layout>
         );
+      }
+
+      case 'completed': {
+        return (
+          <Layout className="speakit__completed">
+            <h1 className="speakit__title">{`Поздравляем! ${levels[selectGroup]} уровень пройден!`}</h1>
+            <Button
+              type="primary"
+              onClick={() => {
+                setStage('starting');
+              }}
+            >
+              Вернуться в главное меню
+            </Button>
+          </Layout>
+        )
       }
 
       default: {
@@ -93,6 +118,7 @@ const Speakit = () => {
               addCorrectAnswer={setCorrectAnswer}
               addErrorAnswer={setErrorAnswer}
               numberGroup={selectGroup}
+              main={setStage}
             />
           </main>
         );
