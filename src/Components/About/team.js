@@ -53,7 +53,7 @@ const teamInfo = [
     linkGitHub: 'https://github.com/dmitrier',
     avatar: 'https://avatars0.githubusercontent.com/u/55104643?s=400&u=42cb159efd84315b1acd7f234e22e897fd29a3ed&v=4',
     aboutPerson: '"The best is yet to come"',
-    contribution: 'Внесённый вклад: мини-игра "Говорить на нём"',
+    contribution: 'Внесённый вклад: мини-игра "Скажи это"',
   }),
   Object.freeze({
     id: '5',
