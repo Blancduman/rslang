@@ -22,11 +22,7 @@ const teamInfo = [
     position: 'Разработчик',
     linkGitHub: 'https://github.com/alpolesh',
     avatar: 'https://avatars0.githubusercontent.com/u/60234718?s=400&v=4',
-    aboutPerson: `"Не позволяй душе лениться,
-    чтоб в ступе воду не толочь,
-    душа обязана трудиться
-    и день, и ночь,
-    и день, и ночь"`,
+    aboutPerson: '"...чтоб в ступе воду не толочь, душа обязана трудиться..."',
     contribution: 'Внесённый вклад: мини-игра "Саванна".',
   }),
   Object.freeze({
