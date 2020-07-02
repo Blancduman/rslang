@@ -10,10 +10,12 @@ import Timer from './Timer';
 import Score from './Score';
 import Answers from './Answers';
 import Word from './Word';
+import { getRandomInt } from '../../utls';
 
 const SavannahGame = (props) => {
   const { level, setStage } = props;
   const [words, setWords] = useState([]);
+  const [updateWords, setUpdateWords] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
   const [health, setHealth] = useState(5);
@@ -23,21 +25,21 @@ const SavannahGame = (props) => {
   const [isAnswered, setIsAnswered] = useState(false);
   const winStreak = useRef(0);
   const isFailed = useRef(false);
-
   const [toggle, setToggle] = useState();
-
   useEffect(() => {
+    let randomPage = getRandomInt(19);
+    if (randomPage !== currentPage) setCurrentPage(randomPage);
+    else randomPage += 1;
     async function loadWords(currentLevel, page) {
       setRound(0);
       const res = await getWords(currentLevel, page);
       res.sort(() => Math.random() - 0.5);
       setWords(res);
     }
-    loadWords(level, currentPage);
-  }, [level, currentPage]);
+    loadWords(level, randomPage);
+  }, [level, updateWords]);
 
   function finishGame() {
-    // setGameover(true);
     setStage('finished');
   }
 
@@ -50,7 +52,7 @@ const SavannahGame = (props) => {
     }
     setIsAnswered(false);
     isFailed.current = false;
-    if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
+    if (currentRound === words.length - 1) setUpdateWords(updateWords + 1);
     else {
       setRound(currentRound + 1);
     }

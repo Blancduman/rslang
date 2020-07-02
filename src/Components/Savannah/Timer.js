@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Timer = (props) => {
   const { setGameOver, gameover } = props;
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(60);
   useEffect(() => {
     if (timer === 0) setGameOver();
     else if (!gameover) {
