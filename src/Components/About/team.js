@@ -39,8 +39,8 @@ const teamInfo = [
     position: 'Разработчик',
     linkGitHub: 'https://github.com/sofronovsd',
     avatar: 'https://avatars0.githubusercontent.com/u/13303883?s=400&u=dbc65128c83c399041378f66ccddf32ead3b1e14&v=4',
-    aboutPerson: 'Немного о себе, можно любимую цитату',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    aboutPerson: '"Talk is cheap, show me the code"',
+    contribution: 'Внесённый вклад: авторизация и мини-игра "Спринт"',
   }),
   Object.freeze({
     id: '4',
@@ -52,8 +52,8 @@ const teamInfo = [
     position: 'Разработчик',
     linkGitHub: 'https://github.com/dmitrier',
     avatar: 'https://avatars0.githubusercontent.com/u/55104643?s=400&u=42cb159efd84315b1acd7f234e22e897fd29a3ed&v=4',
-    aboutPerson: 'Немного о себе, можно любимую цитату',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    aboutPerson: '"The best is yet to come"',
+    contribution: 'Внесённый вклад: мини-игра "Говорить на нём"',
   }),
   Object.freeze({
     id: '5',
