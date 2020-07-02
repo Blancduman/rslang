@@ -186,6 +186,14 @@
   margin-bottom: 5px;
 }
 
+.savannah__statistiks_list {
+  cursor: pointer;
+}
+
+.savannah__statistiks_list:hover {
+  background-color: #a2e9ff;
+}
+
 @media screen and (max-width: 780px) {
   .ant-card-grid.game-savannah__card-layout {
     width: 250px;

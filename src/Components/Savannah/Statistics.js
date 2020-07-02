@@ -18,7 +18,7 @@ const Statistics = (props) => {
         size="small"
         bordered
         dataSource={wrongAnswers}
-        renderItem={(item) => <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
+        renderItem={(item) => <List.Item className="savannah__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
       />
       <Divider orientation="left">
         {`Правильные ответы: ${correctAnswers.length}`}
@@ -27,7 +27,7 @@ const Statistics = (props) => {
         size="small"
         bordered
         dataSource={correctAnswers}
-        renderItem={(item) => <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
+        renderItem={(item) => <List.Item className="savannah__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
       />
     </div>
   );
