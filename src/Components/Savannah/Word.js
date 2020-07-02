@@ -3,30 +3,26 @@ import PropTypes from 'prop-types';
 
 const Word = (props) => {
   const {
-    word, gameover, fail, currentRound, IsAnswered,
+    word, fail, currentRound, IsAnswered,
   } = props;
   useEffect(() => {
-    if (!gameover) {
-      const timerId = setTimeout(() => fail(), 3000);
-      if (IsAnswered) {
-        clearTimeout(timerId);
-      }
-      return () => clearTimeout(timerId);
+    const timerId = setTimeout(() => fail(), 4000);
+    if (IsAnswered) {
+      clearTimeout(timerId);
     }
-    return '';
+    return () => clearTimeout(timerId);
   }, [currentRound, IsAnswered]);
 
   return (
     <div
       className="savanna-game-field__question"
     >
-      <h1>{word}</h1>
+      <h1>{word.word}</h1>
     </div>
   );
 };
 Word.propTypes = {
-  word: PropTypes.string.isRequired,
-  gameover: PropTypes.bool.isRequired,
+  word: PropTypes.objectOf(PropTypes.any).isRequired,
   fail: PropTypes.func.isRequired,
   currentRound: PropTypes.number.isRequired,
   IsAnswered: PropTypes.bool.isRequired,

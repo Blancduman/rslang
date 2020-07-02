@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const Timer = (props) => {
-  const { setGameOver, gameover } = props;
+  const { setGameOver } = props;
   const [timer, setTimer] = useState(60);
   useEffect(() => {
     if (timer === 0) setGameOver();
-    else if (!gameover) {
+    else {
       const timerId = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(timerId);
     }
@@ -19,7 +19,6 @@ const Timer = (props) => {
 };
 Timer.propTypes = {
   setGameOver: PropTypes.func.isRequired,
-  gameover: PropTypes.bool.isRequired,
 };
 
 export default Timer;

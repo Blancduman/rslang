@@ -13,19 +13,20 @@ import Word from './Word';
 import { getRandomInt } from '../../utls';
 
 const SavannahGame = (props) => {
-  const { level, setStage } = props;
+  const {
+    level, setStage, addCorrectAnswer, addWrongAnswer,
+  } = props;
   const [words, setWords] = useState([]);
   const [updateWords, setUpdateWords] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
   const [health, setHealth] = useState(5);
   const [score, setScore] = useState(0);
-  const [gameover, setGameover] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [isAnswered, setIsAnswered] = useState(false);
   const winStreak = useRef(0);
   const isFailed = useRef(false);
-  const [toggle, setToggle] = useState();
+
   useEffect(() => {
     let randomPage = getRandomInt(19);
     if (randomPage !== currentPage) setCurrentPage(randomPage);
@@ -43,13 +44,7 @@ const SavannahGame = (props) => {
     setStage('finished');
   }
 
-  function nextRound(resume) {
-    if (resume) {
-      setToggle(!toggle);
-      setHealth(5);
-      setScore(0);
-      setGameover(false);
-    }
+  function nextRound() {
     setIsAnswered(false);
     isFailed.current = false;
     if (currentRound === words.length - 1) setUpdateWords(updateWords + 1);
@@ -59,6 +54,7 @@ const SavannahGame = (props) => {
   }
 
   function fail() {
+    addWrongAnswer(words[currentRound]);
     playSound(false, soundOn);
     winStreak.current = 0;
     isFailed.current = true;
@@ -71,6 +67,7 @@ const SavannahGame = (props) => {
     setIsAnswered(true);
     if (isFail === false) {
       if (isRight) {
+        addCorrectAnswer(words[currentRound]);
         playSound(true, soundOn);
         winStreak.current += 1;
         if (winStreak.current >= 4) setScore(score + 20);
@@ -99,7 +96,7 @@ const SavannahGame = (props) => {
                 </button>
               </div>
               <div className="savanna-header__health-container">
-                <Timer setGameOver={finishGame} gameover={gameover} key={toggle} />
+                <Timer setGameOver={finishGame} />
                 <Score score={score} />
                 <Health health={health} />
               </div>
@@ -108,8 +105,7 @@ const SavannahGame = (props) => {
               <Word
                 fail={fail}
                 IsAnswered={isAnswered}
-                word={words[currentRound].word}
-                gameover={gameover}
+                word={words[currentRound]}
                 currentRound={currentRound}
                 key={words[currentRound].word}
               />
@@ -129,5 +125,7 @@ const SavannahGame = (props) => {
 SavannahGame.propTypes = {
   level: PropTypes.string.isRequired,
   setStage: PropTypes.func.isRequired,
+  addCorrectAnswer: PropTypes.func.isRequired,
+  addWrongAnswer: PropTypes.func.isRequired,
 };
 export default SavannahGame;

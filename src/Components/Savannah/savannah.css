@@ -81,7 +81,7 @@
 .savanna-game-field__question {
   position: absolute;
   animation-timing-function: linear;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-name: fall;
   animation-fill-mode: forwards;
 }
@@ -173,9 +173,17 @@
   justify-content: center;
 }
 
+.ant-card-grid.game-savannah__card-layout form .ant-form-item .ant-col {
+  text-align: center!important;
+}
+
 .ant-card-grid.game-savannah__card-layout form .ant-form-item .ant-form-item-control {
   display: flex;
   align-items: center;
+}
+
+.ant-btn {
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 780px) {
