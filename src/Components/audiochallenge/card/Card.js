@@ -1,6 +1,6 @@
 import "antd/dist/antd.css";
-import React, { useState, useEffect } from "react";
-import { Tooltip, Space, Switch, Button, Typography, Checkbox } from "antd";
+import React from "react";
+import { Tooltip } from "antd";
 import "./Card.css";
 import backgroundPlaySound from "../../../assets/img/play_sound.png";
 // import soundRight from "../../../assets/sound/right_answer.mp3";
@@ -41,26 +41,30 @@ const Card = (props) => {
 
   return isChosed.isChosed ? (
     <div className="card">
-      <button
-        className={styleRight}
-        style={styleViewPicture}
-        onClick={playVoice}
-        data-url={srcAudio}
-      ></button>
+      <Tooltip placement="top" title="Сlick to listen again" color="cyan">
+        <button
+          className={styleRight}
+          style={styleViewPicture}
+          onClick={playVoice}
+          data-url={srcAudio}
+        ></button>
+      </Tooltip>
       <p>{currentWord.transcription}</p>
-      <p>{currentWord.wordTranslate}</p>
+      <p>{currentWord.word}</p>
     </div>
   ) : (
     <div className="card">
-      <button
-        className="card_speaker"
-        style={stylePlayVoice}
-        onClick={playVoice}
-        onChange={playAnswer}
-        data-url={srcAudio}
-      >
-        {isSound && <audio src={srcAudio} autoPlay></audio>}
-      </button>
+      <Tooltip placement="top" title="Сlick to listen again" color="cyan">
+        <button
+          className="card_speaker"
+          style={stylePlayVoice}
+          onClick={playVoice}
+          onChange={playAnswer}
+          data-url={srcAudio}
+        >
+          {isSound && <audio src={srcAudio} autoPlay></audio>}
+        </button>
+      </Tooltip>
     </div>
   );
 };

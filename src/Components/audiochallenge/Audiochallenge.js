@@ -1,6 +1,8 @@
 import "antd/dist/antd.css";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Tooltip, Switch, Button, Typography } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 import "./Audiochallenge.css";
 import Context from "./Context/Context";
 
@@ -37,7 +39,15 @@ const Audiochallenge = () => {
           </Tooltip>
         </div>
         <div className="close_btn">
-          <Button>close</Button>
+          <Tooltip
+            placement="bottom"
+            title="Click to main page"
+            color="magenta"
+          >
+            <Link to="\">
+              <Button type="primary" icon={<CloseOutlined />}></Button>
+            </Link>
+          </Tooltip>
         </div>
       </header>
 

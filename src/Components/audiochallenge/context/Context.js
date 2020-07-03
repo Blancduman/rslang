@@ -26,7 +26,7 @@ const Context = (props) => {
 
       shuffle(result);
       setWords(result);
-      setCurrentWord(result[0]);
+      setCurrentWord(result[count]);
     };
     fetchData();
   }, [level]);
@@ -49,30 +49,37 @@ const Context = (props) => {
     return array;
   }
 
-  useEffect(() => {
-    console.log(listUsedWord);
-  }, [listUsedWord]);
+  // useEffect(() => {
+  //   console.log(listUsedWord);
+  // }, [listUsedWord]);
 
   const verificationWord = (event) => {
     currentWord.word === event.currentTarget.value
       ? statistic(true)
-      : statistic(false);
+      : statistic(false, event.currentTarget.value);
+    return event.preventDefault();
   };
 
-  const statistic = (result) => {
-    setIsChosed({ isChosed: true, isRight: result });
+  const statistic = (result, wrongWord = "") => {
+    setIsChosed({ isChosed: true, isRight: result, word: currentWord.word });
     setListUsedWord(
-      listUsedWord.concat({ word: currentWord.word, guessed: result })
+      listUsedWord.concat({
+        word: currentWord.word,
+        guessed: result,
+        wrongWord: wrongWord,
+      })
     );
   };
 
   const nextWord = () => {
-    setCount(count + 1);
     setIsChosed({ isChosed: false, isRight: false });
-    setCurrentWord(listWords[count + 1]);
-    if (count > 20) {
-      setCount(1);
+    console.log(count + " " + level.page);
+    if (count === 19) {
+      setCount(0);
       setLevel({ group: 1, page: level.page + 1 });
+    } else {
+      setCount(count + 1);
+      setCurrentWord(listWords[count + 1]);
     }
   };
 

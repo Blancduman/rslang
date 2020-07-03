@@ -1,20 +1,30 @@
 import "antd/dist/antd.css";
-import React, { useState, useEffect, Component } from "react";
-import { Tooltip, Space, Switch, Typography, Checkbox, Button } from "antd";
+import React from "react";
+import {Typography, Button } from "antd";
 import "./WordBtn.css";
 
 const WordBtn = (props) => {
-  var { words, verificationWord } = props;
+  const { Text } = Typography;
+
+  var { words, isChosed, verificationWord } = props;
 
   const addWordBtn = (item) => {
+    console.log(isChosed.word + " " + item.word);
+    let classBtn =
+      isChosed.isRight && isChosed.word === item.word
+        ? "button_words right"
+        : !isChosed.isRight && isChosed.word === item.word
+        ? "button_words wrong"
+        : "button_words";
     return (
       <Button
-        className="button_words"
+        disabled={isChosed.isChosed}
+        className={classBtn}
         onClick={verificationWord}
         value={item.word}
         key={item.id}
       >
-        {item.word}
+        <Text strong> {item.wordTranslate}</Text>
       </Button>
     );
   };
