@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 const path = 'https://raw.githubusercontent.com/DmitriEr/rslang-data/master/';
 
 const Image = ({
-  current: { word, image },
+  currentLetter,
+  currentPicture,
 }) => (
   <div className="speakit__image">
-    <img src={image !== '' ? `${path}${image}` : null} alt={word} className="speakit__image_word" />
-    <p className="speakit__image_translate">{word}</p>
+    <img src={currentPicture !== '' ? `${path}${currentPicture}` : null} alt={currentLetter} className="speakit__image_word" />
+    <p className="speakit__image_translate">{currentLetter}</p>
   </div>
 );
 
 Image.propTypes = {
-  current: PropTypes.shape({
-    word: PropTypes.string,
-    image: PropTypes.string,
-  }).isRequired,
+  currentLetter: PropTypes.string.isRequired,
+  currentPicture: PropTypes.string.isRequired,
 };
 
 export default Image;
