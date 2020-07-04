@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Layout } from 'antd';
-import './main.css';
-import MenuBar from './Components/MenuBar';
-import HeaderBar from './Components/Header';
-import Example from './Components/Example';
-import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
-import Speakit from './Containers/Speakit';
-import Audiochallenge from './Components/Audiochallenge/Audiochallenge'
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Layout } from "antd";
+import "./main.css";
+import MenuBar from "./Components/MenuBar";
+import HeaderBar from "./Components/Header";
+import Example from "./Components/Example";
+import GameSprintPage from "./Components/GameSprintPage/GameSprintPage";
+import Speakit from "./Containers/Speakit";
+import Audiochallenge from "./Components/Audiochallenge/Audiochallenge";
 const { Content } = Layout;
 
 const App = () => (
@@ -36,7 +36,7 @@ const App = () => (
             <div>Головоломка</div>
           </Route>
           <Router path="/audiochallenge">
-<Audiochallenge></Audiochallenge>
+            <Audiochallenge />
           </Router>
           <Route path="/promo">
             <div>О приложении</div>
