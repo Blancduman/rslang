@@ -86,7 +86,6 @@ const Context = (props) => {
 
   const nextWord = () => {
     setIsChosed({ isChosed: false, isRight: false, word: "" });
-    // console.log(`${count} ${level.page}`);
     if (count === 19) {
       setCount(0);
       setLevel({ group: 1, page: level.page + 1 });
@@ -97,7 +96,7 @@ const Context = (props) => {
   };
 
   return (
-    <div className="context">
+    <div className="audiochallenge__context">
       <Card currentWord={currentWord} isChosed={isChosed} isSound={isSound} />
       <WordBtn
         words={outputWord}

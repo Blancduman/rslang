@@ -1,4 +1,3 @@
-import "antd/dist/antd.css";
 import React from "react";
 import { Tooltip } from "antd";
 import "./Card.css";
@@ -13,8 +12,8 @@ const Card = (props) => {
   const backgroundImage = `${rsLangData}/${currentWord.image}`;
   const styleRight =
     isChosed.isChosed && isChosed.isRight
-      ? "card_image right"
-      : "card_image wrong";
+      ? "audiochallenge__card_image right"
+      : "audiochallenge__card_image wrong";
 
   const stylePlayVoice = {
     backgroundImage: `url(${backgroundPlaySound})`,
@@ -31,7 +30,7 @@ const Card = (props) => {
   };
 
   return isChosed.isChosed ? (
-    <div className="card">
+    <div className="audiochallenge__card">
       <Tooltip placement="top" title="Сlick to listen again" color="cyan">
         <input
           type="button"
@@ -45,11 +44,11 @@ const Card = (props) => {
       <p>{currentWord.word}</p>
     </div>
   ) : (
-    <div className="card">
+    <div className="audiochallenge__card">
       <Tooltip placement="top" title="Сlick to listen again" color="cyan">
         <input
           type="button"
-          className="card_speaker"
+          className="audiochallenge__card_speaker"
           style={stylePlayVoice}
           onClick={playVoice}
           data-url={srcAudio}

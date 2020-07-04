@@ -1,4 +1,4 @@
-.list_button_words {
+.audiochallenge__list_button_words {
     margin: 50px auto;
     display: flex;
     flex-direction: row;
@@ -6,22 +6,22 @@
     width: 60%;
 }
 
-.button_words {
+.audiochallenge__button_words {
     height: 50px;
 }
 
-.hide:disabled {
+.audiochallenge__hide:disabled {
     background-color: cadetblue;
 }
 
-.button_words.right {
+.audiochallenge__button_words.right {
     background-color: chartreuse;
     -webkit-box-shadow: 0px 0px 18px -2px rgba(10, 247, 26, 1);
     -moz-box-shadow: 0px 0px 18px -2px rgba(10, 247, 26, 1);
     box-shadow: 0px 0px 18px -2px rgba(10, 247, 26, 1);
 }
 
-.button_words.wrong {
+.audiochallenge__button_words.wrong {
     background-color: crimson;
     -webkit-box-shadow: 0px 0px 18px -2px rgba(245, 61, 71, 1);
     -moz-box-shadow: 0px 0px 18px -2px rgba(245, 61, 71, 1);

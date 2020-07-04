@@ -1,22 +1,23 @@
-.audiochallenge_header {
+.audiochallenge__header {
     margin: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.autoplay_box {
+.audiochallenge__autoplay_box {
     display: flex;
     flex-direction: column;
 }
 
-.start_game {
+.audiochallenge__start_game {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
-.start_game-btn{
+
+.audiochallenge__start_game-btn {
     width: 100px;
     height: 50px;
     margin: 50px;

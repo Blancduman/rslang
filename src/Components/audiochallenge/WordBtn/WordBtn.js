@@ -1,4 +1,3 @@
-import "antd/dist/antd.css";
 import React from "react";
 import { Typography, Button } from "antd";
 import "./WordBtn.css";
@@ -12,10 +11,10 @@ const WordBtn = (props) => {
   const addWordBtn = (item, index) => {
     let classBtn = "";
     if (isChosed.isRight && isChosed.word === item.word)
-      classBtn = "button_words right";
+      classBtn = "audiochallenge__button_words right";
     else if (!isChosed.isRight && isChosed.word === item.word)
-      classBtn = "button_words wrong";
-    else classBtn = "button_words";
+      classBtn = "audiochallenge__button_words wrong";
+    else classBtn = "audiochallenge__button_words";
 
     return (
       <Button
@@ -30,7 +29,11 @@ const WordBtn = (props) => {
     );
   };
 
-  return <div className="list_button_words">{words.map(addWordBtn)}</div>;
+  return (
+    <div className="audiochallenge__list_button_words">
+      {words.map(addWordBtn)}
+    </div>
+  );
 };
 
 WordBtn.propTypes = {

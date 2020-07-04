@@ -1,12 +1,9 @@
-import 'antd/dist/antd.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Tooltip, Switch, Button, Typography,
-} from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
-import './Audiochallenge.css';
-import Context from './Context/Context';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Tooltip, Switch, Button, Typography } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
+import "./Audiochallenge.css";
+import Context from "./Context/Context";
 
 const Audiochallenge = () => {
   const [isStarted, setStart] = useState(false);
@@ -24,24 +21,23 @@ const Audiochallenge = () => {
 
   return (
     <div className="wrapper">
-      <header className="audiochallenge_header">
-        <div className="autoplay_box">
+      <header className="audiochallenge__header">
+        <div className="audiochallenge__autoplay_box">
           <Tooltip
             placement="bottom"
             title="Click to on/off autoplay sound"
             color="magenta"
           >
-            {' '}
+            {" "}
             <Switch
               onChange={onChangeIsSound}
               checkedChildren="ON"
               unCheckedChildren="OFF"
               checked={isSound}
-            />
-            {' '}
+            />{" "}
           </Tooltip>
         </div>
-        <div className="close_btn">
+        <div className="audiochallenge__close_btn">
           <Tooltip
             placement="bottom"
             title="Click to main page"
@@ -54,21 +50,24 @@ const Audiochallenge = () => {
         </div>
       </header>
 
-      <main className="audiochallenge_main">
+      <main className="audiochallenge__main">
         {isStarted ? (
           <Context isSound={isSound} />
         ) : (
-          <div className="start_game">
+          <div className="audiochallenge__start_game">
             <Title level={1}>
               <Text strong> АУДИОВЫЗОВ</Text>
             </Title>
             <Title level={4}>
               <Text strong>
-                {' '}
+                {" "}
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
             </Title>
-            <Button className="start_game-btn" onClick={startGame}>
+            <Button
+              className="audiochallenge__start_game-btn"
+              onClick={startGame}
+            >
               СТАРТ
             </Button>
           </div>
