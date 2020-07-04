@@ -4,8 +4,6 @@ import { Tooltip } from "antd";
 import "./Card.css";
 import PropTypes from "prop-types";
 import backgroundPlaySound from "../../../assets/img/play_sound.png";
-// import soundRight from "../../../assets/sound/right_answer.mp3";
-// import soundWrong from "../../../assets/sound/wrong-answer.mp3";
 
 const Card = (props) => {
   const { currentWord, isChosed, isSound } = props;
@@ -32,14 +30,6 @@ const Card = (props) => {
     audio.play();
   };
 
-  const playAnswer = () => {
-    const music = isChosed.isRight
-      ? "../../../assets/sound/right_answer.mp3"
-      : "../../../assets/sound/wrong-answer.mp3";
-    const audio = new Audio(music);
-    audio.play();
-  };
-
   return isChosed.isChosed ? (
     <div className="card">
       <Tooltip placement="top" title="Сlick to listen again" color="cyan">
@@ -62,7 +52,6 @@ const Card = (props) => {
           className="card_speaker"
           style={stylePlayVoice}
           onClick={playVoice}
-          onChange={playAnswer}
           data-url={srcAudio}
         />
         {isSound && (

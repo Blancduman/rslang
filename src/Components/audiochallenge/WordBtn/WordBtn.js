@@ -1,8 +1,8 @@
-import 'antd/dist/antd.css';
-import React from 'react';
-import { Typography, Button } from 'antd';
-import './WordBtn.css';
-import PropTypes from 'prop-types';
+import "antd/dist/antd.css";
+import React from "react";
+import { Typography, Button } from "antd";
+import "./WordBtn.css";
+import PropTypes from "prop-types";
 
 const WordBtn = (props) => {
   const { Text } = Typography;
@@ -10,10 +10,12 @@ const WordBtn = (props) => {
   const { words, isChosed, verificationWord } = props;
 
   const addWordBtn = (item, index) => {
-    let classBtn = '';
-    if (isChosed.isRight && isChosed.word === item.word) classBtn = 'button_words right';
-    else if (!isChosed.isRight && isChosed.word === item.word) classBtn = 'button_words wrong';
-    else classBtn = 'button_words';
+    let classBtn = "";
+    if (isChosed.isRight && isChosed.word === item.word)
+      classBtn = "button_words right";
+    else if (!isChosed.isRight && isChosed.word === item.word)
+      classBtn = "button_words wrong";
+    else classBtn = "button_words";
 
     return (
       <Button
@@ -23,10 +25,7 @@ const WordBtn = (props) => {
         value={item.word}
         key={index}
       >
-        <Text strong>
-          {' '}
-          {item.wordTranslate}
-        </Text>
+        <Text strong> {item.wordTranslate}</Text>
       </Button>
     );
   };
