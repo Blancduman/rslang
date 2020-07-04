@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Tooltip, Switch, Button, Typography } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
-import "./Audiochallenge.css";
-import Context from "./Context/Context";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Tooltip, Switch, Button, Typography,
+} from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+import './Audiochallenge.css';
+import Context from './Context/Context';
 
 const Audiochallenge = () => {
   const [isStarted, setStart] = useState(false);
@@ -28,13 +30,14 @@ const Audiochallenge = () => {
             title="Click to on/off autoplay sound"
             color="magenta"
           >
-            {" "}
+            {' '}
             <Switch
               onChange={onChangeIsSound}
               checkedChildren="ON"
               unCheckedChildren="OFF"
               checked={isSound}
-            />{" "}
+            />
+            {' '}
           </Tooltip>
         </div>
         <div className="audiochallenge__close_btn">
@@ -60,7 +63,7 @@ const Audiochallenge = () => {
             </Title>
             <Title level={4}>
               <Text strong>
-                {" "}
+                {' '}
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
             </Title>

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "antd";
-import PropTypes from "prop-types";
-import "./Context.css";
-import Card from "../Card/Card";
-import WordBtn from "../WordBtn/WordBtn";
-import soundRight from "../../../assets/sound/right_answer.mp3";
-import soundWrong from "../../../assets/sound/wrong-answer.mp3";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd';
+import PropTypes from 'prop-types';
+import './Context.css';
+import Card from '../Card/Card';
+import WordBtn from '../WordBtn/WordBtn';
+import soundRight from '../../../assets/sound/right_answer.mp3';
+import soundWrong from '../../../assets/sound/wrong-answer.mp3';
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i -= 1) {
@@ -21,7 +21,7 @@ const Context = (props) => {
   const [isChosed, setIsChosed] = useState({
     isChosed: false,
     isRight: false,
-    word: "",
+    word: '',
   });
   const [listWords, setWords] = useState([]);
   const [outputWord, setOutputWord] = useState([]);
@@ -33,7 +33,7 @@ const Context = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch(
-        `https://afternoon-falls-25894.herokuapp.com/words?group=${level.group}&page=${level.page}`
+        `https://afternoon-falls-25894.herokuapp.com/words?group=${level.group}&page=${level.page}`,
       )
         .then((response) => response.json())
         .then((res) => res)
@@ -51,19 +51,19 @@ const Context = (props) => {
       shuffle(
         shuffle(listWords.filter((e) => e.word !== currentWord.word))
           .filter((e, i) => i < 4)
-          .concat(currentWord)
-      )
+          .concat(currentWord),
+      ),
     );
   }, [currentWord]);
 
-  const statistic = (result, wrongWord = "") => {
+  const statistic = (result, wrongWord = '') => {
     setIsChosed({ isChosed: true, isRight: result, word: currentWord.word });
     setListUsedWord(
       listUsedWord.concat({
         word: currentWord.word,
         guessed: result,
         wrongWord,
-      })
+      }),
     );
   };
 
@@ -85,7 +85,7 @@ const Context = (props) => {
   };
 
   const nextWord = () => {
-    setIsChosed({ isChosed: false, isRight: false, word: "" });
+    setIsChosed({ isChosed: false, isRight: false, word: '' });
     if (count === 19) {
       setCount(0);
       setLevel({ group: 1, page: level.page + 1 });
@@ -103,7 +103,7 @@ const Context = (props) => {
         isChosed={isChosed}
         verificationWord={verificationWord}
       >
-        {" "}
+        {' '}
       </WordBtn>
       <div>
         {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}

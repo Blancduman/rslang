@@ -1,27 +1,25 @@
-import React from "react";
-import { Tooltip } from "antd";
-import "./Card.css";
-import PropTypes from "prop-types";
-import backgroundPlaySound from "../../../assets/img/play_sound.png";
+import React from 'react';
+import { Tooltip } from 'antd';
+import './Card.css';
+import PropTypes from 'prop-types';
+import backgroundPlaySound from '../../../assets/img/play_sound.png';
 
 const Card = (props) => {
   const { currentWord, isChosed, isSound } = props;
-  const rsLangData =
-    "https://raw.githubusercontent.com/kli2m/rslang-data/master";
+  const rsLangData = 'https://raw.githubusercontent.com/kli2m/rslang-data/master';
   const srcAudio = `${rsLangData}/${currentWord.audio}`;
   const backgroundImage = `${rsLangData}/${currentWord.image}`;
-  const styleRight =
-    isChosed.isChosed && isChosed.isRight
-      ? "audiochallenge__card_image right"
-      : "audiochallenge__card_image wrong";
+  const styleRight = isChosed.isChosed && isChosed.isRight
+    ? 'audiochallenge__card_image right'
+    : 'audiochallenge__card_image wrong';
 
   const stylePlayVoice = {
     backgroundImage: `url(${backgroundPlaySound})`,
-    backgroundSize: "context",
+    backgroundSize: 'context',
   };
   const styleViewPicture = {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
+    backgroundSize: 'cover',
   };
 
   const playVoice = (e) => {
