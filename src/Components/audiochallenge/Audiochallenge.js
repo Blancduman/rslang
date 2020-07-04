@@ -1,10 +1,12 @@
-import "antd/dist/antd.css";
-import React, { useState } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import { Tooltip, Switch, Button, Typography } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
-import "./Audiochallenge.css";
-import Context from "./Context/Context";
+import 'antd/dist/antd.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Tooltip, Switch, Button, Typography,
+} from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+import './Audiochallenge.css';
+import Context from './Context/Context';
 
 const Audiochallenge = () => {
   const [isStarted, setStart] = useState(false);
@@ -29,13 +31,14 @@ const Audiochallenge = () => {
             title="Click to on/off autoplay sound"
             color="magenta"
           >
-            {" "}
+            {' '}
             <Switch
               onChange={onChangeIsSound}
               checkedChildren="ON"
               unCheckedChildren="OFF"
               checked={isSound}
-            />{" "}
+            />
+            {' '}
           </Tooltip>
         </div>
         <div className="close_btn">
@@ -44,8 +47,8 @@ const Audiochallenge = () => {
             title="Click to main page"
             color="magenta"
           >
-            <Link to="\">
-              <Button type="primary" icon={<CloseOutlined />}></Button>
+            <Link to="/" replace>
+              <Button type="primary" icon={<CloseOutlined />} />
             </Link>
           </Tooltip>
         </div>
@@ -53,7 +56,7 @@ const Audiochallenge = () => {
 
       <main className="audiochallenge_main">
         {isStarted ? (
-          <Context isSound={isSound}></Context>
+          <Context isSound={isSound} />
         ) : (
           <div className="start_game">
             <Title level={1}>
@@ -61,7 +64,7 @@ const Audiochallenge = () => {
             </Title>
             <Title level={4}>
               <Text strong>
-                {" "}
+                {' '}
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
             </Title>

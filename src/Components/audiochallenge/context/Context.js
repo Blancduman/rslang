@@ -1,13 +1,22 @@
-import "antd/dist/antd.css";
-import React, { useState, useEffect } from "react";
-import Card from "../Card/Card";
-import WordBtn from "../WordBtn/WordBtn";
-import "./Context.css";
-import { Button } from "antd";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd';
+import PropTypes from 'prop-types';
+import './Context.css';
+import Card from '../Card/Card';
+import WordBtn from '../WordBtn/WordBtn';
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // eslint-disable-next-line
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 const Context = (props) => {
   const { isSound } = props;
-  const [isChosed, setIsChosed] = useState({ isChosed: false, isRight: false });
+  const [isChosed, setIsChosed] = useState({ isChosed: false, isRight: false, word: '' });
   const [listWords, setWords] = useState([]);
   const [outputWord, setOutputWord] = useState([]);
   const [level, setLevel] = useState({ group: 1, page: 1 });
@@ -18,10 +27,10 @@ const Context = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch(
-        `https://afternoon-falls-25894.herokuapp.com/words?group=${level.group}&page=${level.page}`
+        `https://afternoon-falls-25894.herokuapp.com/words?group=${level.group}&page=${level.page}`,
       )
         .then((response) => response.json())
-        .then((result) => result)
+        .then((res) => res)
         .catch((error) => error);
 
       shuffle(result);
@@ -34,46 +43,39 @@ const Context = (props) => {
   useEffect(() => {
     setOutputWord(
       shuffle(
-        shuffle(listWords.filter((e, i) => e.word !== currentWord.word))
+        shuffle(listWords.filter((e) => e.word !== currentWord.word))
           .filter((e, i) => i < 4)
-          .concat(currentWord)
-      )
+          .concat(currentWord),
+      ),
     );
   }, [currentWord]);
-
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
 
   // useEffect(() => {
   //   console.log(listUsedWord);
   // }, [listUsedWord]);
 
-  const verificationWord = (event) => {
-    currentWord.word === event.currentTarget.value
-      ? statistic(true)
-      : statistic(false, event.currentTarget.value);
-    return event.preventDefault();
-  };
-
-  const statistic = (result, wrongWord = "") => {
+  const statistic = (result, wrongWord = '') => {
     setIsChosed({ isChosed: true, isRight: result, word: currentWord.word });
     setListUsedWord(
       listUsedWord.concat({
         word: currentWord.word,
         guessed: result,
-        wrongWord: wrongWord,
-      })
+        wrongWord,
+      }),
     );
   };
 
+  const verificationWord = (event) => {
+    const valClickWord = event.currentTarget.value;
+    if (currentWord.word === valClickWord) statistic(true);
+    else statistic(false, valClickWord);
+
+    event.preventDefault();
+  };
+
   const nextWord = () => {
-    setIsChosed({ isChosed: false, isRight: false });
-    console.log(count + " " + level.page);
+    setIsChosed({ isChosed: false, isRight: false, word: '' });
+    // console.log(`${count} ${level.page}`);
     if (count === 19) {
       setCount(0);
       setLevel({ group: 1, page: level.page + 1 });
@@ -85,17 +87,13 @@ const Context = (props) => {
 
   return (
     <div className="context">
-      <Card
-        currentWord={currentWord}
-        isChosed={isChosed}
-        isSound={isSound}
-      ></Card>
+      <Card currentWord={currentWord} isChosed={isChosed} isSound={isSound} />
       <WordBtn
         words={outputWord}
         isChosed={isChosed}
         verificationWord={verificationWord}
       >
-        {" "}
+        {' '}
       </WordBtn>
       <div>
         {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}
@@ -103,4 +101,9 @@ const Context = (props) => {
     </div>
   );
 };
+
+Context.propTypes = {
+  isSound: PropTypes.bool.isRequired,
+};
+
 export default Context;

@@ -59,7 +59,7 @@ const SideBar = () => {
           </Menu.Item>
           <Menu.Item key="/audiochallenge">
             <NavLink to="/audiochallenge" target="_blank" rel="noreferrer noopener">
-            Аудиовызов
+              Аудиовызов
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/savannah">
