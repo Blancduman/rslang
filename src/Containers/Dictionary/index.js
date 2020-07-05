@@ -19,9 +19,9 @@ const Dictionary = () => {
 
   const setUserSettings = (userOptions) => {
     let cardSettings = {
-      translateWord: userOptions.optional.translateWord,
-      wordExplaining: userOptions.optional.wordExplaining,
-      sentenceExample: userOptions.optional.sentenceExample,
+      translateWord: userOptions.translateWord,
+      wordExplaining: userOptions.wordExplaining,
+      sentenceExample: userOptions.sentenceExample,
     };
     cardSettings = Object.keys(cardSettings).map((i) => {
       if (cardSettings[i]) {
@@ -34,8 +34,7 @@ const Dictionary = () => {
     });
 
     setOptions({
-      ...userOptions.optional,
-      wordsPerDay: userOptions.wordsPerDay,
+      ...userOptions,
       cardSettings,
     });
   };
@@ -44,7 +43,10 @@ const Dictionary = () => {
     if (Object.keys(auth).length !== 0) {
       (async (user) => {
         const userOptions = await getUserSettings(user.userId, user.token);
-        setUserSettings(userOptions);
+        setUserSettings({
+          ...userOptions.optional,
+          wordsPerDay: userOptions.wordsPerDay,
+        });
         setLoading(false);
       })(auth);
     }

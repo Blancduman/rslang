@@ -48,7 +48,7 @@ export const getUserSettings = async (id, token) => {
         'Content-Type': 'application/json',
       },
     });
-    if (rawResponse.ok) {
+    if (rawResponse.status === 404) {
       const updatedUserSettings = await putUserSettings(id, token, defaultOptions);
 
       return updatedUserSettings;
