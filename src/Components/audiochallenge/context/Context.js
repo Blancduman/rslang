@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import { Modal, Button, Space } from 'antd';
 import PropTypes from 'prop-types';
 import './Context.css';
 import Card from '../Card/Card';
@@ -30,6 +30,7 @@ const Context = (props) => {
   const [count, setCount] = useState(0);
   const [currentWord, setCurrentWord] = useState({});
   const [listUsedWord, setListUsedWord] = useState([]);
+  const [statisticWords, setStatisticWords] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,19 +86,68 @@ const Context = (props) => {
     event.preventDefault();
   };
 
-  const nextWord = () => {
+  const nextLevel = () => {
+    setStatisticWords(
+      statisticWords.concat({
+        group: level.group,
+        page: level.page,
+        selectedWords: listUsedWord,
+      }),
+    );
+    setListUsedWord([]);
+    setCount(0);
+    setLevel({ group: 1, page: level.page + 1 });
+  };
+
+  function showModalWindow() {
+    return (
+      <Space>
+        {Modal.success({
+          title: `Вы прошли уровень №${level.page} в группе №${level.group} `,
+          content: `
+              ${listUsedWord.map((item) => (
+                <div>
+                  <div className="audiochallenge__modal_context-word">
+                    {item.word}
+                  </div>
+                  <div className="audiochallenge__modal_context-answer">
+                    {item.guessed}
+                  </div>
+                </div>
+          ))}`,
+
+          onOk() {
+            nextLevel();
+          },
+        })}
+      </Space>
+    );
+  }
+
+  const nextWord = (event) => {
     setIsChosed({ isChosed: false, isRight: false, word: '' });
     if (count === 19) {
-      setCount(0);
-      setLevel({ group: 1, page: level.page + 1 });
+      showModalWindow();
     } else {
       setCount(count + 1);
       setCurrentWord(listWords[count + 1]);
     }
+    event.preventDefault();
   };
 
   return (
     <div className="audiochallenge__context">
+      <div>
+        <p>
+          Group:
+          {' '}
+          {level.group}
+          {' '}
+          Level:
+          {' '}
+          {level.page}
+        </p>
+      </div>
       <Card currentWord={currentWord} isChosed={isChosed} isSound={isSound} />
       <WordBtn
         words={outputWord}
