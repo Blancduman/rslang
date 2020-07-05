@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { Link } from 'react-router-dom';
+import StatisticTable from '../StatisticTable/StatisticTable';
 
 const Statistics = ({ score, setStage, setScore }) => {
   const restartGame = () => {
@@ -13,10 +14,7 @@ const Statistics = ({ score, setStage, setScore }) => {
     <Card>
       <Card.Grid className="game-sprint__card-layout">
         <h1>Игра окончена</h1>
-        <p>
-          Ваш счёт:&nbsp;
-          {score}
-        </p>
+        <StatisticTable score={score} />
         <ButtonGroup>
           <Button
             className="game-sprint__button"
@@ -40,7 +38,11 @@ const Statistics = ({ score, setStage, setScore }) => {
 };
 
 Statistics.propTypes = {
-  score: PropTypes.number.isRequired,
+  score: PropTypes.shape({
+    total: PropTypes.number,
+    correct: PropTypes.array,
+    incorrect: PropTypes.array,
+  }).isRequired,
   setStage: PropTypes.func.isRequired,
   setScore: PropTypes.func.isRequired,
 };

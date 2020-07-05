@@ -8,7 +8,11 @@ import Statistics from './Statistics';
 const GameSprintPage = () => {
   const [stage, setStage] = useState('starting');
   const [level, setLevel] = useState('0');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState({
+    total: 0,
+    correct: [],
+    incorrect: [],
+  });
 
   const showActualPage = () => {
     switch (stage) {

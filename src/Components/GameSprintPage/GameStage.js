@@ -42,13 +42,17 @@ const GameStage = ({
       newMultiplier *= 2;
       newWinSequence = [false, false, false, false];
     }
-    setScore((prev) => prev + newMultiplier);
+    setScore((prev) => {
+      const newTotal = prev.total + newMultiplier;
+      return { ...prev, total: newTotal, correct: prev.correct.concat(word) };
+    });
     setWinSequence(newWinSequence);
     setMultiplier(newMultiplier);
     reproduceAudioBySource('../src/assets/audio/correct.mp3');
   };
 
   const handleIncorrectAnswer = () => {
+    setScore((prev) => ({ ...prev, incorrect: prev.incorrect.concat(word) }));
     setWinSequence([false, false, false, false]);
     setMultiplier(10);
     reproduceAudioBySource('../src/assets/audio/error.mp3');
@@ -113,7 +117,7 @@ const GameStage = ({
       ? <Loading />
       : (
         <>
-          <h4 className="game-sprint__label">{score}</h4>
+          <h4 className="game-sprint__label">{score.total}</h4>
           <Card>
             <Card.Grid className="game-sprint__card-layout">
               <div className="game-sprint__star-container">
@@ -161,7 +165,11 @@ const GameStage = ({
 
 GameStage.propTypes = {
   setStage: PropTypes.func.isRequired,
-  score: PropTypes.number.isRequired,
+  score: PropTypes.shape({
+    total: PropTypes.number,
+    correct: PropTypes.array,
+    incorrect: PropTypes.array,
+  }).isRequired,
   setScore: PropTypes.func.isRequired,
   level: PropTypes.string.isRequired,
 };
