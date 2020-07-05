@@ -2,3 +2,7 @@ div.ant-modal {
     top: 15px;
     padding-bottom: 0;
 }
+
+div.ant-form-item-label label {
+    cursor: pointer;
+}

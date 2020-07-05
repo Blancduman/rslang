@@ -14,7 +14,7 @@ const Dictionary = () => {
   const [options, setOptions] = useState({});
 
   useEffect(() => {
-    setAuth(JSON.parse(localStorage.getItem('auth')));
+    setAuth(JSON.parse(localStorage.getItem('user')));
   }, []);
 
   const setUserSettings = (userOptions) => {

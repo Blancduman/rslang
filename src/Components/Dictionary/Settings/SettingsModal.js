@@ -5,8 +5,8 @@ import {
   InputNumber,
   Form,
   Select,
-  Switch,
   Button,
+  Checkbox,
 } from 'antd';
 import './settingsmodal.css';
 
@@ -57,34 +57,30 @@ const SettingsModal = (props) => {
     >
       <Form
         form={form}
-        labelCol={{ span: 24 }}
+        labelCol={{ span: 15 }}
         wrapperCol={{ span: 24 }}
         initialValues={settings}
       >
-        <Form.Item label="Новых изучаемых слов за день" fieldKey={1}>
-          <Form.Item name="wordsPerDay" noStyle>
-            <InputNumber
-              min={1}
-              max={settings.maxWordsPerDay}
-              onChange={(newValue) => setSettings({
-                ...settings,
-                wordsPerDay: newValue,
-              })}
-            />
-          </Form.Item>
+        <Form.Item label="Новых изучаемых слов за день" name="wordsPerDay" fieldKey={1}>
+          <InputNumber
+            min={1}
+            max={settings.maxWordsPerDay}
+            onChange={(newValue) => setSettings({
+              ...settings,
+              wordsPerDay: newValue,
+            })}
+          />
         </Form.Item>
 
-        <Form.Item label="Максимальное изучаемых слов за день" fieldKey={2}>
-          <Form.Item name="maxWordsPerDay" noStyle>
-            <InputNumber
-              min={1}
-              max={50}
-              onChange={(newValue) => setSettings({
-                ...settings,
-                maxWordsPerDay: newValue,
-              })}
-            />
-          </Form.Item>
+        <Form.Item label="Максимальное изучаемых слов за день" name="maxWordsPerDay" fieldKey={2}>
+          <InputNumber
+            min={1}
+            max={50}
+            onChange={(newValue) => setSettings({
+              ...settings,
+              maxWordsPerDay: newValue,
+            })}
+          />
         </Form.Item>
 
         <Form.Item
@@ -116,37 +112,37 @@ const SettingsModal = (props) => {
         </Form.Item>
 
         <Form.Item label={'Показывать кнопку "Показать ответ"'} name="showAnswer" fieldKey={4}>
-          <Switch
+          <Checkbox
             checked={settings.showAnswer}
-            onChange={(e) => setSettings({ ...settings, showAnswer: e })}
+            onChange={() => setSettings({ ...settings, showAnswer: !settings.showAnswer })}
           />
         </Form.Item>
 
         <Form.Item label={'Показывать кнопку "Удалить слово"'} name="deleteWord" fieldKey={5}>
-          <Switch
+          <Checkbox
             checked={settings.deleteWord}
-            onChange={(e) => setSettings({ ...settings, deleteWord: e })}
+            onChange={() => setSettings({ ...settings, deleteWord: !settings.deleteWord })}
           />
         </Form.Item>
 
         <Form.Item label={'Показывать кнопку "Добавить в сложное"'} name="difficult" fieldKey={6}>
-          <Switch
+          <Checkbox
             checked={settings.difficult}
-            onChange={(e) => setSettings({ ...settings, difficult: e })}
+            onChange={() => setSettings({ ...settings, difficult: !settings.difficult })}
           />
         </Form.Item>
 
         <Form.Item label="Возможность оценить слово" name="ratingWord" fieldKey={7}>
-          <Switch
+          <Checkbox
             checked={settings.ratingWord}
-            onChange={(e) => setSettings({ ...settings, ratingWord: e })}
+            onChange={() => setSettings({ ...settings, ratingWord: !settings.ratingWord })}
           />
         </Form.Item>
 
         <Form.Item label="Изучать только новые слова" name="onlyNew" fieldKey={8}>
-          <Switch
+          <Checkbox
             checked={settings.onlyNew}
-            onChange={(e) => setSettings({ ...settings, onlyNew: e })}
+            onChange={() => setSettings({ ...settings, onlyNew: !settings.onlyNew })}
           />
         </Form.Item>
       </Form>
