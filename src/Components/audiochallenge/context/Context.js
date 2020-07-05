@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Context.css';
 import Card from '../Card/Card';
 import WordBtn from '../WordBtn/WordBtn';
+import Progress from '../Progress/Progress';
 import soundRight from '../../../assets/sound/right_answer.mp3';
 import soundWrong from '../../../assets/sound/wrong-answer.mp3';
 
@@ -105,9 +106,10 @@ const Context = (props) => {
       >
         {' '}
       </WordBtn>
-      <div>
+      <div className="audiochallenge__context-btn_next">
         {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}
       </div>
+      <Progress listUsedWord={listUsedWord} />
     </div>
   );
 };
