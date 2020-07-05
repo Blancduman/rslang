@@ -11,6 +11,7 @@ import Score from './Score';
 import Answers from './Answers';
 import Word from './Word';
 import { getRandomInt } from '../../utls';
+import { getSavannahStatistics } from '../../Services/statisticsSavannah';
 
 const SavannahGame = (props) => {
   const {
@@ -20,7 +21,7 @@ const SavannahGame = (props) => {
   const [updateWords, setUpdateWords] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
-  const [health, setHealth] = useState(5);
+  const [health, setHealth] = useState(1);
   const [score, setScore] = useState(0);
   const [soundOn, setSoundOn] = useState(true);
   const [isAnswered, setIsAnswered] = useState(false);
