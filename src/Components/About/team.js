@@ -42,7 +42,7 @@ const teamInfo = [
     id: '4',
     name: {
       first: 'Дмитрий',
-      sur: 'DmitriEr',
+      sur: 'Еркин',
       nick: 'DmitriEr',
     },
     position: 'Разработчик',
@@ -75,8 +75,8 @@ const teamInfo = [
     position: 'Разработчик',
     linkGitHub: 'https://github.com/kli2m',
     avatar: 'https://avatars0.githubusercontent.com/u/50752794?s=400&u=0d9ad52a3521d57b3f912705bec13fad98ca55c2&v=4',
-    aboutPerson: 'Немного о себе, можно любимую цитату',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    aboutPerson: '"You are your only limit"',
+    contribution: 'Внесённый вклад: "Аудиовызов"',
   }),
   Object.freeze({
     id: '7',
