@@ -7,6 +7,7 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
+import EnglishPuzzle from './Containers/EnglishPuzzle';
 import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 
@@ -35,7 +36,7 @@ const App = () => (
             <GameSprintPage />
           </Route>
           <Route path="/english_puzzle">
-            <div>Головоломка</div>
+            <EnglishPuzzle />
           </Route>
           <Route path="/statistics">
             <StatisticsPage />

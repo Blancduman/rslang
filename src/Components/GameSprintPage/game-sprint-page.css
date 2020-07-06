@@ -10,6 +10,11 @@
     background-size: 76vh;
 }
 
+.game-sprint__label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
 .ant-card-grid.game-sprint__card-layout {
     display: flex;
     flex-direction: column;
@@ -29,4 +34,16 @@
 .game-sprint__button {
     margin: 0 0.5rem;
     color: white;
+}
+
+.game-sprint__star-icon {
+    font-size: 1.5rem;
+}
+
+.game-sprint__button_right {
+    background: darkgreen;
+}
+
+.game-sprint__button_wrong {
+    background: darkred;
 }
