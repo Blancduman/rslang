@@ -13,7 +13,7 @@ import {
   Layout, Menu, Button,
 } from 'antd';
 import './menu_bar.css';
-import LineChartOutlined from "@ant-design/icons/lib/icons/LineChartOutlined";
+import LineChartOutlined from '@ant-design/icons/lib/icons/LineChartOutlined';
 
 const {
   SubMenu,

@@ -8,7 +8,7 @@ import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
-import StatisticsPage from "./Components/StatisticsPage/StatisticsPage";
+import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 
 const { Content } = Layout;
 

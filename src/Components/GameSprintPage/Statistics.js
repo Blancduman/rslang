@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card} from 'antd';
+import { Button, Card } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import StatisticTable from '../StatisticTable/StatisticTable';
 
 const Statistics = ({ score, setStage, setScore }) => {
