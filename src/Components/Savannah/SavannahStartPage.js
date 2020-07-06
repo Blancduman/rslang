@@ -6,7 +6,7 @@ import Gameover from './Gameover';
 
 const SavannahStartPage = () => {
   const [stage, setStage] = useState('starting');
-  const [level, setLevel] = useState('0');
+  const [level, setLevel] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [wrongAnswers, setWrongAnswers] = useState([]);
 

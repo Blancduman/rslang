@@ -11,7 +11,6 @@ import Score from './Score';
 import Answers from './Answers';
 import Word from './Word';
 import { getRandomInt } from '../../utls';
-import { getSavannahStatistics } from '../../Services/statisticsSavannah';
 
 const SavannahGame = (props) => {
   const {

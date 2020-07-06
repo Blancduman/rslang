@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { List, Divider } from 'antd';
 import speechRecognition from '../../utls/Speakit/Sound/Sound';
+import { updateStatistics } from '../../Services/statistics';
 
-import { updateSavannahStatistics, getSavannahStatistics } from '../../Services/statisticsSavannah';
 import { gameDate } from '../../utls';
 
 const Statistics = (props) => {
@@ -12,38 +12,18 @@ const Statistics = (props) => {
     wrongAnswers,
   } = props;
 
-  async function updateStatistics() {
-    if (await getSavannahStatistics()) {
-      const date = gameDate();
-      const optional = await getSavannahStatistics();
-      await updateSavannahStatistics({
-        stats: {
-          optional: {
-            savannah: {
-              savannahGamesCount: optional.savannah.savannahGamesCount + 1,
-              [Number(Object.keys(optional.savannah)[Object.keys(optional.savannah).length - 2]) + 1]: { [date]: 4 },
-            },
-          },
-        },
-      });
-    } else {
-      const date = gameDate();
-      console.log(date);
-      await updateSavannahStatistics({
-        stats: {
-          optional: {
-            savannah: {
-              savannahGamesCount: 1,
-              1: { [date]: 5 },
-            },
-          },
-        },
-      });
-    }
-  }
-
   useEffect(() => {
-    updateStatistics();
+    function updateSavannahStatistics({ gamesCount = 0, dates = '[]' }) {
+      const datesArr = JSON.parse(dates);
+      datesArr.push({
+        [gameDate()]: correctAnswers.length,
+      });
+      return {
+        gamesCount: gamesCount + 1,
+        dates: JSON.stringify(datesArr),
+      };
+    }
+    updateStatistics('savannah', updateSavannahStatistics);
   }, [correctAnswers]);
 
   return (
