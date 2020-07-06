@@ -86,9 +86,7 @@ Word.propTypes = {
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,
-  removeErrorAnswer: PropTypes.shape({
-    value: PropTypes.string,
-  }).isRequired,
+  removeErrorAnswer: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default Word;

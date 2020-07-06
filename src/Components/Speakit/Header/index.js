@@ -29,9 +29,9 @@ const Header = ({
   </Form>
 );
 
-Header.prototype = {
+Header.propTypes = {
   switchGame: PropTypes.func.isRequired,
-  returnGroup: PropTypes.number.isRequired,
+  returnGroup: PropTypes.func.isRequired,
 };
 
 export default Header;

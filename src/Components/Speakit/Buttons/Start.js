@@ -56,7 +56,8 @@ const Start = ({
 
   if (!browserSupportsSpeechRecognition) return null;
 
-  recognition.lang = 'en-US';
+  const speak = recognition;
+  speak.lang = 'en-US';
 
   return (
     <div className="speakit__control_recognition">

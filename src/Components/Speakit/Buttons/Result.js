@@ -56,9 +56,9 @@ const Result = (props) => {
   );
 };
 
-Result.prototype = {
-  showCorrectAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
-  showErrorAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
+Result.propTypes = {
+  showCorrectAnswer: PropTypes.instanceOf(Set).isRequired,
+  showErrorAnswer: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default Result;
