@@ -11,6 +11,7 @@ import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
 import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 import About from './Components/About';
+import PromoPage from './Components/Promo';
 import './main.css';
 
 const { Content } = Layout;
@@ -44,7 +45,7 @@ const App = () => (
             <StatisticsPage />
           </Route>
           <Route path="/promo">
-            <Example />
+            <PromoPage />
           </Route>
           <Route path="/about">
             <About />
