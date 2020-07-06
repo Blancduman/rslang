@@ -9,7 +9,7 @@ export default function StatisticItem({ words }) {
   return (
     <ul className="statistics-list">
       {words.map((word) => (
-        <li key={word} className="statistics-list__item">
+        <li key={word.word} className="statistics-list__item">
           <NotificationOutlined
             className="statistics-list__icon"
             onClick={() => speechRecognition(word.word)}
