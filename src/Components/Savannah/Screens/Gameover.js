@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
-import Statistics from './Statistics';
+import Statistics from '../Statistics';
 
 const Gameover = (props) => {
   const {

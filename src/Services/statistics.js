@@ -1,7 +1,7 @@
 export const updateStatisticsRequest = async (stats) => {
   try {
     const { userId, token } = JSON.parse(localStorage.getItem('user'));
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
+    await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -10,10 +10,8 @@ export const updateStatisticsRequest = async (stats) => {
       },
       body: JSON.stringify(stats),
     });
-    const content = await rawResponse.json();
-    console.log('updated', content.optional);
   } catch (e) {
-    console.log(e);
+    throw new Error('Не удалось записать статистику');
   }
 };
 
@@ -31,7 +29,7 @@ export const getStatisticsRequest = async () => {
     const content = await rawResponse.json();
     return content.optional;
   } catch (e) {
-    console.log(e);
+    throw new Error('Не удалось получить статистику');
   }
 };
 

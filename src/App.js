@@ -7,8 +7,8 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-// import Savannah from './Components/Savannah/SavannahGame';
-import SavannahStartPage from './Components/Savannah/SavannahStartPage';
+import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
+import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 
 const { Content } = Layout;
 
@@ -36,6 +36,9 @@ const App = () => (
           </Route>
           <Route path="/english_puzzle">
             <div>Головоломка</div>
+          </Route>
+          <Route path="/statistics">
+            <StatisticsPage />
           </Route>
           <Route path="/promo">
             <div>О приложении</div>

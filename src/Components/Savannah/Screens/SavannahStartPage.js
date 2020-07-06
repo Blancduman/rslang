@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import StartMenu from './StartMenu';
-import './savannah.css';
+import StartMenu from '../StartMenu';
+import '../savannah.css';
 import SavannahGame from './SavannahGame';
 import Gameover from './Gameover';
 

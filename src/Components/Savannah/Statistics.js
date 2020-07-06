@@ -16,7 +16,8 @@ const Statistics = (props) => {
     function updateSavannahStatistics({ gamesCount = 0, dates = '[]' }) {
       const datesArr = JSON.parse(dates);
       datesArr.push({
-        [gameDate()]: correctAnswers.length,
+        date: gameDate(),
+        'Правильные ответы': correctAnswers.length,
       });
       return {
         gamesCount: gamesCount + 1,

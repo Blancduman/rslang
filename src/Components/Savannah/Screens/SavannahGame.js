@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import './savannah.css';
+import '../savannah.css';
 import { SoundTwoTone, SoundOutlined } from '@ant-design/icons';
-import { playSound } from './helpers/index';
-import Loading from '../Loading/index';
-import getWords from './getWords';
-import Health from './Health';
-import Timer from './Timer';
-import Score from './Score';
-import Answers from './Answers';
-import Word from './Word';
-import { getRandomInt } from '../../utls';
+import { playSound } from '../helpers/index';
+import Loading from '../../Loading/index';
+import getWords from '../getWords';
+import Health from '../Health';
+import Timer from '../Timer';
+import Score from '../Score';
+import Answers from '../Answers';
+import Word from '../Word';
+import { getRandomInt } from '../../../utls';
 
 const SavannahGame = (props) => {
   const {
@@ -20,7 +20,7 @@ const SavannahGame = (props) => {
   const [updateWords, setUpdateWords] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
-  const [health, setHealth] = useState(1);
+  const [health, setHealth] = useState(5);
   const [score, setScore] = useState(0);
   const [soundOn, setSoundOn] = useState(true);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -123,7 +123,7 @@ const SavannahGame = (props) => {
   );
 };
 SavannahGame.propTypes = {
-  level: PropTypes.string.isRequired,
+  level: PropTypes.number.isRequired,
   setStage: PropTypes.func.isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,
   addWrongAnswer: PropTypes.func.isRequired,
