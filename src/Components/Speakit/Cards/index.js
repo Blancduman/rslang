@@ -9,7 +9,8 @@ const Cards = (props) => {
     cardOff,
     changeLetter,
     changePicture,
-    addCorrect,
+    addCorrectAnswer,
+    removeErrorAnswer,
   } = props;
 
   return (
@@ -22,7 +23,8 @@ const Cards = (props) => {
           cardOff={cardOff}
           changeLetter={changeLetter}
           changePicture={changePicture}
-          addCorrect={addCorrect}
+          addCorrectAnswer={addCorrectAnswer}
+          removeErrorAnswer={removeErrorAnswer}
         />
       ))}
     </div>
@@ -37,7 +39,10 @@ Cards.propTypes = {
   checkPronunciations: PropTypes.string.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
-  addCorrect: PropTypes.func.isRequired,
+  addCorrectAnswer: PropTypes.func.isRequired,
+  removeErrorAnswer: PropTypes.shape({
+    value: PropTypes.string,
+  }).isRequired,
 };
 
 export default Cards;
