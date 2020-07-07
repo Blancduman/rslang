@@ -63,7 +63,7 @@ const Answers = (props) => {
   );
 };
 Answers.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.any).isRequired,
+  words: PropTypes.arrayOf(PropTypes.shape).isRequired,
   giveAnswer: PropTypes.func.isRequired,
   currentRound: PropTypes.number.isRequired,
   isFailed: PropTypes.bool.isRequired,

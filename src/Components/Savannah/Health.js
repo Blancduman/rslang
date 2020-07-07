@@ -4,16 +4,11 @@ import { HeartTwoTone } from '@ant-design/icons';
 
 const Health = (props) => {
   const { health } = props;
-  if (health > 0) {
-    const hearts = new Array(health).fill('').map((item, index) => <div className="savanna-header__life" key={`${index * 1}`}><HeartTwoTone twoToneColor="#eb2f96" /></div>);
-    return (
-      <div className="savanna-header__life-container">
-        {hearts}
-      </div>
-    );
-  }
+  const hearts = new Array(health).fill('').map((item, index) => <div className="savanna-header__life" key={`${index * 1}`}><HeartTwoTone twoToneColor="#eb2f96" /></div>);
   return (
-    <div className="savanna-header__life-container" />
+    <div className="savanna-header__life-container">
+      {hearts}
+    </div>
   );
 };
 Health.propTypes = {

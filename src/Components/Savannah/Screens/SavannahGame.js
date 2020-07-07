@@ -58,7 +58,7 @@ const SavannahGame = (props) => {
     playSound(false, soundOn);
     winStreak.current = 0;
     isFailed.current = true;
-    setHealth(health - 1);
+    setHealth(prev => prev - 1);
     if ((health - 1) === 0 || health === 0) setTimeout(() => finishGame(), 1500);
     else setTimeout(() => nextRound(), 1500);
   }
