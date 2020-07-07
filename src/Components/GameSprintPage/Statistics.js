@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'antd';
+import { Button, Card, notification } from 'antd';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { Link } from 'react-router-dom';
+import * as moment from 'moment';
 import StatisticTable from '../StatisticTable/StatisticTable';
+import { getStatistic, updateStatistic } from '../../Services/StatisticService';
 
 const Statistics = ({ score, setStage, setScore }) => {
   const restartGame = () => {
@@ -14,6 +16,23 @@ const Statistics = ({ score, setStage, setScore }) => {
     });
     setStage('starting');
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const statistic = await getStatistic();
+        delete statistic.id;
+        const sprintStatistic = statistic.optional.sprint.results;
+        sprintStatistic.push({ date: moment().format('DD.MM.YYYY'), score: score.total });
+        updateStatistic(statistic);
+      } catch (e) {
+        notification.open({
+          message: 'Статистика не была записана',
+          description: 'Ошибка работы сервера',
+        });
+      }
+    })();
+  }, []);
 
   return (
     <Card>
