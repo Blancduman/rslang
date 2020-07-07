@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
 
 const Gameover = (props) => {
-  // const { nextRound } = props;
   const { setStage } = props;
   const [visible, setVisible] = useState(true);
 
