@@ -1,41 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Divider } from 'antd';
+import { List, Divider, Card } from 'antd';
+import { NotificationOutlined } from '@ant-design/icons';
 import speechRecognition from '../../../utls/Speakit/Sound/Sound';
+
+const { Meta } = Card;
 
 const Result = (props) => {
   const {
-    correctAnswer,
-    errorAnswer,
+    showCorrectAnswer,
+    showErrorAnswer,
   } = props;
 
   return (
     <div>
       <Divider orientation="left">
-        {`Ошибки: ${errorAnswer.length}`}
+        {`Ошибки: ${showErrorAnswer.size}`}
       </Divider>
       <List
         size="small"
         bordered
-        dataSource={errorAnswer}
-        renderItem={(item) => <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
+        dataSource={Array.from(showErrorAnswer)}
+        renderItem={(item) => (
+          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>
+            <Meta
+              className="speakit__list-inner"
+              avatar={
+                <NotificationOutlined />
+                }
+            />
+            {item}
+          </List.Item>
+        )}
       />
       <Divider orientation="left">
-        {`Правильные ответы: ${correctAnswer.length}`}
+        {`Правильные ответы: ${showCorrectAnswer.size}`}
       </Divider>
       <List
         size="small"
         bordered
-        dataSource={correctAnswer}
-        renderItem={(item) => <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>{item}</List.Item>}
+        dataSource={Array.from(showCorrectAnswer)}
+        renderItem={(item) => (
+          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>
+            <Meta
+              className="speakit__list-inner"
+              avatar={
+                <NotificationOutlined />
+                }
+            />
+            {item}
+          </List.Item>
+        )}
       />
     </div>
   );
 };
 
-Result.prototype = {
-  correctAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
-  errorAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
+Result.propTypes = {
+  showCorrectAnswer: PropTypes.instanceOf(Set).isRequired,
+  showErrorAnswer: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default Result;
