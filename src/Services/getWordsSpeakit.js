@@ -1,6 +1,6 @@
 const getWordsSpeakit = async (group, page) => {
   try {
-    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${page}&wordsPerExampleSentenceLTE=20`;
+    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${page}&wordsPerExampleSentenceLTE=10`;
     const response = await fetch(url);
 
     if (!response.ok) {
