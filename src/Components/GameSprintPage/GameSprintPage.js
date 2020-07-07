@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
 import StartMenu from './StartMenu';
+import GameStage from './GameStage';
 
 import './game-sprint-page.css';
 
 const GameSprintPage = () => {
   const [stage, setStage] = useState('starting');
   const [level, setLevel] = useState('0');
-  return (
-    <div className="game-sprint__container">
-      {
-        stage === 'starting'
-          ? <StartMenu setStage={setStage} setLevel={setLevel} />
-          : level
+  const [score, setScore] = useState(0);
+
+  const showActualPage = () => {
+    switch (stage) {
+      case 'starting': {
+        return <StartMenu setStage={setStage} setLevel={setLevel} />;
       }
-    </div>
+      case 'started': {
+        return <GameStage setStage={setStage} score={score} setScore={setScore} level={level} />;
+      }
+      case 'finished': {
+        return score;
+      }
+      default: {
+        return <StartMenu setStage={setStage} setLevel={setLevel} />;
+      }
+    }
+  };
+
+  return (
+    <>
+      <div className="game-sprint__container">
+        {showActualPage()}
+      </div>
+    </>
   );
 };
 
