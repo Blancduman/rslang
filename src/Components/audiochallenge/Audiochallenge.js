@@ -17,8 +17,7 @@ const Audiochallenge = () => {
   };
 
   const onChangeIsSound = () => {
-    if (isSound) setIsSound(false);
-    else setIsSound(true);
+    setIsSound((prev) => !prev);
   };
 
   return (
@@ -30,14 +29,12 @@ const Audiochallenge = () => {
             title="Click to on/off autoplay sound"
             color="magenta"
           >
-            {' '}
             <Switch
               onChange={onChangeIsSound}
               checkedChildren="ON"
               unCheckedChildren="OFF"
               checked={isSound}
             />
-            {' '}
           </Tooltip>
         </div>
         <div className="audiochallenge__close_btn">
@@ -63,7 +60,6 @@ const Audiochallenge = () => {
             </Title>
             <Title level={4}>
               <Text strong>
-                {' '}
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
             </Title>

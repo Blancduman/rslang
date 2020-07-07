@@ -7,11 +7,8 @@ import HeaderBar from './Components/Header';
 import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-<<<<<<< HEAD
 import Audiochallenge from './Components/Audiochallenge/Audiochallenge';
-=======
 import EnglishPuzzle from './Containers/EnglishPuzzle';
->>>>>>> origin/develop
 
 const { Content } = Layout;
 

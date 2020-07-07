@@ -12,7 +12,6 @@ const Card = (props) => {
   const styleRight = isChosed.isChosed && isChosed.isRight
     ? 'audiochallenge__card_image right'
     : 'audiochallenge__card_image wrong';
-
   const stylePlayVoice = {
     backgroundImage: `url(${backgroundPlaySound})`,
     backgroundSize: 'context',
@@ -61,7 +60,12 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  currentWord: PropTypes.objectOf(PropTypes.any).isRequired,
+  currentWord: PropTypes.shape({
+    audio: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    transcription: PropTypes.string.isRequired,
+    word: PropTypes.string.isRequired,
+  }).isRequired,
   isChosed: PropTypes.shape({
     isChosed: PropTypes.bool.isRequired,
     isRight: PropTypes.bool.isRequired,

@@ -22,10 +22,7 @@ const WordBtn = (props) => {
         value={item.word}
         key={index}
       >
-        <Text strong>
-          {' '}
-          {item.wordTranslate}
-        </Text>
+        <Text strong>{item.wordTranslate}</Text>
       </Button>
     );
   };

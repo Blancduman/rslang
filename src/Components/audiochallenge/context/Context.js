@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Space } from 'antd';
 import PropTypes from 'prop-types';
+import shuffle from '../../../utls/Audichallenge/shuffle';
 import './Context.css';
 import Card from '../Card/Card';
 import WordBtn from '../WordBtn/WordBtn';
 import Progress from '../Progress/Progress';
 import soundRight from '../../../assets/sound/right_answer.mp3';
 import soundWrong from '../../../assets/sound/wrong-answer.mp3';
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    // eslint-disable-next-line
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
 
 const Context = (props) => {
   const { isSound } = props;
@@ -28,7 +20,12 @@ const Context = (props) => {
   const [outputWord, setOutputWord] = useState([]);
   const [level, setLevel] = useState({ group: 1, page: 1 });
   const [count, setCount] = useState(0);
-  const [currentWord, setCurrentWord] = useState({});
+  const [currentWord, setCurrentWord] = useState({
+    audio: '',
+    image: '',
+    word: '',
+    transcription: '',
+  });
   const [listUsedWord, setListUsedWord] = useState([]);
   const [statisticWords, setStatisticWords] = useState([]);
 
@@ -41,6 +38,7 @@ const Context = (props) => {
         .then((res) => res)
         .catch((error) => error);
 
+      setIsChosed({ isChosed: false, isRight: false, word: '' });
       shuffle(result);
       setWords(result);
       setCurrentWord(result[count]);
@@ -125,13 +123,14 @@ const Context = (props) => {
   }
 
   const nextWord = (event) => {
-    setIsChosed({ isChosed: false, isRight: false, word: '' });
-    if (count === 19) {
+    if (count > 18) {
       showModalWindow();
     } else {
       setCount(count + 1);
+      setIsChosed({ isChosed: false, isRight: false, word: '' });
       setCurrentWord(listWords[count + 1]);
     }
+
     event.preventDefault();
   };
 
@@ -153,9 +152,7 @@ const Context = (props) => {
         words={outputWord}
         isChosed={isChosed}
         verificationWord={verificationWord}
-      >
-        {' '}
-      </WordBtn>
+      />
       <div className="audiochallenge__context-btn_next">
         {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}
       </div>

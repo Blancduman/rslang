@@ -7,9 +7,15 @@ const Progress = (props) => {
   const { listUsedWord } = props;
 
   const addStar = (item, index) => (item.guessed ? (
-    <StarFilled key={index} style={{ fontSize: '48px', color: 'yellow' }} />
+    <StarFilled
+      key={index}
+      className="audiochallenge__progress_box-right_star"
+    />
   ) : (
-    <StarFilled key={index} style={{ fontSize: '48px' }} />
+    <StarFilled
+      key={index}
+      className="audiochallenge__progress_box-wrong_star"
+    />
   ));
 
   return (
@@ -20,7 +26,13 @@ const Progress = (props) => {
 };
 
 Progress.propTypes = {
-  listUsedWord: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  listUsedWord: PropTypes.arrayOf(
+    PropTypes.shape({
+      word: PropTypes.string.isRequired,
+      guessed: PropTypes.bool.isRequired,
+      wrongWord: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default Progress;
