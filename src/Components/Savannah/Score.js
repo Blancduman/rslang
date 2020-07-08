@@ -10,6 +10,7 @@ const Score = (props) => {
     </div>
   );
 };
+
 Score.propTypes = {
   score: PropTypes.number.isRequired,
 };

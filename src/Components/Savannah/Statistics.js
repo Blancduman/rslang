@@ -51,8 +51,10 @@ const Statistics = (props) => {
     </div>
   );
 };
+
 Statistics.propTypes = {
   correctAnswers: PropTypes.arrayOf(PropTypes.any).isRequired,
   wrongAnswers: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
+
 export default Statistics;

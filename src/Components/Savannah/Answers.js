@@ -38,30 +38,35 @@ const Answers = (props) => {
     shuffleAnswers();
   }, [words, currentRound]);
 
+  function createButtonsAnswers() {
+    return answers.map((item, index) => (
+      <button
+        type="submit"
+        className={
+          `answers__answer ${
+            markWord(lastPressIndex, index, rightAnswer.current, isFailed)}`
+        }
+        onClick={() => {
+          if (!isClicked) {
+            setIsClicked(true);
+            setLastPressIndex(index);
+            giveAnswer(index === rightAnswer.current, isFailed);
+          }
+        }}
+        key={(item)}
+      >
+        {item}
+      </button>
+    ));
+  }
+
   return (
     <div className="savanna-game-field__answers answers">
-      {answers.map((item, index) => (
-        <button
-          type="submit"
-          className={
-            `answers__answer ${
-              markWord(lastPressIndex, index, rightAnswer.current, isFailed)}`
-          }
-          onClick={() => {
-            if (!isClicked) {
-              setIsClicked(true);
-              setLastPressIndex(index);
-              giveAnswer(index === rightAnswer.current, isFailed);
-            }
-          }}
-          key={(item)}
-        >
-          {item}
-        </button>
-      ))}
+      {createButtonsAnswers()}
     </div>
   );
 };
+
 Answers.propTypes = {
   words: PropTypes.arrayOf(PropTypes.shape).isRequired,
   giveAnswer: PropTypes.func.isRequired,

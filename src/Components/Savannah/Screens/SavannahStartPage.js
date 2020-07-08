@@ -57,4 +57,5 @@ const SavannahStartPage = () => {
     </>
   );
 };
+
 export default SavannahStartPage;

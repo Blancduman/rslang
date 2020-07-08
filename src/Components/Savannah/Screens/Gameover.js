@@ -42,6 +42,7 @@ const Gameover = (props) => {
     </div>
   );
 };
+
 Gameover.propTypes = {
   setStage: PropTypes.func.isRequired,
   correctAnswers: PropTypes.arrayOf(PropTypes.any).isRequired,

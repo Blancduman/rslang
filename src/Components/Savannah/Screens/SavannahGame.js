@@ -78,54 +78,57 @@ const SavannahGame = (props) => {
       }
     }
   }
+  if (words.length === 0) {
+    return <Loading />;
+  }
+
   return (
     <div className="savanna-background">
-      {words.length === 0 ? <Loading />
-        : (
-          <div className="wrapper savanna-wrapper">
-            <header className="savanna-header">
-              <div className="savanna-header__sound-container">
-                <button
-                  type="submit"
-                  className="savanna-header__sound"
-                  onClick={() => {
-                    setSoundOn(!soundOn);
-                  }}
-                >
-                  {soundOn ? <SoundTwoTone /> : <SoundOutlined />}
-                </button>
-              </div>
-              <div className="savanna-header__health-container">
-                <Timer setGameOver={finishGame} />
-                <Score score={score} />
-                <Health health={health} />
-              </div>
-            </header>
-            <div className="savanna-game-field">
-              <Word
-                fail={fail}
-                IsAnswered={isAnswered}
-                word={words[currentRound]}
-                currentRound={currentRound}
-                key={words[currentRound].word}
-              />
-              <Answers
-                isFailed={isFailed.current}
-                giveAnswer={giveAnswer}
-                words={words}
-                currentRound={currentRound}
-                key={currentRound}
-              />
-            </div>
+      <div className="wrapper savanna-wrapper">
+        <header className="savanna-header">
+          <div className="savanna-header__sound-container">
+            <button
+              type="submit"
+              className="savanna-header__sound"
+              onClick={() => {
+                setSoundOn(!soundOn);
+              }}
+            >
+              {soundOn ? <SoundTwoTone /> : <SoundOutlined />}
+            </button>
           </div>
-        )}
+          <div className="savanna-header__health-container">
+            <Timer setGameOver={finishGame} />
+            <Score score={score} />
+            <Health health={health} />
+          </div>
+        </header>
+        <div className="savanna-game-field">
+          <Word
+            fail={fail}
+            IsAnswered={isAnswered}
+            word={words[currentRound]}
+            currentRound={currentRound}
+            key={words[currentRound].word}
+          />
+          <Answers
+            isFailed={isFailed.current}
+            giveAnswer={giveAnswer}
+            words={words}
+            currentRound={currentRound}
+            key={currentRound}
+          />
+        </div>
+      </div>
     </div>
   );
 };
+
 SavannahGame.propTypes = {
   level: PropTypes.number.isRequired,
   setStage: PropTypes.func.isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,
   addWrongAnswer: PropTypes.func.isRequired,
 };
+
 export default SavannahGame;

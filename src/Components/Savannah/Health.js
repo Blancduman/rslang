@@ -11,6 +11,7 @@ const Health = (props) => {
     </div>
   );
 };
+
 Health.propTypes = {
   health: PropTypes.number.isRequired,
 };
