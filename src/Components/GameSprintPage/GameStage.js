@@ -4,7 +4,7 @@ import { Button, Card } from 'antd';
 import { StarTwoTone } from '@ant-design/icons';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { useKeyPress } from 'use-hooks/dist/commonjs/use-key-press';
-import { loadWords } from '../../Services/WordsService';
+import { loadWords } from '../../Services/wordsService';
 import Loading from '../Loading';
 import { createUniqueKey, getWordTranslateFromArrayWithChance, reproduceAudioBySource } from '../../utls';
 

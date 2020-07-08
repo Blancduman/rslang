@@ -5,7 +5,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
 import StatisticTable from '../StatisticTable/StatisticTable';
-import { getStatistic, updateStatistic } from '../../Services/StatisticService';
+import { getStatistic, updateStatistic } from '../../Services/statisticService';
 
 const Statistics = ({ score, setStage, setScore }) => {
   const restartGame = () => {

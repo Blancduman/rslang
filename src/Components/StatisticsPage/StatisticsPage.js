@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Divider, Row } from 'antd';
-import { getStatistic } from '../../Services/StatisticService';
+import { getStatistic } from '../../Services/statisticService';
 import StatisticChart from '../StatisticChart/StatisticChart';
 
 import './statistics-page.css';
