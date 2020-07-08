@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   TeamOutlined,
   MenuUnfoldOutlined,
@@ -18,8 +19,7 @@ const {
   SubMenu,
 } = Menu;
 
-const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const SideBar = ({ collapsed, setCollapsed }) => {
   const { pathname } = useLocation();
 
   return (
@@ -92,6 +92,11 @@ const SideBar = () => {
       </Menu>
     </Layout>
   );
+};
+
+SideBar.propTypes = {
+  collapsed: PropTypes.bool.isRequired,
+  setCollapsed: PropTypes.func.isRequired,
 };
 
 export default SideBar;

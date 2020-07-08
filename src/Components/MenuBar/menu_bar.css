@@ -20,8 +20,14 @@
     width: 40px;
 }
 
-.basic-layout_content {
+.basic-layout_content_menu-open {
     padding-top: 80px;
-    margin-left: 250px;
+    margin-left: 220px;
+    min-height: 100vh;
+}
+
+.basic-layout_content_menu-close {
+    padding-top: 80px;
+    margin-left: 100px;
     min-height: 100vh;
 }
