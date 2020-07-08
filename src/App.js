@@ -7,6 +7,7 @@ import HeaderBar from './Components/Header';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
 import Dictionary from './Containers/Dictionary';
+import EnglishPuzzle from './Containers/EnglishPuzzle';
 import './main.css';
 
 const { Content } = Layout;
@@ -34,7 +35,7 @@ const App = () => (
             <GameSprintPage />
           </Route>
           <Route path="/english_puzzle">
-            <Example />
+            <EnglishPuzzle />
           </Route>
           <Route path="/promo">
             <Example />
