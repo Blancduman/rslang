@@ -1,7 +1,13 @@
-.basic-layout_menu_wrapper {
-    width: 200px;
+.basic-layout_menu_wrapper_open {
     position: fixed;
     height: 100vh;
+    width: 200px;
+}
+
+.basic-layout_menu_wrapper_close {
+    position: fixed;
+    height: 100vh;
+    width: 80px;
 }
 
 .menu_bar {
@@ -17,5 +23,5 @@
 .basic-layout_content {
     padding-top: 80px;
     margin-left: 250px;
-    height: 100vh;
+    min-height: 100vh;
 }

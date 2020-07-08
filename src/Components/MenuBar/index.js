@@ -23,7 +23,7 @@ const SideBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <Layout className="basic-layout_menu_wrapper">
+    <Layout className={collapsed ? 'basic-layout_menu_wrapper_close' : 'basic-layout_menu_wrapper_open'}>
       <Button
         type="primary"
         onClick={() => setCollapsed(!collapsed)}
@@ -54,7 +54,7 @@ const SideBar = () => {
         <SubMenu key="sub1" icon={<RocketOutlined />} title="Мини-игры">
           <Menu.Item key="/speakit">
             <NavLink to="/speakit" target="_blank" rel="noreferrer noopener">
-              Говорить на нем
+              Скажи это
             </NavLink>
           </Menu.Item>
 
