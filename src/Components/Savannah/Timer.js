@@ -5,11 +5,13 @@ const Timer = (props) => {
   const { setGameOver } = props;
   const [timer, setTimer] = useState(60);
   useEffect(() => {
+    let timerId;
     if (timer === 0) setGameOver();
     else {
-      const timerId = setTimeout(() => setTimer(timer - 1), 1000);
+      timerId = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(timerId);
     }
+    return clearTimeout(timerId);
   }, [timer]);
   return (
     <div className="savanna-header__timer-container timer-container">

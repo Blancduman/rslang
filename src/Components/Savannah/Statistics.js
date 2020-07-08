@@ -19,6 +19,7 @@ const Statistics = (props) => {
         date: gameDate(),
         'Правильные ответы': correctAnswers.length,
       });
+      if (datesArr.length > 10) datesArr.shift();
       return {
         gamesCount: gamesCount + 1,
         dates: JSON.stringify(datesArr),

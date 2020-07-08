@@ -6,7 +6,6 @@ import StatisticChart from '../StatisticChart/StatisticChart';
 import './statistics-page.css';
 
 export default function StatisticsPage() {
-  const [sprintData, setSprintData] = useState([]);
   const [savannahData, setSavannahData] = useState([]);
   const [savannahGames, setSavannahGames] = useState(0);
 
@@ -55,14 +54,6 @@ export default function StatisticsPage() {
             {savannahGames}
           </h4>
           <StatisticChart data={savannahData} />
-        </Col>
-        <Col className="gutter-row">
-          <h3>Спринт</h3>
-          <h4>
-            Игр сыграно:
-            {' '}
-          </h4>
-          <StatisticChart data={sprintData} />
         </Col>
       </Row>
     </div>
