@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Button } from 'antd';
-import './WordBtn.css';
 import PropTypes from 'prop-types';
+import './WordBtn.css';
 
 const WordBtn = (props) => {
   const { Text } = Typography;

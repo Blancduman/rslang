@@ -1,7 +1,7 @@
 import React from 'react';
 import { StarFilled } from '@ant-design/icons';
-import './Progress.css';
 import PropTypes from 'prop-types';
+import './Progress.css';
 
 const Progress = (props) => {
   const { listUsedWord } = props;

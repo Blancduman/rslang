@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Space } from 'antd';
 import PropTypes from 'prop-types';
-import shuffle from '../../../utls/Audichallenge/shuffle';
-import './Context.css';
 import Card from '../Card/Card';
 import WordBtn from '../WordBtn/WordBtn';
 import Progress from '../Progress/Progress';
+import shuffle from '../../../utls/Audichallenge/shuffle';
 import soundRight from '../../../assets/sound/right_answer.mp3';
 import soundWrong from '../../../assets/sound/wrong-answer.mp3';
+import './Context.css';
 
 const Context = (props) => {
   const { isSound } = props;

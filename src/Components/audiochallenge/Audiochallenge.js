@@ -4,8 +4,8 @@ import {
   Tooltip, Switch, Button, Typography,
 } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import './Audiochallenge.css';
 import Context from './Context/Context';
+import './Audiochallenge.css';
 
 const Audiochallenge = () => {
   const [isStarted, setStart] = useState(false);

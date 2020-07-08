@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tooltip } from 'antd';
-import './Card.css';
 import PropTypes from 'prop-types';
 import backgroundPlaySound from '../../../assets/img/play_sound.png';
+import './Card.css';
 
 const Card = (props) => {
   const { currentWord, isChosed, isSound } = props;
@@ -26,21 +26,24 @@ const Card = (props) => {
     audio.play();
   };
 
-  return isChosed.isChosed ? (
-    <div className="audiochallenge__card">
-      <Tooltip placement="top" title="Сlick to listen again" color="cyan">
-        <input
-          type="button"
-          className={styleRight}
-          style={styleViewPicture}
-          onClick={playVoice}
-          data-url={srcAudio}
-        />
-      </Tooltip>
-      <p>{currentWord.transcription}</p>
-      <p>{currentWord.word}</p>
-    </div>
-  ) : (
+  if (isChosed.isChosed) {
+    return (
+      <div className="audiochallenge__card">
+        <Tooltip placement="top" title="Сlick to listen again" color="cyan">
+          <input
+            type="button"
+            className={styleRight}
+            style={styleViewPicture}
+            onClick={playVoice}
+            data-url={srcAudio}
+          />
+        </Tooltip>
+        <p>{currentWord.transcription}</p>
+        <p>{currentWord.word}</p>
+      </div>
+    );
+  }
+  return (
     <div className="audiochallenge__card">
       <Tooltip placement="top" title="Сlick to listen again" color="cyan">
         <input
@@ -51,8 +54,8 @@ const Card = (props) => {
           data-url={srcAudio}
         />
         {isSound && (
-          /* eslint-disable-next-line */
-          <audio src={srcAudio} autoPlay />
+            /* eslint-disable-next-line */
+            <audio src={srcAudio} autoPlay />
         )}
       </Tooltip>
     </div>
