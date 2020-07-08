@@ -3,13 +3,17 @@
 }
 
 .about_wrapper p {
-    color: #a8a7a7;
+    color: blueviolet;
 }
 
 .about_title {
     font-size: 1.6rem;
     margin-left: 10px;
     text-align: center;
+}
+
+.about_title h1 {
+   color: lightseagreen;
 }
 
 .about_persons_wrapper {
@@ -22,12 +26,12 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 320px;
+    height: 330px;
     margin: 10px;
     padding: 10px;
     border-radius: 20px;
-    background-color: #3B4451;
-    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
+    background-color: orange;
+    box-shadow: 4px 4px 14px coral, -4px -4px 14px darkgoldenrod;
 }
 
 .about_card_header {
@@ -43,11 +47,11 @@
 
 .about_card_block-name h3,
 .about_card_block-name h4 {
-    color: wheat;
+    color: maroon;
 }
 
 .about_card_position p {
-    color: gray;
+    color: dimgray;
 }
 
 .about_card_avatar img {
@@ -68,6 +72,10 @@
 
 .about_card_contribution {
     text-align: justify;
+}
+
+.about_card_contribution p{
+    color: firebrick;
 }
 
 .about_card_link_git_hub {

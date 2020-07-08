@@ -10,7 +10,7 @@ const teamInfo = [
     linkGitHub: 'https://github.com/blancduman',
     avatar: 'https://avatars0.githubusercontent.com/u/36401723?s=400&u=98b6bba6610cf55ad4ace9f91cf5fcdf1d9c7788&v=4',
     aboutPerson: 'Live life, do code',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    contribution: 'Внесённый вклад: "Словарь", "Настройки", помощь в решении возникших сложностей в процессе разработки.',
   }),
   Object.freeze({
     id: '2',
@@ -49,7 +49,7 @@ const teamInfo = [
     linkGitHub: 'https://github.com/dmitrier',
     avatar: 'https://avatars0.githubusercontent.com/u/55104643?s=400&u=42cb159efd84315b1acd7f234e22e897fd29a3ed&v=4',
     aboutPerson: '"The best is yet to come"',
-    contribution: 'Внесённый вклад: мини-игра "Скажи это"',
+    contribution: 'Внесённый вклад: мини-игра "Скажи это", "Головоломка"',
   }),
   Object.freeze({
     id: '5',
@@ -68,8 +68,8 @@ const teamInfo = [
   Object.freeze({
     id: '6',
     name: {
-      first: 'kli2m',
-      sur: 'kli2m',
+      first: 'Иван',
+      sur: 'Климм',
       nick: 'kli2m',
     },
     position: 'Разработчик',
@@ -88,8 +88,8 @@ const teamInfo = [
     position: 'Наставник',
     linkGitHub: 'https://github.com/lessarea',
     avatar: 'https://avatars0.githubusercontent.com/u/35344183?s=400&v=4',
-    aboutPerson: 'Немного о себе, можно любимую цитату',
-    contribution: 'Внесённый вклад в разработку приложения.',
+    aboutPerson: '"When you got a good idea, act immediately"',
+    contribution: 'Внесённый вклад: помощь в решении возникших сложностей и актуальные наставления в процессе разработки, валидность кода. ',
   }),
 
 ];
