@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'antd';
 
 const Gameover = (props) => {
-  const { nextRound } = props;
+  const { setStage } = props;
   const [visible, setVisible] = useState(true);
 
   const handleOk = () => {
     setVisible(false);
+    setStage('starting');
   };
 
   const handleContinue = () => {
     setVisible(false);
-    nextRound(true);
+    setStage('started');
   };
 
   return (
@@ -22,10 +23,10 @@ const Gameover = (props) => {
         visible={visible}
         footer={[
           <Button key="continue" onClick={handleContinue}>
-            Продолжить
+            Попробовать еще раз
           </Button>,
           <Button key="ok" type="primary" onClick={handleOk}>
-            Вернуться в главное меню
+            Завершить игру
           </Button>,
         ]}
       >
@@ -37,7 +38,7 @@ const Gameover = (props) => {
   );
 };
 Gameover.propTypes = {
-  nextRound: PropTypes.func.isRequired,
+  setStage: PropTypes.func.isRequired,
 };
 
 export default Gameover;

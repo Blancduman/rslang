@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './savanna.css';
+import PropTypes from 'prop-types';
+import './savannah.css';
 import { SoundTwoTone, SoundOutlined } from '@ant-design/icons';
 import { playSound } from './helpers/index';
 import Loading from '../Loading/index';
 import getWords from './getWords';
 import Health from './Health';
 import Timer from './Timer';
-import Gameover from './Gameover';
 import Score from './Score';
 import Answers from './Answers';
 import Word from './Word';
+import { getRandomInt } from '../../utls';
 
-const GameComponent = () => {
+const SavannahGame = (props) => {
+  const { level, setStage } = props;
   const [words, setWords] = useState([]);
-  const [currentLevel, setLevel] = useState(0);
+  const [updateWords, setUpdateWords] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRound, setRound] = useState(0);
   const [health, setHealth] = useState(5);
@@ -23,21 +25,22 @@ const GameComponent = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const winStreak = useRef(0);
   const isFailed = useRef(false);
-
   const [toggle, setToggle] = useState();
-
   useEffect(() => {
-    async function loadWords(level, page) {
+    let randomPage = getRandomInt(19);
+    if (randomPage !== currentPage) setCurrentPage(randomPage);
+    else randomPage += 1;
+    async function loadWords(currentLevel, page) {
       setRound(0);
-      const res = await getWords(level, page);
+      const res = await getWords(currentLevel, page);
       res.sort(() => Math.random() - 0.5);
       setWords(res);
     }
-    loadWords(currentLevel, currentPage);
-  }, [currentLevel, currentPage]);
+    loadWords(level, randomPage);
+  }, [level, updateWords]);
 
   function finishGame() {
-    setGameover(true);
+    setStage('finished');
   }
 
   function nextRound(resume) {
@@ -49,7 +52,7 @@ const GameComponent = () => {
     }
     setIsAnswered(false);
     isFailed.current = false;
-    if (currentRound === words.length - 1) setCurrentPage(currentPage + 1);
+    if (currentRound === words.length - 1) setUpdateWords(updateWords + 1);
     else {
       setRound(currentRound + 1);
     }
@@ -120,9 +123,11 @@ const GameComponent = () => {
             </div>
           </div>
         )}
-      {gameover && <Gameover nextRound={nextRound} />}
     </div>
   );
 };
-
-export default GameComponent;
+SavannahGame.propTypes = {
+  level: PropTypes.string.isRequired,
+  setStage: PropTypes.func.isRequired,
+};
+export default SavannahGame;
