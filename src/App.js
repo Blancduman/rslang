@@ -7,8 +7,10 @@ import HeaderBar from './Components/Header';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
 import Audiochallenge from './Components/Audiochallenge/Audiochallenge';
+import SavannahStartPage from './Components/Savannah/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
+import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 import './main.css';
 
 const { Content } = Layout;
@@ -30,7 +32,7 @@ const App = () => (
             <Speakit />
           </Route>
           <Route path="/savannah">
-            <Example />
+            <SavannahStartPage />
           </Route>
           <Route path="/sprint">
             <GameSprintPage />
@@ -41,6 +43,9 @@ const App = () => (
           <Router path="/audiochallenge">
             <Audiochallenge />
           </Router>
+          <Route path="/statistics">
+            <StatisticsPage />
+          </Route>
           <Route path="/promo">
             <Example />
           </Route>
