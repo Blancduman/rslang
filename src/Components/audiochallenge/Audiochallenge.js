@@ -66,6 +66,7 @@ const Audiochallenge = () => {
             <Button
               className="audiochallenge__start_game-btn"
               onClick={startGame}
+              autoFocus
             >
               СТАРТ
             </Button>

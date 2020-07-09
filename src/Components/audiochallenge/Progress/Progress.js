@@ -9,12 +9,12 @@ const Progress = (props) => {
   const addStar = (item, index) => (item.guessed ? (
     <StarFilled
       key={index}
-      className="audiochallenge__progress_box-right_star"
+      id="audiochallenge__progress_box-right_star"
     />
   ) : (
     <StarFilled
       key={index}
-      className="audiochallenge__progress_box-wrong_star"
+      id="audiochallenge__progress_box-wrong_star"
     />
   ));
 

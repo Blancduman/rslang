@@ -4,12 +4,12 @@
     margin: 5px auto;
 }
 
-.audiochallenge__progress_box-right_star {
+#audiochallenge__progress_box-right_star {
     font-size: 48px;
     color: yellow;
 }
 
-.audiochallenge__progress_box-wrong_star {
+#audiochallenge__progress_box-wrong_star {
     font-size: 48px;
     color: rgb(97, 94, 94);
 }

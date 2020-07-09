@@ -10,14 +10,14 @@ const WordBtn = (props) => {
 
   const addWordBtn = (item, index) => {
     let classBtn = '';
-    if (isChosed.isRight && isChosed.word === item.word) classBtn = 'audiochallenge__button_words right';
-    else if (!isChosed.isRight && isChosed.word === item.word) classBtn = 'audiochallenge__button_words wrong';
+    if (isChosed.isRight && isChosed.word === item.word) classBtn = 'audiochallenge__button_words-right';
+    else if (!isChosed.isRight && isChosed.word === item.word) classBtn = 'audiochallenge__button_words-wrong';
     else classBtn = 'audiochallenge__button_words';
 
     return (
       <Button
         disabled={isChosed.isChosed}
-        className={classBtn}
+        id={classBtn}
         onClick={verificationWord}
         value={item.word}
         key={index}

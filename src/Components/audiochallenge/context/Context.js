@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Space } from 'antd';
+import {
+  Modal, Button, Space, Spin,
+} from 'antd';
 import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import WordBtn from '../WordBtn/WordBtn';
@@ -10,6 +12,7 @@ import soundWrong from '../../../assets/sound/wrong-answer.mp3';
 import './Context.css';
 
 const Context = (props) => {
+  const [loading, setLoading] = useState(false);
   const { isSound } = props;
   const [isChosed, setIsChosed] = useState({
     isChosed: false,
@@ -30,6 +33,7 @@ const Context = (props) => {
   const [statisticWords, setStatisticWords] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const result = await fetch(
         `https://afternoon-falls-25894.herokuapp.com/words?group=${level.group}&page=${level.page}`,
@@ -42,6 +46,7 @@ const Context = (props) => {
       shuffle(result);
       setWords(result);
       setCurrentWord(result[count]);
+      setLoading(false);
     };
     fetchData();
   }, [level]);
@@ -58,9 +63,11 @@ const Context = (props) => {
 
   const statistic = (result, wrongWord = '') => {
     setIsChosed({ isChosed: true, isRight: result, word: currentWord.word });
+
     setListUsedWord(
       listUsedWord.concat({
         word: currentWord.word,
+        translate: currentWord.wordTranslate,
         guessed: result,
         wrongWord,
       }),
@@ -102,18 +109,53 @@ const Context = (props) => {
       <Space>
         {Modal.success({
           title: `Вы прошли уровень №${level.page} в группе №${level.group} `,
-          content: `
-              ${listUsedWord.map((item) => (
-                <div>
-                  <div className="audiochallenge__modal_context-word">
-                    {item.word}
-                  </div>
-                  <div className="audiochallenge__modal_context-answer">
-                    {item.guessed}
-                  </div>
-                </div>
-          ))}`,
-
+          content: (
+            <div className="audiochallenge__modal">
+              <p className="audiochallenge__modal-title">Результаты ответов</p>
+              <p className="audiochallenge__modal-right_answers-title">
+                Правильно:
+              </p>
+              <ol>
+                {listUsedWord
+                  .filter((item) => item.guessed)
+                  .map((item, index) => (
+                    <li
+                      key={index}
+                      className="audiochallenge__modal-right_answers-list"
+                    >
+                      <span className="audiochallenge__modal-right_answers-list-word">
+                        {item.word}
+                      </span>
+                      <span> &#8212;</span>
+                      <span className="audiochallenge__modal-right_answers-list-translate">
+                        {item.translate}
+                      </span>
+                    </li>
+                  ))}
+              </ol>
+              <p className="audiochallenge__modal-wrong_answers-title">
+                Неправильно:
+              </p>
+              <ol>
+                {listUsedWord
+                  .filter((item) => !item.guessed)
+                  .map((item, index) => (
+                    <li
+                      key={index}
+                      className="audiochallenge__modal-wrong_answers-list"
+                    >
+                      <span className="audiochallenge__modal-wrong_answers-list-word">
+                        {item.word}
+                      </span>
+                      <span> &#8212;</span>
+                      <span className="audiochallenge__modal-wrong_answers-list-translate">
+                        {item.translate}
+                      </span>
+                    </li>
+                  ))}
+              </ol>
+            </div>
+          ),
           onOk() {
             nextLevel();
           },
@@ -134,6 +176,13 @@ const Context = (props) => {
     event.preventDefault();
   };
 
+  if (loading) {
+    return (
+      <div className="audiochallenge__context-loading">
+        <Spin size="large" />
+      </div>
+    );
+  }
   return (
     <div className="audiochallenge__context">
       <div>
@@ -154,7 +203,11 @@ const Context = (props) => {
         verificationWord={verificationWord}
       />
       <div className="audiochallenge__context-btn_next">
-        {isChosed.isChosed && <Button onClick={nextWord}>Дальше</Button>}
+        {isChosed.isChosed && (
+          <Button onClick={nextWord} autoFocus>
+            Дальше
+          </Button>
+        )}
       </div>
       <Progress listUsedWord={listUsedWord} />
     </div>
