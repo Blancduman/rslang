@@ -8,6 +8,7 @@ import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
+import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
 import './main.css';
 
 const { Content } = Layout;
@@ -36,6 +37,9 @@ const App = () => (
           </Route>
           <Route path="/english_puzzle">
             <EnglishPuzzle />
+          </Route>
+          <Route path="/statistics">
+            <StatisticsPage />
           </Route>
           <Route path="/promo">
             <Example />
