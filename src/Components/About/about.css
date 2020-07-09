@@ -25,6 +25,7 @@
 .about_card {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 300px;
     height: 330px;
     margin: 10px;
@@ -80,5 +81,5 @@
 
 .about_card_link_git_hub {
     display: flex;
-    align-self: center;
+    justify-content: center;
 }
