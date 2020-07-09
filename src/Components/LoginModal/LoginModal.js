@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import LockOutlined from '@ant-design/icons/LockOutlined';
 import MailOutlined from '@ant-design/icons/MailOutlined';
-import { signIn, signUp } from '../../Services/LoginService';
+import { signIn, signUp } from '../../Services/loginService';
 
 import './login-modal.css';
 

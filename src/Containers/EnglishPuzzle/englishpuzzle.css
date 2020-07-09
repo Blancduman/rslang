@@ -58,7 +58,6 @@
 
 .english-puzzle__list_title {
   margin-right: 10px;
-  /* width: 70px; */
 }
 
 .english-puzzle__sentence {
@@ -71,7 +70,6 @@
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
-  /* margin: 20px 0px; */
 }
 
 .english__puzzle__inititial_word {

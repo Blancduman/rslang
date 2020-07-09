@@ -55,8 +55,8 @@ const Puzzle = ({
 
   useEffect(() => {
     if (rows[11].items.length === 0) {
-      switchNoAnswer('false');
-      switchCheck('true');
+      switchNoAnswer(false);
+      switchCheck(true);
       const answer = [];
       const obj = rows[numberSentence + 1].items;
       const correct = data[numberSentence].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');

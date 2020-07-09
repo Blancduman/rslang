@@ -10,63 +10,49 @@ const Buttons = ({
   switchLevel,
 }) => {
   const btnNoAnswer = () => {
-    switch (noAnswer) {
-      case 'true': {
-        return (
-          <Button
-            type="primary"
-            shape="round"
-            disabled
-            onClick={() => {
-              changeSentence(numberSentence + 1);
-            }}
-          >
-            Не знаю
-          </Button>
-        );
-      }
-      default: {
-        return null;
-      }
+    if (noAnswer) {
+      return (
+        <Button
+          type="primary"
+          shape="round"
+          disabled
+          onClick={() => changeSentence(numberSentence + 1)}
+        >
+          Не знаю
+        </Button>
+      );
     }
+    return null;
   };
 
   const btnCheck = () => {
-    switch (check) {
-      case 'true': {
-        return (
-          <Button
-            type="primary"
-            shape="round"
-            onClick={() => { changeSentence(numberSentence + 1); }}
-          >
-            Проверить
-          </Button>
-        );
-      }
-      default: {
-        return null;
-      }
+    if (check) {
+      return (
+        <Button
+          type="primary"
+          shape="round"
+          onClick={() => changeSentence(numberSentence + 1)}
+        >
+          Проверить
+        </Button>
+      );
     }
+    return null;
   };
 
   const btnContinue = () => {
-    switch (check) {
-      case 'true': {
-        return (
-          <Button
-            type="primary"
-            shape="round"
-            onClick={() => { switchLevel({ group: 0, page: 1 }); }}
-          >
-            Продолжить
-          </Button>
-        );
-      }
-      default: {
-        return null;
-      }
+    if (check) {
+      return (
+        <Button
+          type="primary"
+          shape="round"
+          onClick={() => switchLevel({ group: 0, page: 1 })}
+        >
+          Продолжить
+        </Button>
+      );
     }
+    return null;
   };
 
   return (
@@ -81,8 +67,8 @@ const Buttons = ({
 Buttons.propTypes = {
   changeSentence: PropTypes.func.isRequired,
   numberSentence: PropTypes.number.isRequired,
-  noAnswer: PropTypes.string.isRequired,
-  check: PropTypes.string.isRequired,
+  noAnswer: PropTypes.bool.isRequired,
+  check: PropTypes.bool.isRequired,
   switchLevel: PropTypes.func.isRequired,
 };
 
