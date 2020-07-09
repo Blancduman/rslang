@@ -17,7 +17,8 @@ const Word = ({
   cardOff,
   changeLetter,
   changePicture,
-  addCorrect,
+  addCorrectAnswer,
+  removeErrorAnswer,
 }) => {
   const [right, setRight] = useState('');
   const voice = (text) => {
@@ -27,12 +28,13 @@ const Word = ({
   };
 
   useEffect(() => {
-    if (checkPronunciations === word) {
+    if (checkPronunciations.toLowerCase() === word.toLowerCase()) {
       changeLetter(word);
       changePicture(image);
       setRight('speakit__card_right');
       const value = `${word} ${transcription} ${wordTranslate}`;
-      addCorrect((prev) => prev.concat(value));
+      addCorrectAnswer((prev) => new Set(prev.add(`${word} ${transcription} ${wordTranslate}`)));
+      removeErrorAnswer.delete(value);
     }
     if (checkPronunciations !== word && checkPronunciations.length) {
       changeLetter(checkPronunciations);
@@ -83,7 +85,8 @@ Word.propTypes = {
   cardOff: PropTypes.bool.isRequired,
   changeLetter: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
-  addCorrect: PropTypes.func.isRequired,
+  addCorrectAnswer: PropTypes.func.isRequired,
+  removeErrorAnswer: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default Word;

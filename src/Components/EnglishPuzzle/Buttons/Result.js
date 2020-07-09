@@ -8,21 +8,21 @@ const { Meta } = Card;
 
 const Result = (props) => {
   const {
-    showCorrectAnswer,
-    showErrorAnswer,
+    showListCorrect,
+    showListError,
   } = props;
 
   return (
     <div>
       <Divider orientation="left">
-        {`Ошибки: ${showErrorAnswer.size}`}
+        {`Ошибки: ${showListError.size}`}
       </Divider>
       <List
         size="small"
         bordered
-        dataSource={Array.from(showErrorAnswer)}
+        dataSource={Array.from(showListError)}
         renderItem={(item) => (
-          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>
+          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item); }}>
             <Meta
               className="speakit__list-inner"
               avatar={
@@ -34,14 +34,14 @@ const Result = (props) => {
         )}
       />
       <Divider orientation="left">
-        {`Правильные ответы: ${showCorrectAnswer.size}`}
+        {`Правильные ответы: ${showListCorrect.size}`}
       </Divider>
       <List
         size="small"
         bordered
-        dataSource={Array.from(showCorrectAnswer)}
+        dataSource={Array.from(showListCorrect)}
         renderItem={(item) => (
-          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item.split(' ')[0]); }}>
+          <List.Item className="speakit__statistiks_list" onClick={() => { speechRecognition(item); }}>
             <Meta
               className="speakit__list-inner"
               avatar={
@@ -57,8 +57,8 @@ const Result = (props) => {
 };
 
 Result.propTypes = {
-  showCorrectAnswer: PropTypes.instanceOf(Set).isRequired,
-  showErrorAnswer: PropTypes.instanceOf(Set).isRequired,
+  showListCorrect: PropTypes.instanceOf(Set).isRequired,
+  showListError: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default Result;
