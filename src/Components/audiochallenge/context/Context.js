@@ -118,9 +118,9 @@ const Context = (props) => {
               <ol>
                 {listUsedWord
                   .filter((item) => item.guessed)
-                  .map((item, index) => (
+                  .map((item) => (
                     <li
-                      key={index}
+                      key={item}
                       className="audiochallenge__modal-right_answers-list"
                     >
                       <span className="audiochallenge__modal-right_answers-list-word">
@@ -139,9 +139,9 @@ const Context = (props) => {
               <ol>
                 {listUsedWord
                   .filter((item) => !item.guessed)
-                  .map((item, index) => (
+                  .map((item) => (
                     <li
-                      key={index}
+                      key={item}
                       className="audiochallenge__modal-wrong_answers-list"
                     >
                       <span className="audiochallenge__modal-wrong_answers-list-word">
@@ -187,13 +187,7 @@ const Context = (props) => {
     <div className="audiochallenge__context">
       <div>
         <p>
-          Group:
-          {' '}
-          {level.group}
-          {' '}
-          Level:
-          {' '}
-          {level.page}
+          {`Group: ${level.group}  Level: ${level.page}`}
         </p>
       </div>
       <Card currentWord={currentWord} isChosed={isChosed} isSound={isSound} />
