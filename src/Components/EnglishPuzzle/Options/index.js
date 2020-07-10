@@ -59,7 +59,7 @@ const Options = ({
     <p
       className="english-puzzle__translate"
     >
-      {translate}
+      {autoTranslate ? translate : ''}
     </p>
   </div>
 );
