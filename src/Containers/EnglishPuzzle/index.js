@@ -6,6 +6,8 @@ import getRows from '../../utls/EnglishPuzzle';
 import Header from '../../Components/EnglishPuzzle/Header';
 import Puzzle from '../../Components/EnglishPuzzle/Puzzle';
 import Buttons from '../../Components/EnglishPuzzle/Buttons';
+import Options from '../../Components/EnglishPuzzle/Options';
+import Sound from '../../utls/Speakit/Sound/Sound';
 
 const levels = {
   0: 'Первый',
@@ -33,6 +35,9 @@ const EnglishPuzzle = () => {
   const [listCorrect, setListCorrect] = useState(new Set());
   const [listError, setListError] = useState(new Set());
   const [selectGroup, setSelectGroup] = useState(0);
+  const [autoPronunciation, setAutoPronunciation] = useState(true);
+  const [autoTranslate, setAutoTranslate] = useState(true);
+  const [translate, setTranslate] = useState('');
 
   const switchData = (value) => {
     const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
@@ -48,10 +53,12 @@ const EnglishPuzzle = () => {
   useEffect(() => {
     getWordsSpeakit(level.group, level.page).then((value) => {
       const string = value[0].textExample.replace(/(<(\/?[^>]+)>)/g, '');
+      const russianTranslate = value[0].textExampleTranslate.replace(/(<(\/?[^>]+)>)/g, '');
       const items = string.split(' ').sort(() => Math.random() - 0.5);
       const initialWords = items.map((item) => ({ id: uuidv4(), content: item }));
       const game = getRows(initialWords);
       setSentence(string);
+      setTranslate(russianTranslate);
       setRows(game);
       setResult(value);
     });
@@ -64,14 +71,24 @@ const EnglishPuzzle = () => {
     }
     if (checkBtns === 'secondSentence') {
       const string = result[count].textExample.replace(/(<(\/?[^>]+)>)/g, '');
+      const russianTranslate = result[count].textExampleTranslate.replace(/(<(\/?[^>]+)>)/g, '');
       const items = string.split(' ').sort(() => Math.random() - 0.5);
       setSentence(string);
+      setTranslate(russianTranslate);
+      if (autoPronunciation) {
+        Sound(string);
+      }
       switchData(items);
     }
     if (checkBtns === 'repeat') {
       const string = result[0].textExample.replace(/(<(\/?[^>]+)>)/g, '');
+      const russianTranslate = result[0].textExampleTranslate.replace(/(<(\/?[^>]+)>)/g, '');
       const items = string.split(' ').sort(() => Math.random() - 0.5);
       setSentence(string);
+      setTranslate(russianTranslate);
+      if (autoPronunciation) {
+        Sound(string);
+      }
       switchData(items);
     }
   }, [checkBtns]);
@@ -90,7 +107,12 @@ const EnglishPuzzle = () => {
               />
               <Button
                 type="primary"
-                onClick={() => { setStage('game'); }}
+                onClick={() => {
+                  setStage('game');
+                  if (autoPronunciation) {
+                    Sound(sentence);
+                  }
+                }}
               >
                 Старт
               </Button>
@@ -120,6 +142,14 @@ const EnglishPuzzle = () => {
           <main
             className="english-puzzle__wrapper"
           >
+            <Options
+              sentence={sentence}
+              setAutoPronunciation={setAutoPronunciation}
+              autoPronunciation={autoPronunciation}
+              autoTranslate={autoTranslate}
+              setAutoTranslate={setAutoTranslate}
+              translate={translate}
+            />
             <Puzzle
               data={result}
               numberSentence={count}
