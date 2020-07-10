@@ -14,6 +14,7 @@ import {
   Layout, Menu, Button,
 } from 'antd';
 import './menu_bar.css';
+import LineChartOutlined from '@ant-design/icons/lib/icons/LineChartOutlined';
 
 const {
   SubMenu,
@@ -76,6 +77,12 @@ const SideBar = ({ collapsed, setCollapsed }) => {
             </NavLink>
           </Menu.Item>
         </SubMenu>
+
+        <Menu.Item key="/statistics" icon={<LineChartOutlined />}>
+          <NavLink to="/statistics">
+            Статистика
+          </NavLink>
+        </Menu.Item>
 
         <Menu.Item key="/promo" icon={<InfoCircleOutlined />}>
           <NavLink to="/promo">

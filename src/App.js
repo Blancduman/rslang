@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-import './main.css';
+import Example from './Components/Example';
 import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
-import Example from './Components/Example';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
+import SavannahStartPage from './Components/Savannah/SavannahStartPage';
+import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
+import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
+import About from './Components/About';
+import PromoPage from './Components/Promo';
+import './main.css';
 
 const { Content } = Layout;
 
@@ -27,13 +32,13 @@ const App = () => {
               <Example />
             </Route>
             <Route path="/dictionary">
-              <div>Словарь</div>
+              <Dictionary />
             </Route>
             <Route path="/speakit">
               <Speakit />
             </Route>
             <Route path="/savannah">
-              <div>Саванна</div>
+              <SavannahStartPage />
             </Route>
             <Route path="/sprint">
               <GameSprintPage />
@@ -41,11 +46,14 @@ const App = () => {
             <Route path="/english_puzzle">
               <EnglishPuzzle />
             </Route>
+            <Route path="/statistics">
+              <StatisticsPage />
+            </Route>
             <Route path="/promo">
-              PromoPage
+              <PromoPage />
             </Route>
             <Route path="/about">
-              About
+              <About />
             </Route>
           </Switch>
         </Content>
