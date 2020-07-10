@@ -28,6 +28,7 @@ const Buttons = ({
   },
   numberGroup,
   nextStage,
+  setRight,
 }) => {
   const [visual, setVisual] = useState(false);
   const closeModal = () => {
@@ -104,6 +105,7 @@ const Buttons = ({
           onClick={() => {
             control();
             addListError((prev) => new Set(prev.add(sentence)));
+            setRight(false);
           }}
         >
           Не знаю
@@ -122,6 +124,7 @@ const Buttons = ({
           onClick={() => {
             const checkAnswer = showCompare.false;
             const solution = showCompare.true;
+            setRight(true);
             const arrValue = [];
             checkAnswer.forEach((value, index) => {
               if (value === solution[index]) {
@@ -163,6 +166,7 @@ const Buttons = ({
               showSecond(false);
               showCheck(false);
             }
+            setRight(false);
           }}
         >
           Продолжить
@@ -241,6 +245,7 @@ Buttons.propTypes = {
   }).isRequired,
   numberGroup: PropTypes.number.isRequired,
   nextStage: PropTypes.func.isRequired,
+  setRight: PropTypes.func.isRequired,
 };
 
 export default Buttons;

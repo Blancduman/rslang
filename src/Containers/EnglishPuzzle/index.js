@@ -38,6 +38,7 @@ const EnglishPuzzle = () => {
   const [autoPronunciation, setAutoPronunciation] = useState(true);
   const [autoTranslate, setAutoTranslate] = useState(true);
   const [translate, setTranslate] = useState('');
+  const [right, setRight] = useState(false);
 
   const switchData = (value) => {
     const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
@@ -160,6 +161,8 @@ const EnglishPuzzle = () => {
               setRows={setRows}
               trueAnswer={trueAnswer}
               checkBtns={checkBtns}
+              sentence={sentence}
+              right={right}
             />
             <Buttons
               changeSentence={setCount}
@@ -185,6 +188,7 @@ const EnglishPuzzle = () => {
               showListError={listError}
               numberGroup={selectGroup}
               nextStage={setStage}
+              setRight={setRight}
             />
           </main>
         );

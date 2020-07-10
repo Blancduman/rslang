@@ -13,6 +13,8 @@ const Puzzle = ({
   setRows,
   trueAnswer,
   checkBtns,
+  sentence,
+  right,
 }) => {
   const onDragEnd = (result, value, setValue) => {
     if (!result.destination) return;
@@ -83,6 +85,8 @@ const Puzzle = ({
             rows={rows}
             numberSentence={numberSentence}
             setRows={setRows}
+            sentence={sentence}
+            right={right}
           />
         ))}
       </DragDropContext>
@@ -100,6 +104,8 @@ Puzzle.propTypes = {
   setRows: PropTypes.func.isRequired,
   trueAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
   checkBtns: PropTypes.string.isRequired,
+  sentence: PropTypes.string.isRequired,
+  right: PropTypes.bool.isRequired,
 };
 
 export default Puzzle;
