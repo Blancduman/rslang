@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Layout } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
-import getRows from '../../utls/EnglishSpeakit';
+import getRows from '../../utls/EnglishPuzzle';
 import Header from '../../Components/EnglishPuzzle/Header';
 import Puzzle from '../../Components/EnglishPuzzle/Puzzle';
 import Buttons from '../../Components/EnglishPuzzle/Buttons';

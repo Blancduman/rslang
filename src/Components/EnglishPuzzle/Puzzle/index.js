@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
+import Sentences from '../Sentences';
 
 const Puzzle = ({
   data,
@@ -74,66 +75,15 @@ const Puzzle = ({
         onDragEnd={(result) => onDragEnd(result, rows, setRows)}
       >
         {Object.entries(rows).map(([columnId, column]) => (
-          <div
-            className="english-puzzle__sentences"
+          <Sentences
+            columnId={columnId}
+            column={column}
+            trueAnswer={trueAnswer}
             key={columnId}
-          >
-            <h2
-              className="english-puzzle__list_title"
-            >
-              {`${column.name}.`}
-            </h2>
-            <div
-              className="english-puzzle__sentence"
-            >
-              <Droppable
-                droppableId={columnId}
-                key={columnId}
-                direction="horizontal"
-              >
-                {(provided, snapshot) => (
-                  <div
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    className="english-puzzle__inititial_words"
-                    style={{
-                      background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-                    }}
-                  >
-                    {column.items.map((item, index) => (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={index}
-                      >
-                        {
-                        // eslint-disable-next-line no-shadow
-                        (provided) => (
-                          <span
-                            ref={provided.innerRef}
-                            // eslint-disable-next-line react/jsx-props-no-spreading
-                            {...provided.draggableProps}
-                            // eslint-disable-next-line react/jsx-props-no-spreading
-                            {...provided.dragHandleProps}
-                            className={trueAnswer.includes(item.content, 0) ? 'english-puzzle__correct english-puzzle__inititial_word' : 'english-puzzle__inititial_word'}
-                            style={{
-                              ...provided.draggableProps.style,
-                            }}
-                            aria-hidden="true"
-                          >
-                            {item.content}
-                          </span>
-                        )
-                        }
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
-          </div>
+            rows={rows}
+            numberSentence={numberSentence}
+            setRows={setRows}
+          />
         ))}
       </DragDropContext>
     </div>
@@ -143,7 +93,6 @@ const Puzzle = ({
 Puzzle.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   numberSentence: PropTypes.number.isRequired,
-  // words: PropTypes.arrayOf(PropTypes.string).isRequired,
   switchNoAnswer: PropTypes.func.isRequired,
   switchCheck: PropTypes.func.isRequired,
   compareWords: PropTypes.func.isRequired,
