@@ -22,7 +22,6 @@
 
 .basic-layout_content_menu-open {
     padding-top: 80px;
-<<<<<<< HEAD
     margin-left: 220px;
     min-height: 100vh;
 }
@@ -30,8 +29,18 @@
 .basic-layout_content_menu-close {
     padding-top: 80px;
     margin-left: 100px;
-=======
-    margin-left: 250px;
->>>>>>> origin/develop
     min-height: 100vh;
 }
+
+.ant-menu-dark.ant-menu-root.menu_bar {
+    background: cadetblue;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: darkcyan;
+}
+
+.ant-menu-dark.ant-menu-root.menu_bar a:hover,
+.ant-menu.ant-menu-dark .ant-menu-inline.ant-menu-sub a:hover {
+    color: darkorange;
+} 
