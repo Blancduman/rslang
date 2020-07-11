@@ -1,5 +1,9 @@
+.wrapper{
+    height: 100%;
+    width: 100%;
+}
 .audiochallenge__header {
-    margin: 20px;
+    margin: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -15,10 +19,14 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
 }
 
 .audiochallenge__start_game-btn {
     width: 100px;
     height: 50px;
-    margin: 50px;
+    margin: 20px 0 140px;
+}
+.audiochallenge__main-select_level{
+    margin-top: 60px;
 }

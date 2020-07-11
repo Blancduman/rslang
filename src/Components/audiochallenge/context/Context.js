@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Modal, Button, Space, Spin,
+  Modal, Button, Space, Spin, Typography
 } from 'antd';
 import PropTypes from 'prop-types';
 import Card from '../Card/Card';
@@ -13,7 +13,7 @@ import './Context.css';
 
 const Context = (props) => {
   const [loading, setLoading] = useState(false);
-  const { isSound } = props;
+  const { isSound,selectedGroup } = props;
   const [isChosed, setIsChosed] = useState({
     isChosed: false,
     isRight: false,
@@ -21,7 +21,7 @@ const Context = (props) => {
   });
   const [listWords, setWords] = useState([]);
   const [outputWord, setOutputWord] = useState([]);
-  const [level, setLevel] = useState({ group: 1, page: 1 });
+  const [level, setLevel] = useState({ group: selectedGroup, page: 1 });
   const [count, setCount] = useState(0);
   const [currentWord, setCurrentWord] = useState({
     audio: '',
@@ -31,6 +31,7 @@ const Context = (props) => {
   });
   const [listUsedWord, setListUsedWord] = useState([]);
   const [statisticWords, setStatisticWords] = useState([]);
+  const { Text } = Typography;
 
   useEffect(() => {
     setLoading(true);
@@ -108,7 +109,7 @@ const Context = (props) => {
     return (
       <Space>
         {Modal.success({
-          title: `Вы прошли уровень №${level.page} в группе №${level.group} `,
+          title: `Вы прошли уровень №${level.page}`,
           content: (
             <div className="audiochallenge__modal">
               <p className="audiochallenge__modal-title">Результаты ответов</p>
@@ -185,10 +186,10 @@ const Context = (props) => {
   }
   return (
     <div className="audiochallenge__context">
-      <div>
-        <p>
-          {`Group: ${level.group}  Level: ${level.page}`}
-        </p>
+      <div className="audiochallenge__context-level_title">
+       <Space>
+        <Text type="warning">{`Level: ${level.page}`}</Text>  
+        </Space>
       </div>
       <Card currentWord={currentWord} isChosed={isChosed} isSound={isSound} />
       <WordBtn

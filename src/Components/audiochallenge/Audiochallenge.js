@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Tooltip, Switch, Button, Typography,
-} from 'antd';
+Form} from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Context from './Context/Context';
+import LevelDropdown from '../LevelDropdown/LevelDropdown';
 import './Audiochallenge.css';
 
 const Audiochallenge = () => {
   const [isStarted, setStart] = useState(false);
   const [isSound, setIsSound] = useState(true);
+  const [group, setGroup] = useState('0');
   const { Text, Title } = Typography;
 
   const startGame = () => {
@@ -52,7 +54,7 @@ const Audiochallenge = () => {
 
       <main className="audiochallenge__main">
         {isStarted ? (
-          <Context isSound={isSound} />
+          <Context isSound={isSound} selectedGroup={group} />
         ) : (
           <div className="audiochallenge__start_game">
             <Title level={1}>
@@ -63,6 +65,11 @@ const Audiochallenge = () => {
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
             </Title>
+            <div className="audiochallenge__main-select_level">
+            <Form >
+          <LevelDropdown setLevel={setGroup} />
+        </Form>
+        </div>
             <Button
               className="audiochallenge__start_game-btn"
               onClick={startGame}
