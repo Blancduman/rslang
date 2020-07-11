@@ -1,6 +1,21 @@
+html> body,
+.ant-menu.menu_bar,
+.ant-btn-group button {
+    font-size: 16px;
+}
+
+.ant-menu.menu_bar.ant-menu-dark.ant-menu-inline-collapsed.ant-menu-root.ant-menu-vertical {
+    width: 60px;
+}
+
+.ant-menu-inline-collapsed.ant-menu-root.ant-menu-vertical li {
+    padding: 0 20px;
+}
+
 .ant-layout.basic-layout_header,
 .ant-layout.basic-layout_wrapper {
-    background: #7d777a;
+    background: #f1e691;
+    font-size: 16px;
 }
 
 .ant-layout.basic-layout_header {
@@ -11,15 +26,15 @@
     position: fixed;
     height: 100vh;
     width: 200px;
-    background: #46596c;
+    background: #1b386d;
     z-index: 1;
 }
 
 .ant-layout.basic-layout_menu_wrapper_close {
     position: fixed;
     height: 100vh;
-    width: 80px;
-    background: #46596c;
+    width: 60px;
+    background: #1b386d;
     z-index: 1;
 }
 
@@ -37,29 +52,39 @@
     display: grid;
     margin-left: 200px;
     min-height: 100vh;
-    background: #7d777a;
+    background: #f1e691;
     padding: 100px 20px 20px 20px;
-    border-radius: 20px;
 }
 
 .ant-layout-content.basic-layout_content_menu-close {
     display: grid;
-    margin-left: 80px;
+    margin-left: 60px;
     min-height: 100vh;
-    background: #7d777a;
+    background: #f1e691;
     padding: 100px 20px 20px 20px;
-    border-radius: 20px;
 }
 
-.ant-menu-dark.ant-menu-root.menu_bar {
-    background: #46596c;
+.ant-menu.menu_bar.ant-menu-dark.ant-menu-inline-collapsed.ant-menu-root.ant-menu-vertical> 
+.ant-menu-submenu.ant-menu-submenu-vertical> .ant-menu-submenu-title {
+    padding: 0;
 }
 
-.ant-menu.ant-menu-dark .ant-menu-inline.ant-menu-sub {
-    background: #46536c;
+.ant-menu-dark.ant-menu-root.menu_bar,
+.ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-dark.ant-menu-submenu-placement-rightTop>
+.ant-menu.ant-menu-sub.ant-menu-vertical,
+.ant-menu.menu_bar.ant-menu-dark.ant-menu-inline-collapsed.ant-menu-root.ant-menu-vertical>
+.ant-menu-item.ant-tooltip-open.ant-menu-item-active {
+    background: #1b386d;
 }
 
-.ant-menu-dark.ant-menu-root.menu_bar a:hover,
-.ant-menu.ant-menu-dark .ant-menu-inline.ant-menu-sub a:hover {
-    color: darkorange;
-} 
+.ant-menu.ant-menu-dark .ant-menu-inline.ant-menu-sub,
+.ant-tooltip.ant-menu-inline-collapsed-tooltip.ant-tooltip-placement-right>
+.ant-tooltip-content>
+.ant-tooltip-arrow>
+.ant-tooltip-arrow-content,
+.ant-tooltip.ant-menu-inline-collapsed-tooltip.ant-tooltip-placement-right>
+.ant-tooltip-content>
+.ant-tooltip-inner {
+    background: #183261;
+}
+

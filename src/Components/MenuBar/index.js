@@ -34,7 +34,6 @@ const SideBar = ({ collapsed, setCollapsed }) => {
       </Button>
       <Menu
         selectedKeys={[pathname]}
-        defaultOpenKeys={['sub1']}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}

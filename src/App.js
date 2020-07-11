@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Example from './Components/Example';
@@ -17,7 +17,19 @@ import './main.css';
 const { Content } = Layout;
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+
+  function collapseMenuBar() {
+    if (window.innerWidth < 1024) {
+      setCollapsed(true);
+    } else setCollapsed(false);
+  }
+
+  useEffect(() => {
+    collapseMenuBar();
+    window.addEventListener('resize', collapseMenuBar);
+    return () => window.removeEventListener('resize', collapseMenuBar);
+  }, []);
   return (
     <Router>
       <HeaderBar />

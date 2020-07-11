@@ -10,25 +10,24 @@
     margin: 15px 0 15px 0;
     padding: 10px;
     width: 100%;
-    height: 320px;
+    min-height: 120px;
     border-radius: 20px;
-    background-color: #3B4451;
-    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
-    color: #a8a7a7;
+    background-color: transparent;
+    color: black;
 }
 
 .promo_description h1 {
     font-size: 1.6rem;
-    color: #a8a7a7;
+    color: black;
 }
 
 .promo__video {
     margin: 10px 0 10px 0;
     width: 60%;
-    height: 60vh;
+    height: 25vw;
     padding: 20px;
     border-radius: 20px;
-    background-color: #3B4451;
-    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
+    background-color: #819673;
+    box-shadow: 4px 4px 10px #000000, -4px -4px 10px #3B4451;
 }
 
