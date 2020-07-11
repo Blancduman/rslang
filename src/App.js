@@ -8,6 +8,7 @@ import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
 import Audiochallenge from './Components/Audiochallenge/Audiochallenge';
 import SavannahStartPage from './Components/Savannah/SavannahStartPage';
+import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
 import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
