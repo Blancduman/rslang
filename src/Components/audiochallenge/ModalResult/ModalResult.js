@@ -1,22 +1,23 @@
 import React from 'react';
 import { Modal, Space } from 'antd';
-import PropTypes from 'prop-types';
 import './ModalResult.css';
 
-const ModalResult = (level, listUsedWord, nextLevel) => (
-  <Space>
-    {Modal.success({
-      title: `Вы прошли уровень №${level.page}`,
-      content: (
-        <div className="audiochallenge__modal">
-          <p className="audiochallenge__modal-title">Результаты ответов</p>
-          <p className="audiochallenge__modal-right_answers-title">
-            Правильно:
-          </p>
-          <ol>
-            {listUsedWord
-              .filter((item) => item.guessed)
-              .map((item, index) => (
+const ModalResult = (level, listUsedWord, nextLevel) => {
+  const rightAnser = listUsedWord.filter((item) => item.guessed);
+  const WrongAnser = listUsedWord.filter((item) => !item.guessed);
+
+  return (
+    <Space>
+      {Modal.success({
+        title: `Вы прошли уровень №${level.page}`,
+        content: (
+          <div className="audiochallenge__modal">
+            <p className="audiochallenge__modal-title">Результаты ответов</p>
+            <p className="audiochallenge__modal-right_answers-title">
+              {`Правильно: ${rightAnser.length}`}
+            </p>
+            <ol>
+              {rightAnser.map((item, index) => (
                 <li
                   key={String(index)}
                   className="audiochallenge__modal-right_answers-list"
@@ -30,14 +31,12 @@ const ModalResult = (level, listUsedWord, nextLevel) => (
                   </span>
                 </li>
               ))}
-          </ol>
-          <p className="audiochallenge__modal-wrong_answers-title">
-            Неправильно:
-          </p>
-          <ol>
-            {listUsedWord
-              .filter((item) => !item.guessed)
-              .map((item, index) => (
+            </ol>
+            <p className="audiochallenge__modal-wrong_answers-title">
+              {`Неправильно: ${WrongAnser.length}`}
+            </p>
+            <ol>
+              {WrongAnser.map((item, index) => (
                 <li
                   key={String(index)}
                   className="audiochallenge__modal-wrong_answers-list"
@@ -51,21 +50,15 @@ const ModalResult = (level, listUsedWord, nextLevel) => (
                   </span>
                 </li>
               ))}
-          </ol>
-        </div>
-      ),
-      onOk() {
-        nextLevel();
-      },
-    })}
-  </Space>
-);
-
-ModalResult.propTypes = {
-  level: PropTypes.shape({
-    level: PropTypes.number.isRequired,
-    page: PropTypes.number.isRequired,
-  }).isRequired,
+            </ol>
+          </div>
+        ),
+        onOk() {
+          nextLevel();
+        },
+      })}
+    </Space>
+  );
 };
 
 export default ModalResult;

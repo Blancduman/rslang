@@ -3,13 +3,14 @@ import {
   Button, Space, Spin, Typography,
 } from 'antd';
 import PropTypes from 'prop-types';
-import Card from '../card/Card';
+import Card from '../Card/Card';
 import WordBtn from '../WordBtn/WordBtn';
 import Progress from '../Progress/Progress';
 import ModalResult from '../ModalResult/ModalResult';
 import shuffle from '../../../utls/Audichallenge/shuffle';
 import soundRight from '../../../assets/sound/right_answer.mp3';
 import soundWrong from '../../../assets/sound/wrong-answer.mp3';
+import playAudio from '../../../utls/Audichallenge/playAudio';
 import './Context.css';
 
 const Context = (props) => {
@@ -76,19 +77,14 @@ const Context = (props) => {
     );
   };
 
-  const playAnswer = (music) => {
-    const audio = new Audio(music);
-    audio.play();
-  };
-
   const verificationWord = (event) => {
     const valClickWord = event.currentTarget.value;
     if (currentWord.word === valClickWord) {
       statistic(true);
-      playAnswer(soundRight);
+      playAudio(soundRight);
     } else {
       statistic(false, valClickWord);
-      playAnswer(soundWrong);
+      playAudio(soundWrong);
     }
     event.preventDefault();
   };
@@ -103,11 +99,11 @@ const Context = (props) => {
     );
     setListUsedWord([]);
     setCount(0);
-    setLevel({ group: 1, page: level.page + 1 });
+    setLevel({ group: selectedGroup, page: level.page + 1 });
   };
 
   const nextWord = (event) => {
-    if (count > 18) {
+    if (count > 2) {
       ModalResult(level, listUsedWord, nextLevel);
     } else {
       setCount(count + 1);

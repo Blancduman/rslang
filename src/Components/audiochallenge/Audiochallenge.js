@@ -5,7 +5,7 @@ import {
   Form,
 } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import Context from './context/Context';
+import Context from './Context/Context';
 import LevelDropdown from '../LevelDropdown/LevelDropdown';
 import './Audiochallenge.css';
 
