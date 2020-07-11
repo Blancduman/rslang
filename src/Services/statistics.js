@@ -11,7 +11,7 @@ export const updateStatisticsRequest = async (stats) => {
       body: JSON.stringify(stats),
     });
   } catch (e) {
-    console.log('Не удалось записать статистику');
+    throw new Error(`Не удалось записать статистику - ${e.message}`);
   }
 };
 
@@ -29,7 +29,7 @@ export const getStatisticsRequest = async () => {
     const content = await rawResponse.json();
     return content.optional;
   } catch (e) {
-    return console.log('Не удалось получить статистику');
+    throw new Error(`Не удалось получить статистику - ${e.message}`);
   }
 };
 
