@@ -13,6 +13,7 @@ import {
   Layout, Menu, Button,
 } from 'antd';
 import './menu_bar.css';
+import LineChartOutlined from '@ant-design/icons/lib/icons/LineChartOutlined';
 
 const {
   SubMenu,
@@ -54,7 +55,7 @@ const SideBar = () => {
         <SubMenu key="sub1" icon={<RocketOutlined />} title="Мини-игры">
           <Menu.Item key="/speakit">
             <NavLink to="/speakit" target="_blank" rel="noreferrer noopener">
-              Говорить на нем
+              Скажи это
             </NavLink>
           </Menu.Item>
 
@@ -76,6 +77,12 @@ const SideBar = () => {
             </NavLink>
           </Menu.Item>
         </SubMenu>
+
+        <Menu.Item key="/statistics" icon={<LineChartOutlined />}>
+          <NavLink to="/statistics">
+            Статистика
+          </NavLink>
+        </Menu.Item>
 
         <Menu.Item key="/promo" icon={<InfoCircleOutlined />}>
           <NavLink to="/promo">
