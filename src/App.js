@@ -6,10 +6,12 @@ import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
+import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
-import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import StatisticsPage from './Components/StatisticsPage/StatisticsPage';
+import About from './Components/About';
+import PromoPage from './Components/Promo';
 import './main.css';
 
 const { Content } = Layout;
@@ -43,10 +45,10 @@ const App = () => (
             <StatisticsPage />
           </Route>
           <Route path="/promo">
-            <Example />
+            <PromoPage />
           </Route>
           <Route path="/about">
-            <Example />
+            <About />
           </Route>
         </Switch>
       </Content>

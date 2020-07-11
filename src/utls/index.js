@@ -9,7 +9,6 @@ export const getWordTranslateFromArrayWithChance = (word, words) => {
   }
   const rn = Math.random();
   const random = Math.floor(rn * words.length);
-  // To avoid duplications
   const transcript = words[random].wordTranslate;
   words.splice(random, 1);
   return transcript;
