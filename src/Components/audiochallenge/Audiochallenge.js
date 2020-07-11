@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Tooltip, Switch, Button, Typography,
-Form} from 'antd';
+  Form,
+} from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import Context from './Context/Context';
+import Context from './context/Context';
 import LevelDropdown from '../LevelDropdown/LevelDropdown';
 import './Audiochallenge.css';
 
@@ -66,10 +67,10 @@ const Audiochallenge = () => {
               </Text>
             </Title>
             <div className="audiochallenge__main-select_level">
-            <Form >
-          <LevelDropdown setLevel={setGroup} />
-        </Form>
-        </div>
+              <Form>
+                <LevelDropdown setLevel={setGroup} />
+              </Form>
+            </div>
             <Button
               className="audiochallenge__start_game-btn"
               onClick={startGame}
