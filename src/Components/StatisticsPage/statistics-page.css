@@ -6,3 +6,16 @@
 .statistics-page__container {
     margin: 16px;
 }
+
+.statistics-page__container .ant-row {
+    justify-content: space-around;
+}
+
+.statistics-page__container .ant-row .ant-col {
+    margin-right: 60px;
+}
+
+h3, h4 {
+    text-align: center;
+    padding-left: 50px;
+}
