@@ -1,7 +1,6 @@
 .ant-layout.about_wrapper {
     width: 100%;
-    padding: 10px;
-    background: transparent;
+    background: #f1e691;
 }
 
 .about_wrapper p {
@@ -27,7 +26,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 300px;
+    overflow: hidden;
+    width: 310px;
     height: 370px;
     margin: 10px;
     padding: 10px;
@@ -44,16 +44,24 @@
 .about_card_block-name {
     display: flex;
     flex-direction: column;
-    margin: 0 10px 0 10px;
+    margin: 0 0 0 10px;
+}
+
+.about_card_name {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .about_card_block-name h3,
 .about_card_block-name h4 {
     color: #ffffff;
+    padding: 0;
+    text-align: left;
 }
 
 .about_card_position p {
     color:black;
+    text-align: left;
 }
 
 .about_card_avatar img {
@@ -87,4 +95,11 @@
 
 .about_card_link_git_hub button {
     z-index: 0;
+}
+
+@media (max-width: 400px) {
+    .about_card {
+        width: 240px;
+        font-size: 14px;
+    }
 }
