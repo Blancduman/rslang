@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Router>
       <HeaderBar />
-      <Layout>
+      <Layout className="basic-layout_wrapper">
         <MenuBar
           collapsed={collapsed}
           setCollapsed={setCollapsed}
