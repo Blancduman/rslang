@@ -1,12 +1,14 @@
-.wrapper{
-    height: 100%;
+.audiochallenge__wrapper {
+    height: 100vh;
     width: 100%;
 }
+
 .audiochallenge__header {
     margin: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: left;
+    margin-left: 20%;
 }
 
 .audiochallenge__autoplay_box {
@@ -27,6 +29,21 @@
     height: 50px;
     margin: 20px 0 140px;
 }
-.audiochallenge__main-select_level{
+
+.audiochallenge__main-select_level {
     margin-top: 60px;
+}
+
+@media screen and (max-width: 720px) {
+    .audiochallenge__start_game {
+        margin-top: 30px;
+    }
+    .audiochallenge__start_game-btn {
+        width: 70px;
+        height: 40px;
+        margin: 10px 0 70px;
+    }
+    .audiochallenge__main-select_level {
+        margin-top: 30px;
+    }
 }

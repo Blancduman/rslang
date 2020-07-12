@@ -45,3 +45,28 @@
     -moz-box-shadow: 0px 0px 12px 5px rgba(0, 0, 0, 0.66);
     box-shadow: 0px 0px 12px 5px rgba(0, 0, 0, 0.66);
 }
+
+@media screen and (max-width: 720px) {
+    .audiochallenge__card {
+        height: 205px;
+    }
+    .audiochallenge__card_image {
+        width: 250px;
+        height: 130px;
+    }
+    .audiochallenge__card_speaker {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .audiochallenge__card_image {
+        width: 150px;
+        height: 88px;
+    }
+    .audiochallenge__card_speaker {
+        width: 100px;
+        height: 100px;
+    }
+}

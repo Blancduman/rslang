@@ -13,3 +13,20 @@
     font-size: 48px;
     color: rgb(97, 94, 94);
 }
+
+@media screen and (max-width: 720px) {
+    .audiochallenge__progress_box {
+        width: 90%;
+        height: 20px;
+        margin: 3px auto;
+    }
+    #audiochallenge__progress_box-right_star, #audiochallenge__progress_box-wrong_star {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    #audiochallenge__progress_box-right_star, #audiochallenge__progress_box-wrong_star {
+        font-size: 20px;
+    }
+}

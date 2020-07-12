@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Tooltip, Switch, Button, Typography,
   Form,
 } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
 import Context from './Context/Context';
 import LevelDropdown from '../LevelDropdown/LevelDropdown';
 import './Audiochallenge.css';
@@ -24,7 +22,7 @@ const Audiochallenge = () => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="audiochallenge__wrapper">
       <header className="audiochallenge__header">
         <div className="audiochallenge__autoplay_box">
           <Tooltip
@@ -40,17 +38,17 @@ const Audiochallenge = () => {
             />
           </Tooltip>
         </div>
-        <div className="audiochallenge__close_btn">
+        {/* <div className="audiochallenge__close_btn">
           <Tooltip
             placement="bottom"
             title="Click to main page"
             color="magenta"
           >
-            <Link to="/" replace>
+            <Link to="/" >
               <Button type="primary" icon={<CloseOutlined />} />
             </Link>
           </Tooltip>
-        </div>
+        </div> */}
       </header>
 
       <main className="audiochallenge__main">
@@ -58,10 +56,10 @@ const Audiochallenge = () => {
           <Context isSound={isSound} selectedGroup={group} />
         ) : (
           <div className="audiochallenge__start_game">
-            <Title level={1}>
+            <Title level={1} className="audiochallenge__start_game-title">
               <Text strong> АУДИОВЫЗОВ</Text>
             </Title>
-            <Title level={4}>
+            <Title level={4} className="audiochallenge__start_game-description">
               <Text strong>
                 Тренировка улучшает восприятие английской речи на слух.
               </Text>
