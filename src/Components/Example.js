@@ -17,6 +17,7 @@ const Example = () => {
         <li><Link to="/savannah">savannah</Link></li>
         <li><Link to="/sprint">sprint</Link></li>
         <li><Link to="/english_puzzle">english_puzzle</Link></li>
+        <li><Link to="/audiochallenge">audiochallenge</Link></li>
         <li><Link to="/promo">promo</Link></li>
         <li><Link to="/about">about</Link></li>
       </ul>

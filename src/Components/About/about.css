@@ -1,19 +1,19 @@
-.about_wrapper {
+.ant-layout.about_wrapper {
     width: 100%;
+    background: #f1e691;
 }
 
 .about_wrapper p {
-    color: blueviolet;
+    color: black;
 }
 
 .about_title {
     font-size: 1.6rem;
-    margin-left: 10px;
     text-align: center;
 }
 
 .about_title h1 {
-   color: lightseagreen;
+    color: #1b386d;
 }
 
 .about_persons_wrapper {
@@ -26,13 +26,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 300px;
-    height: 330px;
+    overflow: hidden;
+    width: 310px;
+    height: 370px;
     margin: 10px;
     padding: 10px;
     border-radius: 20px;
-    background-color: orange;
-    box-shadow: 4px 4px 14px coral, -4px -4px 14px darkgoldenrod;
+    background-color: #5cb5b1;
+    box-shadow: 4px 4px 14px rgba(27, 26, 26, 0.37), -4px -4px 14px rgba(31, 30, 29, 0.603);
 }
 
 .about_card_header {
@@ -43,16 +44,24 @@
 .about_card_block-name {
     display: flex;
     flex-direction: column;
-    margin: 0 10px 0 10px;
+    margin: 0 0 0 10px;
+}
+
+.about_card_name {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .about_card_block-name h3,
 .about_card_block-name h4 {
-    color: maroon;
+    color: #ffffff;
+    padding: 0;
+    text-align: left;
 }
 
 .about_card_position p {
-    color: dimgray;
+    color:black;
+    text-align: left;
 }
 
 .about_card_avatar img {
@@ -76,10 +85,21 @@
 }
 
 .about_card_contribution p{
-    color: firebrick;
+    color: #ffffff;
 }
 
 .about_card_link_git_hub {
     display: flex;
     justify-content: center;
+}
+
+.about_card_link_git_hub button {
+    z-index: 0;
+}
+
+@media (max-width: 400px) {
+    .about_card {
+        width: 240px;
+        font-size: 14px;
+    }
 }

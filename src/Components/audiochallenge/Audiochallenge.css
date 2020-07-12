@@ -1,0 +1,49 @@
+.audiochallenge__wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.audiochallenge__header {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 20%;
+}
+
+.audiochallenge__autoplay_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.audiochallenge__start_game {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.audiochallenge__start_game-btn {
+    width: 100px;
+    height: 50px;
+    margin: 20px 0 140px;
+}
+
+.audiochallenge__main-select_level {
+    margin-top: 60px;
+}
+
+@media screen and (max-width: 720px) {
+    .audiochallenge__start_game {
+        margin-top: 30px;
+    }
+    .audiochallenge__start_game-btn {
+        width: 70px;
+        height: 40px;
+        margin: 10px 0 70px;
+    }
+    .audiochallenge__main-select_level {
+        margin-top: 30px;
+    }
+}
