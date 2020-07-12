@@ -10,6 +10,8 @@ export default function StatisticsPage() {
   const [savannahData, setSavannahData] = useState([]);
   const [savannahGames, setSavannahGames] = useState(0);
   const [sprintData, setSprintData] = useState([]);
+  const [audiochallengeData, setAudiochallengeData] = useState([]);
+  const [audiochallengeGames, setAudiochallengeGames] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -34,6 +36,16 @@ export default function StatisticsPage() {
         }
       } catch (e) {
         setSprintData([]);
+      }
+      try {
+        const data = await getStatisticsRequest();
+        const statistic = JSON.parse(data.audiochallenge.dates);
+        const { gamesCount } = data.audiochallenge;
+        delete statistic.id;
+        setAudiochallengeGames(gamesCount);
+        setAudiochallengeData(statistic);
+      } catch (e) {
+        setAudiochallengeData([]);
       }
     })();
   }, []);
@@ -75,6 +87,15 @@ export default function StatisticsPage() {
                 {`Игр сыграно: ${data.length}`}
             </h4>
           <StatisticChart data={sprintData} game="sprint" />
+        </Col>
+        <Col className="gutter-row">
+          <h3>Аудиовызов</h3>
+          <h4>
+            Игр сыграно:
+            {' '}
+            {audiochallengeGames}
+          </h4>
+          <StatisticChart data={audiochallengeData} game="audiochallenge" />
         </Col>
       </Row>
     </div>

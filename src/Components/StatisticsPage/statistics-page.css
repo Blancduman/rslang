@@ -15,7 +15,8 @@
     margin-right: 60px;
 }
 
-h3, h4 {
+.statistics-page__container .ant-row .ant-col h3, 
+.statistics-page__container .ant-row .ant-col h4 {
     text-align: center;
     padding-left: 50px;
 }
