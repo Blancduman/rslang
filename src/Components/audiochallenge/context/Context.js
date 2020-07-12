@@ -133,7 +133,7 @@ const Context = (props) => {
   };
 
   const nextWord = (event) => {
-    if (count > 2) {
+    if (count > 18) {
       ModalResult(level, listUsedWord, nextLevel);
     } else {
       setCount(count + 1);
