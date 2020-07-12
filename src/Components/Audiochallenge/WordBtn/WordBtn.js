@@ -8,14 +8,15 @@ const WordBtn = (props) => {
   const { words, isChosed, verificationWord } = props;
 
   const hundlerKeypress = (e) => {
-    for (let i = 1; i < 6; i += i) {
-      if (e.key === `${i}`) verificationWord(e, document.querySelector(`.btn${i}`).value);
+    if (!isChosed.isChosed) {
+      for (let i = 1; i < 6; i += 1) {
+        if (e.key === `${i}`) verificationWord(e, document.querySelector(`.btn${i}`).value);
+      }
     }
   };
 
   useEffect(() => {
     window.addEventListener('keyup', hundlerKeypress);
-
     return () => window.removeEventListener('keyup', hundlerKeypress);
   }, [isChosed]);
 
