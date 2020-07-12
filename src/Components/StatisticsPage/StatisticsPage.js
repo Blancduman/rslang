@@ -10,6 +10,8 @@ export default function StatisticsPage() {
   const [savannahData, setSavannahData] = useState([]);
   const [savannahGames, setSavannahGames] = useState(0);
   const [sprintData, setSprintData] = useState([]);
+  const [speakitData, setSpeakitData] = useState([]);
+  const [speakitGames, setSpeakitGames] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -30,6 +32,16 @@ export default function StatisticsPage() {
         setSprintData(sprintStatistic);
       } catch (e) {
         setSprintData([]);
+      }
+      try {
+        const dataSpeakit = await getStatisticsRequest();
+        const statistic = JSON.parse(dataSpeakit.speakit.dates);
+        const { gamesCount } = dataSpeakit.speakit;
+        delete statistic.id;
+        setSpeakitGames(gamesCount);
+        setSpeakitData(statistic);
+      } catch (e) {
+        setSpeakitData([]);
       }
     })();
   }, []);
@@ -68,6 +80,13 @@ export default function StatisticsPage() {
         <Col className="gutter-row">
           <h3>Спринт</h3>
           <StatisticChart data={sprintData} game="sprint" />
+        </Col>
+        <Col className="gutter-row">
+          <h3>Скажи это</h3>
+          <h4>
+            {`Игр сыграно: ${speakitGames}`}
+          </h4>
+          <StatisticChart data={speakitData} game="speakit" />
         </Col>
       </Row>
     </div>

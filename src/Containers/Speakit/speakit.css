@@ -3,7 +3,8 @@
   font-size: 15px;
   letter-spacing: .03em;
   font-weight: 400;
-  background-color: #fff;
+  background-color: transparent;
+  height: 100%;
 }
 
 .speakit__cards {
@@ -89,6 +90,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  height: 100%;
 }
 
 .speakit__title {
@@ -118,6 +121,8 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 200px 200px;
+  background-color: transparent;
+  height: 100%;
 }
 
 .speakit__list-inner {

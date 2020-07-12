@@ -23,6 +23,7 @@ const Start = ({
   showCorrectAnswer,
   addCorrectAnswer,
   addErrorAnswer,
+  setTimer,
 }) => {
   const restart = () => {
     offActive(false);
@@ -31,6 +32,7 @@ const Start = ({
     });
     addCorrectAnswer((prev) => new Set(prev.clear()));
     stopListening();
+    setTimer(0);
   };
 
   const speakOn = () => {
@@ -115,6 +117,7 @@ Start.propTypes = {
   showCorrectAnswer: PropTypes.objectOf(PropTypes.any).isRequired,
   addCorrectAnswer: PropTypes.func.isRequired,
   addErrorAnswer: PropTypes.func.isRequired,
+  setTimer: PropTypes.func.isRequired,
 };
 
 export default SpeechRecognition(options)(Start);

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { List, Divider, Card } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 import speechRecognition from '../../../utls/Speakit/Sound/Sound';
+import { updateStatistics } from '../../../Services/statistics';
+import { gameDate } from '../../../utls';
 
 const { Meta } = Card;
 
@@ -10,7 +12,26 @@ const Result = (props) => {
   const {
     showCorrectAnswer,
     showErrorAnswer,
+    timer,
   } = props;
+
+  useEffect(() => {
+    function speakit({ gamesCount = 0, dates = '[]' }) {
+      const datesArr = JSON.parse(dates);
+      datesArr.push({
+        date: gameDate(),
+        'Время ответа в секундах': timer,
+      });
+      if (datesArr.length > 10) datesArr.shift();
+      return {
+        gamesCount: gamesCount + 1,
+        dates: JSON.stringify(datesArr),
+      };
+    }
+    if (showCorrectAnswer.size === 10) {
+      updateStatistics('speakit', speakit);
+    }
+  }, [showCorrectAnswer]);
 
   return (
     <div>
@@ -59,6 +80,7 @@ const Result = (props) => {
 Result.propTypes = {
   showCorrectAnswer: PropTypes.instanceOf(Set).isRequired,
   showErrorAnswer: PropTypes.instanceOf(Set).isRequired,
+  timer: PropTypes.number.isRequired,
 };
 
 export default Result;
