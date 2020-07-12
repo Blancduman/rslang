@@ -57,7 +57,11 @@ const SideBar = ({ collapsed, setCollapsed }) => {
               Скажи это
             </NavLink>
           </Menu.Item>
-
+          <Menu.Item key="/audiochallenge">
+            <NavLink to="/audiochallenge" target="_blank" rel="noreferrer noopener">
+              Аудиовызов
+            </NavLink>
+          </Menu.Item>
           <Menu.Item key="/savannah">
             <NavLink to="/savannah" target="_blank" rel="noreferrer noopener">
               Саванна

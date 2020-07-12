@@ -6,6 +6,7 @@ import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
+import Audiochallenge from './Components/audiochallenge/Audiochallenge';
 import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
@@ -58,6 +59,9 @@ const App = () => {
             <Route path="/english_puzzle">
               <EnglishPuzzle />
             </Route>
+            <Router path="/audiochallenge">
+              <Audiochallenge />
+            </Router>
             <Route path="/statistics">
               <StatisticsPage />
             </Route>
