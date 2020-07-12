@@ -3,7 +3,7 @@ import {
   Tooltip, Switch, Button, Typography,
   Form,
 } from 'antd';
-import Context from './context/Context';
+import Context from './Context/Context';
 import LevelDropdown from '../LevelDropdown/LevelDropdown';
 import './Audiochallenge.css';
 
