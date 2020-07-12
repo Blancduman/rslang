@@ -27,7 +27,11 @@ export default function StatisticsPage() {
         const statistic = await getStatistic();
         delete statistic.id;
         const sprintStatistic = statistic.optional.sprint.results;
-        setSprintData(sprintStatistic);
+        if (sprintStatistic !== undefined) {
+          setSprintData(sprintStatistic);
+        } else {
+          setSprintData([]);
+        }
       } catch (e) {
         setSprintData([]);
       }
@@ -67,6 +71,9 @@ export default function StatisticsPage() {
         </Col>
         <Col className="gutter-row">
           <h3>Спринт</h3>
+            <h4>
+                {`Игр сыграно: ${data.length}`}
+            </h4>
           <StatisticChart data={sprintData} game="sprint" />
         </Col>
       </Row>
