@@ -6,15 +6,13 @@ import CorrectLetter from './CorrectLetter';
 const AnswerCorrectWord = (props) => {
   const { letters, correctLetterIndexes } = props;
 
-  const renderCorrectLetters = () => {
-    return letters.map((letter, i) => (
-      <CorrectLetter
-        letter={letter}
-        hide={!correctLetterIndexes.includes(i)}
-        key={letter}
-      />
-    ));
-  };
+  const renderCorrectLetters = () => letters.map((letter, i) => (
+    <CorrectLetter
+      letter={letter}
+      hide={!correctLetterIndexes.includes(i)}
+      key={`${letter}_${i}`}
+    />
+  ));
 
   return (
     <Typography.Text className="learning-words__card_correct-letters">

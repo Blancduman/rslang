@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import LearningCard from './LearningCard';
-import './learning-words.css';
 import WordRating from './WordRating';
+import './learning-words.css';
 
 const LearningWords = (props) => {
   const { words, options } = props;
@@ -72,6 +72,8 @@ const LearningWords = (props) => {
           userAnsweredCorrect={correctAnswer}
           userAnsweredIncorrect={incorrectAnswer}
           isFinished={showWordIndex < maxShowWordIndex}
+          displayDeleteWord={options.deleteWord}
+          displayDifficultWord={options.difficult}
         />
         <RightOutlined className={showWordIndex === maxShowWordIndex ? 'hidden' : ''} onClick={goNextWord} />
       </div>

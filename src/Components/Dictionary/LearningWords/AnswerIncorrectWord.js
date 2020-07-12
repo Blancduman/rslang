@@ -6,15 +6,13 @@ import IncorrectLetter from './IncorrectLetter';
 const AnswerIncorrectWord = (props) => {
   const { letters, incorrectLetterIndexes } = props;
 
-  const renderIncorrectLetters = () => {
-    return letters.map((letter, i) => (
-      <IncorrectLetter
-        letter={letter}
-        hide={!incorrectLetterIndexes.includes(i)}
-        key={letter}
-      />
-    ));
-  };
+  const renderIncorrectLetters = () => letters.map((letter, i) => (
+    <IncorrectLetter
+      letter={letter}
+      hide={!incorrectLetterIndexes.includes(i)}
+      key={`${letter}_${i}`}
+    />
+  ));
 
   return (
     <Typography.Text className="learning-words__card_incorrect-letters">

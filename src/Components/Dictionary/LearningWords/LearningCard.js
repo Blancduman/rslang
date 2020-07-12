@@ -36,6 +36,8 @@ const LearningCard = (props) => {
     userAnsweredCorrect,
     userAnsweredIncorrect,
     isFinished,
+    displayDeleteWord,
+    displayDifficultWord,
   } = props;
 
   const makeANoise = (text) => {
@@ -78,13 +80,15 @@ const LearningCard = (props) => {
       className="learning-words__card"
       title={(
         <Button>
-          <Progress percent={50} steps={5} strokeColor="#52c41a" />
+          <Progress percent={100} steps={5} strokeColor="#52c41a" showInfo={false} />
         </Button>
       )}
       extra={(
         <CardMenu
           addToComplicate={() => {}}
           addToDeleted={() => {}}
+          deleteWord={displayDeleteWord}
+          difficultWord={displayDifficultWord}
         />
       )}
       actions={[
@@ -107,6 +111,8 @@ LearningCard.propTypes = {
   userAnsweredCorrect: PropTypes.func.isRequired,
   userAnsweredIncorrect: PropTypes.func.isRequired,
   isFinished: PropTypes.bool.isRequired,
+  displayDeleteWord: PropTypes.bool.isRequired,
+  displayDifficultWord: PropTypes.bool.isRequired,
 };
 
 export default LearningCard;
