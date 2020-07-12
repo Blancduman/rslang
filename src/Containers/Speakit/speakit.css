@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  height: 200px;
+  /* height: 200px; */
 }
 
 .speakit__cards_card { 
@@ -40,21 +40,23 @@
 .speakit__control_recognition {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .speakit__control_button {
-  width: 200px;
-  height: 50px;
-  font-size: 20px;
+  /* width: 200px; */
+  height: 40px;
+  flex-grow: 1;
+  margin: 10px 20px;
+  font-size: 16px;
 }
-
+/* 
 .speakit__speak {
   width: 300px; 
-}
+} */
 
 .speakit__cards_true {
   pointer-events: none;
@@ -65,9 +67,9 @@
   background-color: rgba(167, 190, 189, 0.747);
 }
 
-.speakit__speak {
+/* .speakit__speak {
   margin-right: 30px;
-}
+} */
 
 .speakit__statistiks_list {
   display: flex;
@@ -127,4 +129,56 @@
 
 .speakit__list-inner {
   display: inline;
+}
+
+@media (max-width: 1200px) and (min-width: 720px) {
+  .speakit__control_recognition {
+    flex-wrap: wrap;
+  }
+
+  .speakit__cards_card { 
+    width: 45%;
+  }
+
+  .speakit__image_translate {
+    font-size: 14px;
+  }
+
+  .speakit__cards_card .ant-card-body {
+    padding: 12px;
+  }
+
+  .speakit__image_word {
+    width: 300px
+  }
+
+  .speakit__image {
+    height: auto;
+  }
+}
+
+@media (max-width: 719px) and (min-width: 320px) {
+  .speakit__control_recognition {
+    flex-wrap: wrap;
+  }
+
+  .speakit__cards_card { 
+    width: 45%;
+  }
+
+  .speakit__image_translate {
+    font-size: 14px;
+  }
+
+  .speakit__cards_card .ant-card-body {
+    padding: 12px;
+  }
+
+  .speakit__image_word {
+    width: 300px
+  }
+
+  .speakit__image {
+    height: auto;
+  }
 }
