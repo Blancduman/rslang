@@ -3,7 +3,7 @@ import {
   Button, Space, Spin, Typography,
 } from 'antd';
 import PropTypes from 'prop-types';
-import Card from '../Card/Card';
+import Card from '../card/Card';
 import WordBtn from '../WordBtn/WordBtn';
 import Progress from '../Progress/Progress';
 import ModalResult from '../ModalResult/ModalResult';
