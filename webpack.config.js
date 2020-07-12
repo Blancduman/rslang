@@ -27,6 +27,10 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /_redirects/i,
+        use: ['file-loader']
+      }
     ],
   },
   devServer: {
