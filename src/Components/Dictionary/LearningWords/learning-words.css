@@ -1,0 +1,118 @@
+.learning-words {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.learning-words__card {
+    width: 550px;
+}
+
+.learning-words__card_translate-word {
+    padding: 24px;
+    width: 550px;
+    margin: 0 auto;
+}
+
+.learning-words__word-rating {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.learning-words__card_word {
+    cursor: pointer;
+    transition: 0.125s;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.learning-words__card_word:hover {
+    color: cyan;
+}
+
+.learning-words__card_word:after {
+    content: " ";
+    padding: 0.3rem 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.learning-words__card_context {
+    color: #338c99;
+    display: inline;
+    align-items: center;
+    position: relative;
+}
+
+.learning-words__card_input-container {
+    display: inline-block;
+    position: relative;
+    padding: 0 .3rem;
+}
+
+.learning-words__card_correct-letters {
+    margin: 0;
+    border-radius: 0;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+.learning-words__card_correct-letters span {
+    color: green;
+}
+
+.learning-words__card_incorrect-letters {
+    transition: opacity 1s;
+    transition-delay: 1s;
+    opacity: .5;
+    padding: 0 .3rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    user-select: none;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.learning-words__card_incorrect-letters span {
+    color: red;
+}
+
+.learning-words__card_answer-input {
+    position: absolute;
+    background: #e0ebef;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 .3em;
+    border: 0;
+    outline: none;
+    z-index: 0;
+}
+
+.display-none {
+    display: none;
+}
+
+button.cyan-background {
+    background-color: cyan;
+}
+
+button.red-background {
+    background-color: red;
+}
+
+button.orange-background {
+    background-color: orange;
+}
+
+button.green-background {
+    background-color: green;
+}

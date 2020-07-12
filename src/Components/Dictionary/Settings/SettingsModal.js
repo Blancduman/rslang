@@ -20,8 +20,8 @@ const SettingsModal = (props) => {
   const cancelModal = () => {
     setTimeout(() => {
       form.resetFields();
-      setSettings(options);
-      form.setFieldsValue(options);
+      // setSettings(options);
+      // form.setFieldsValue(options);
     }, 1000);
     onCancel();
   };

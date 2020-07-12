@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs } from 'antd';
 import Loading from '../../Components/Loading';
+import LearningWords from '../../Components/Dictionary/LearningWords';
+import ProgressLine from '../../Components/Dictionary/ProgressLine';
 import { SettingsModal, SettingsButton } from '../../Components/Dictionary/Settings';
 import { getUserSettings, putUserSettings } from '../../Services/UserSettings';
+import { getWords } from '../../Services/getWords';
+import './dictionary.css';
 
 const { TabPane } = Tabs;
 
@@ -10,12 +14,10 @@ const Dictionary = () => {
   const [loading, setLoading] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(null);
   const [options, setOptions] = useState({});
-
-  useEffect(() => {
-    setAuth(JSON.parse(localStorage.getItem('user')));
-  }, []);
+  const [learningWords, setLearningWords] = useState([]);
+  const [indexWord, setIndexWord] = useState(0);
 
   const setUserSettings = (userOptions) => {
     let cardSettings = {
@@ -41,13 +43,25 @@ const Dictionary = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(auth).length !== 0) {
+    setAuth(JSON.parse(localStorage.getItem('user')));
+  }, []);
+
+  useEffect(() => {
+    if (auth) {
       (async (user) => {
         const userOptions = await getUserSettings(user.userId, user.token);
         setUserSettings(userOptions);
         setLoading(false);
       })(auth);
     }
+  }, [auth]);
+
+  useEffect(() => {
+    async function gettingWords() {
+      const words = await getWords(0, 0);
+      setLearningWords(words);
+    }
+    if (auth) gettingWords();
   }, [auth]);
 
   const openSettings = () => {
@@ -76,21 +90,29 @@ const Dictionary = () => {
   };
 
   if (loading) {
-    return <Loading />;
+    return (
+      <div className="dictionary">
+        <Loading />
+      </div>
+    );
   }
 
   return (
-    <>
+    <div className="dictionary">
       <Tabs
         defaultActiveKey="1"
-        type="card"
         size="large"
         tabBarExtraContent={
           <SettingsButton open={openSettings} />
         }
       >
         <TabPane tab="Новый" key="1">
-          <h1>Табчик с новыми словами</h1>
+          <LearningWords
+            words={learningWords}
+            index={indexWord}
+            setIndex={setIndexWord}
+            options={options}
+          />
         </TabPane>
         <TabPane tab="Сложные" key="2">
           <h1>Табчик с сложными словами</h1>
@@ -99,6 +121,7 @@ const Dictionary = () => {
           <h1>Табчик с удалёнными словами</h1>
         </TabPane>
       </Tabs>
+      <ProgressLine done={indexWord} total={25} />
       <SettingsModal
         visible={showSettings}
         onOk={onSettingsOk}
@@ -106,7 +129,7 @@ const Dictionary = () => {
         options={options}
         loading={confirmLoading}
       />
-    </>
+    </div>
   );
 };
 
