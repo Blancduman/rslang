@@ -20,6 +20,7 @@ const Context = (props) => {
     isChosed: false,
     isRight: false,
     word: '',
+    wrongWord: '',
   });
   const [listWords, setWords] = useState([]);
   const [outputWord, setOutputWord] = useState([]);
@@ -45,7 +46,9 @@ const Context = (props) => {
         .then((res) => res)
         .catch((error) => error);
 
-      setIsChosed({ isChosed: false, isRight: false, word: '' });
+      setIsChosed({
+        isChosed: false, isRight: false, word: '', wrongWord: '',
+      });
       shuffle(result);
       setWords(result);
       setCurrentWord(result[count]);
@@ -65,7 +68,9 @@ const Context = (props) => {
   }, [currentWord]);
 
   const statistic = (result, wrongWord = '') => {
-    setIsChosed({ isChosed: true, isRight: result, word: currentWord.word });
+    setIsChosed({
+      isChosed: true, isRight: result, word: currentWord.word, wrongWord,
+    });
 
     setListUsedWord(
       listUsedWord.concat({
@@ -77,8 +82,11 @@ const Context = (props) => {
     );
   };
 
-  const verificationWord = (event) => {
-    const valClickWord = event.currentTarget.value;
+  const verificationWord = (event, value = false) => {
+    let valClickWord = '';
+    if (!value) valClickWord = event.currentTarget.value;
+    else valClickWord = value;
+
     if (currentWord.word === valClickWord) {
       statistic(true);
       playAudio(soundRight);
@@ -107,7 +115,9 @@ const Context = (props) => {
       ModalResult(level, listUsedWord, nextLevel);
     } else {
       setCount(count + 1);
-      setIsChosed({ isChosed: false, isRight: false, word: '' });
+      setIsChosed({
+        isChosed: false, isRight: false, word: '', wrongWord: '',
+      });
       setCurrentWord(listWords[count + 1]);
     }
 

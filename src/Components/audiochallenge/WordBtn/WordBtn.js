@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Button } from 'antd';
 import PropTypes from 'prop-types';
 import './WordBtn.css';
 
 const WordBtn = (props) => {
   const { Text } = Typography;
-
   const { words, isChosed, verificationWord } = props;
+
+  const hundlerKeypress = (e) => {
+    for (let i = 1; i < 6; i += i) {
+      if (e.key === `${i}`) verificationWord(e, document.querySelector(`.btn${i}`).value);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keyup', hundlerKeypress);
+
+    return () => window.removeEventListener('keyup', hundlerKeypress);
+  }, [isChosed]);
 
   const addWordBtn = (item, index) => {
     let classBtn = '';
@@ -19,10 +30,15 @@ const WordBtn = (props) => {
         disabled={isChosed.isChosed}
         id={classBtn}
         onClick={verificationWord}
+        className={`btn${index + 1}`}
         value={item.word}
         key={index}
       >
-        <Text strong>{item.wordTranslate}</Text>
+        {!isChosed.isRight && isChosed.wrongWord === item.word ? (
+          <Text delete>{`${index + 1}. ${item.wordTranslate}`}</Text>
+        ) : (
+          <Text strong>{`${index + 1}. ${item.wordTranslate}`}</Text>
+        )}
       </Button>
     );
   };
@@ -39,6 +55,7 @@ WordBtn.propTypes = {
     isChosed: PropTypes.bool.isRequired,
     isRight: PropTypes.bool.isRequired,
     word: PropTypes.string.isRequired,
+    wrongWord: PropTypes.string.isRequired,
   }).isRequired,
   verificationWord: PropTypes.func.isRequired,
   words: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -38,7 +38,7 @@ const Audiochallenge = () => {
             />
           </Tooltip>
         </div>
-       
+
       </header>
 
       <main className="audiochallenge__main">
