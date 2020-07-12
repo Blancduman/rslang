@@ -38,17 +38,7 @@ const Audiochallenge = () => {
             />
           </Tooltip>
         </div>
-        {/* <div className="audiochallenge__close_btn">
-          <Tooltip
-            placement="bottom"
-            title="Click to main page"
-            color="magenta"
-          >
-            <Link to="/" >
-              <Button type="primary" icon={<CloseOutlined />} />
-            </Link>
-          </Tooltip>
-        </div> */}
+       
       </header>
 
       <main className="audiochallenge__main">

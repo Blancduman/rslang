@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Space } from 'antd';
+import statistics from '../Statistics/Statistics';
 import './ModalResult.css';
 
 const ModalResult = (level, listUsedWord, nextLevel) => {
@@ -54,6 +55,7 @@ const ModalResult = (level, listUsedWord, nextLevel) => {
           </div>
         ),
         onOk() {
+          statistics(listUsedWord, level);
           nextLevel();
         },
       })}
