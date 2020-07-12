@@ -6,7 +6,7 @@ import MenuBar from './Components/MenuBar';
 import HeaderBar from './Components/Header';
 import GameSprintPage from './Components/GameSprintPage/GameSprintPage';
 import Speakit from './Containers/Speakit';
-import Audiochallenge from './Components/audiochallenge/Audiochallenge';
+import Audiochallenge from './Components/Audiochallenge/Audiochallenge';
 import SavannahStartPage from './Components/Savannah/Screens/SavannahStartPage';
 import Dictionary from './Containers/Dictionary';
 import EnglishPuzzle from './Containers/EnglishPuzzle';
