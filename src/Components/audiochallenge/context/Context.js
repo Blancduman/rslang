@@ -11,6 +11,7 @@ import shuffle from '../../../utls/Audichallenge/shuffle';
 import soundRight from '../../../assets/sound/right_answer.mp3';
 import soundWrong from '../../../assets/sound/wrong-answer.mp3';
 import playAudio from '../../../utls/Audichallenge/playAudio';
+import { getRandomInt } from '../../../utls/index';
 import './Context.css';
 
 const Context = (props) => {
@@ -34,6 +35,11 @@ const Context = (props) => {
   });
   const [listUsedWord, setListUsedWord] = useState([]);
   const [statisticWords, setStatisticWords] = useState([]);
+  const [backgr, setBackgr] = useState({
+    hue: 147,
+    saturation: 50,
+    lightening: 47,
+  });
   const { Text } = Typography;
 
   useEffect(() => {
@@ -47,14 +53,26 @@ const Context = (props) => {
         .catch((error) => error);
 
       setIsChosed({
-        isChosed: false, isRight: false, word: '', wrongWord: '',
+        isChosed: false,
+        isRight: false,
+        word: '',
+        wrongWord: '',
       });
       shuffle(result);
       setWords(result);
       setCurrentWord(result[count]);
       setLoading(false);
+      document.querySelector(
+        '.audiochallenge__wrapper',
+      ).style.backgroundColor = `hsl(${backgr.hue}, ${backgr.saturation}%, ${backgr.lightening}%)`;
     };
     fetchData();
+
+    setBackgr({
+      hue: getRandomInt(360),
+      saturation: getRandomInt(100),
+      lightening: getRandomInt(100),
+    });
   }, [level]);
 
   useEffect(() => {
@@ -69,7 +87,10 @@ const Context = (props) => {
 
   const statistic = (result, wrongWord = '') => {
     setIsChosed({
-      isChosed: true, isRight: result, word: currentWord.word, wrongWord,
+      isChosed: true,
+      isRight: result,
+      word: currentWord.word,
+      wrongWord,
     });
 
     setListUsedWord(
@@ -84,6 +105,7 @@ const Context = (props) => {
 
   const verificationWord = (event, value = false) => {
     let valClickWord = '';
+
     if (!value) valClickWord = event.currentTarget.value;
     else valClickWord = value;
 
@@ -116,7 +138,10 @@ const Context = (props) => {
     } else {
       setCount(count + 1);
       setIsChosed({
-        isChosed: false, isRight: false, word: '', wrongWord: '',
+        isChosed: false,
+        isRight: false,
+        word: '',
+        wrongWord: '',
       });
       setCurrentWord(listWords[count + 1]);
     }
