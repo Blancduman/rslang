@@ -1,35 +1,42 @@
-.promo_wrapper {
+.ant-layout.promo_wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    padding-right: 24px;
-    margin-top: 5px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    background: transparent;
 }
 
 .promo_description {
-    margin: 15px 0 15px 0;
-    padding: 10px;
-    width: 100%;
-    height: 320px;
+    margin: 0 0 15px 0;
+    padding: 0 10px 10px 10px;
+    width: 40%;
+    min-height: 120px;
     border-radius: 20px;
-    background-color: #3B4451;
-    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
-    color: #a8a7a7;
+    background-color: transparent;
+    color: black;
 }
 
 .promo_description h1 {
     font-size: 1.6rem;
-    color: #a8a7a7;
+    color: black;
 }
 
 .promo__video {
     margin: 10px 0 10px 0;
-    width: 60%;
-    height: 60vh;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: #3B4451;
-    box-shadow: 4px 4px 14px #000000, -4px -4px 14px #3B4451;
+    width: 50%;
+    height: 25vw;
+    box-shadow: 4px 4px 10px #000000, -4px -4px 10px #3B4451;
+}
+
+@media (max-width: 1225px) {
+
+    .promo_description {
+        width: 100%;
+    }
+
+    .promo__video {
+        width: 95%;
+        height: 50vw;
+    }
 }
 

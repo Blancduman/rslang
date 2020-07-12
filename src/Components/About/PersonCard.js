@@ -27,8 +27,10 @@ function PersonCard({
         <div className="about_card_block-name">
           <div className="about_card_name">
             <h3>
-              {first}
+              {first }
               &nbsp;
+            </h3>
+            <h3>
               {sur}
             </h3>
           </div>
