@@ -8,6 +8,8 @@ import Puzzle from '../../Components/EnglishPuzzle/Puzzle';
 import Buttons from '../../Components/EnglishPuzzle/Buttons';
 import Options from '../../Components/EnglishPuzzle/Options';
 import Sound from '../../utls/Speakit/Sound/Sound';
+import { updateStatistics } from '../../Services/statistics';
+import { gameDate } from '../../utls';
 
 const levels = {
   0: 'Первый',
@@ -50,6 +52,24 @@ const EnglishPuzzle = () => {
       game[i + 1].items = initialWordsTest;
     }
   };
+
+    useEffect(() => {
+    function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
+      const datesArr = JSON.parse(dates);
+      datesArr.push({
+        date: gameDate(),
+        'Правильные ответы': listCorrect.size,
+      });
+      if (datesArr.length > 10) datesArr.shift();
+      return {
+        gamesCount: gamesCount + 1,
+        dates: JSON.stringify(datesArr),
+      };
+    }
+    if (count === 9) {
+      updateStatistics('englishpuzzle', englishPuzzle);
+    }
+  }, [count]);
 
   useEffect(() => {
     getWordsSpeakit(level.group, level.page).then((value) => {

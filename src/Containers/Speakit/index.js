@@ -26,6 +26,13 @@ const Speakit = () => {
   const [correctAnswer, setCorrectAnswer] = useState(new Set());
   const [errorAnswer, setErrorAnswer] = useState(new Set());
   const [selectGroup, setSelectGroup] = useState(0);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (inactive && correctAnswer.size < 10) {
+      setTimeout(() => setTimer(timer + 1), 1000);
+    }
+  }, [timer, inactive]);
 
   const createList = () => {
     result.forEach((value) => {
@@ -64,6 +71,7 @@ const Speakit = () => {
                   setStage('game');
                   setErrorAnswer((prev) => new Set(prev.clear()));
                   createList();
+                  setTimer(0);
                 }}
               >
                 Старт
@@ -119,6 +127,8 @@ const Speakit = () => {
               addErrorAnswer={setErrorAnswer}
               numberGroup={selectGroup}
               main={setStage}
+              timer={timer}
+              setTimer={setTimer}
             />
           </main>
         );

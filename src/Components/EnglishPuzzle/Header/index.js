@@ -8,6 +8,7 @@ const Header = ({ switchLevel, returnGroup }) => (
       <Select
         defaultValue="Первый"
         className="english-puzzle__level-dropdown"
+        style={{ width: 100 }}
         onChange={(value) => {
           const level = value.split(',');
           switchLevel({ group: parseInt(level[0], 10), page: parseInt(level[1], 10) });
