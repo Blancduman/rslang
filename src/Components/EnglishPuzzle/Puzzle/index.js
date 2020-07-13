@@ -6,12 +6,15 @@ import Sentences from '../Sentences';
 const Puzzle = ({
   data,
   numberSentence,
-  words,
   switchNoAnswer,
   switchCheck,
   compareWords,
   rows,
   setRows,
+  trueAnswer,
+  checkBtns,
+  sentence,
+  right,
 }) => {
   const onDragEnd = (result, value, setValue) => {
     if (!result.destination) return;
@@ -55,7 +58,7 @@ const Puzzle = ({
   };
 
   useEffect(() => {
-    if (rows[11].items.length === 0) {
+    if (rows[11].items.length === 0 && checkBtns !== 'noAnswer') {
       switchNoAnswer(false);
       switchCheck(true);
       const answer = [];
@@ -77,8 +80,13 @@ const Puzzle = ({
           <Sentences
             columnId={columnId}
             column={column}
-            words={words}
+            trueAnswer={trueAnswer}
             key={columnId}
+            rows={rows}
+            numberSentence={numberSentence}
+            setRows={setRows}
+            sentence={sentence}
+            right={right}
           />
         ))}
       </DragDropContext>
@@ -89,12 +97,15 @@ const Puzzle = ({
 Puzzle.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   numberSentence: PropTypes.number.isRequired,
-  words: PropTypes.arrayOf(PropTypes.string).isRequired,
   switchNoAnswer: PropTypes.func.isRequired,
   switchCheck: PropTypes.func.isRequired,
   compareWords: PropTypes.func.isRequired,
   rows: PropTypes.objectOf(PropTypes.any).isRequired,
   setRows: PropTypes.func.isRequired,
+  trueAnswer: PropTypes.arrayOf(PropTypes.string).isRequired,
+  checkBtns: PropTypes.string.isRequired,
+  sentence: PropTypes.string.isRequired,
+  right: PropTypes.bool.isRequired,
 };
 
 export default Puzzle;

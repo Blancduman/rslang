@@ -7,14 +7,14 @@ import {
 export default function StatisticChart({ data, game }) {
   function lineType(gametype) {
     switch (gametype) {
-      case 'savannah': {
-        return <Line type="monotone" dataKey="Правильные ответы" stroke="#8884d8" />;
-      }
       case 'speakit': {
         return <Line type="monotone" dataKey="Время ответа в секундах" stroke="#8884d8" />;
       }
-      default: {
+      case 'sprint': {
         return <Line type="monotone" dataKey="score" stroke="#8884d8" />;
+      }
+      default: {
+        return <Line type="monotone" dataKey="Правильные ответы" stroke="#8884d8" />;
       }
     }
   }

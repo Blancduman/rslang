@@ -28,7 +28,7 @@ const Result = (props) => {
         dates: JSON.stringify(datesArr),
       };
     }
-    if (showCorrectAnswer.size === 10) {
+    if (showCorrectAnswer.size + showErrorAnswer.size === 10) {
       updateStatistics('speakit', speakit);
     }
   }, [showCorrectAnswer]);
