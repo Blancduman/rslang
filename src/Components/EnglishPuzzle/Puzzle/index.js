@@ -60,7 +60,9 @@ const Puzzle = ({
   useEffect(() => {
     if (rows[11].items.length === 0 && checkBtns !== 'noAnswer') {
       switchNoAnswer(true);
-      switchCheck(true);
+      if (rows[numberSentence + 1].items.length > 0) {
+        switchCheck(true);
+      }
       const answer = [];
       const obj = rows[numberSentence + 1].items;
       const correct = data[numberSentence].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');

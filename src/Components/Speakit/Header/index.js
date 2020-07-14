@@ -10,7 +10,7 @@ const Header = ({
     <Form.Item label="Уровень сложности">
       <Select
         defaultValue="Первый"
-        className="level-dropdown"
+        className="speakit__start-screen_level-dropdown"
         style={{ width: 100 }}
         onChange={(value) => {
           const level = value.split(',');

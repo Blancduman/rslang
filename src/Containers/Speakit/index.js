@@ -60,7 +60,7 @@ const Speakit = () => {
       case 'starting': {
         return (
           <Layout className="speakit__start-screen">
-            <h1 className="speakit__title">Мини-игра &quot;Говорить на нем&quot;</h1>
+            <h1 className="speakit__title">Мини-игра &quot;Скажи это&quot;</h1>
             <div className="speakit__start-screen_content">
               <Header
                 className="speakit__start-screen_level"

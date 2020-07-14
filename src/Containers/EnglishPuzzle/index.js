@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Layout } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
@@ -42,23 +42,36 @@ const EnglishPuzzle = () => {
   const [translate, setTranslate] = useState('');
   const [right, setRight] = useState(false);
 
-    useEffect(() => {
-    function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
-      const datesArr = JSON.parse(dates);
-      datesArr.push({
-        date: gameDate(),
-        'Правильные ответы': listCorrect.size,
-      });
-      if (datesArr.length > 10) datesArr.shift();
-      return {
-        gamesCount: gamesCount + 1,
-        dates: JSON.stringify(datesArr),
-      };
-    }
-    if (count === 9) {
-      updateStatistics('englishpuzzle', englishPuzzle);
-    }
-  }, [count, listCorrect]);
+  const englishPuzzleStatistic = useCallback(({ gamesCount = 0, dates = '[]' }) => {
+    const datesArr = JSON.parse(dates);
+    datesArr.push({
+      date: gameDate(),
+      'Правильные ответы': listCorrect.size,
+    });
+    if (datesArr.length > 10) datesArr.shift();
+    return {
+      gamesCount: gamesCount + 1,
+      dates: JSON.stringify(datesArr),
+    };
+  }, [listCorrect])
+
+  useEffect(() => {
+  // function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
+  //   const datesArr = JSON.parse(dates);
+  //   datesArr.push({
+  //     date: gameDate(),
+  //     'Правильные ответы': listCorrect.size,
+  //   });
+  //   if (datesArr.length > 10) datesArr.shift();
+  //   return {
+  //     gamesCount: gamesCount + 1,
+  //     dates: JSON.stringify(datesArr),
+  //   };
+  // }
+  if (count === 9) {
+    updateStatistics('englishpuzzle', englishPuzzleStatistic);
+  }
+  }, [count, englishPuzzleStatistic]);
 
   useEffect(() => {
     getWordsSpeakit(level.group, level.page).then((value) => {

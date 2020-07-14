@@ -7,7 +7,7 @@ const Header = ({ switchLevel, returnGroup }) => (
     <Form.Item label="Уровень сложности">
       <Select
         defaultValue="Первый"
-        className="english-puzzle__level-dropdown"
+        className="english-puzzle__start-screen_level-dropdown"
         style={{ width: 100 }}
         onChange={(value) => {
           const level = value.split(',');

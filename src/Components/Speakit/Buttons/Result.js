@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { List, Divider, Card } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
@@ -15,9 +15,8 @@ const Result = (props) => {
     timer,
   } = props;
 
-  useEffect(() => {
-    function speakit({ gamesCount = 0, dates = '[]' }) {
-      const datesArr = JSON.parse(dates);
+  const speakitStatistic = useCallback(({ gamesCount = 0, dates = '[]' }) => {
+    const datesArr = JSON.parse(dates);
       datesArr.push({
         date: gameDate(),
         'Время ответа в секундах': timer,
@@ -27,11 +26,13 @@ const Result = (props) => {
         gamesCount: gamesCount + 1,
         dates: JSON.stringify(datesArr),
       };
+  }, [timer]);
+
+  useEffect(() => {
+    if (showCorrectAnswer.size === 10 && timer > 0) {
+      updateStatistics('speakit', speakitStatistic);
     }
-    if (showCorrectAnswer.size === 10) {
-      updateStatistics('speakit', speakit);
-    }
-  }, [showCorrectAnswer, timer]);
+  }, [showCorrectAnswer, timer, speakitStatistic]);
 
 
   return (

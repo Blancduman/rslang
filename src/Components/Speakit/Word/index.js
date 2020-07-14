@@ -21,11 +21,6 @@ const Word = ({
   removeErrorAnswer,
 }) => {
   const [right, setRight] = useState('');
-  // const voice = (text) => {
-    // changeLetter(wordTranslate);
-    // changePicture(image);
-    // speechRecognition(text);
-  // };
 
   useEffect(() => {
     if (checkPronunciations.toLowerCase() === word.toLowerCase()) {
@@ -48,7 +43,6 @@ const Word = ({
   }, [cardOff]);
 
   const handleMouseShowCard = () => {
-    // voice(word);
     changeLetter(wordTranslate);
     changePicture(image);
     speechRecognition(word);
@@ -56,7 +50,6 @@ const Word = ({
 
   const handleKeyShowCard = (event) => {
     if (event.key === 'Enter') {
-      // voice(word);
       changeLetter(wordTranslate);
       changePicture(image);
       speechRecognition(word);
