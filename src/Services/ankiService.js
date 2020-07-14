@@ -1,6 +1,4 @@
-import * as moment from "moment";
-
-export const handleAnswer = async (wordId, isCorrect, difficulty = undefined) => {
+export const handleAnswer = async (wordId, isCorrect, difficulty) => {
     const word = await getUserWordById(wordId);
     if (word) {
         await updateUserWord(difficulty, wordId, isCorrect)
@@ -9,10 +7,34 @@ export const handleAnswer = async (wordId, isCorrect, difficulty = undefined) =>
     return Promise.resolve();
 };
 
-const getAggregatedUserWordsByDifficulty = async (difficulty, isCorrect) => {
+export const getWordsToLearn = async (count = 10) => {
+    let resultWords = [];
+    const hardWords = await getAggregatedUserWordsByDifficulty("hard", false, count);
+    resultWords = resultWords.concat(hardWords);
+
+    let restCount = count - hardWords.length;
+    if (restCount > 0) {
+        const normalWords = await getAggregatedUserWordsByDifficulty("normal", false, restCount);
+        resultWords = resultWords.concat(normalWords);
+        restCount = restCount - normalWords.length;
+        if (restCount > 0) {
+            const easyWords = await getAggregatedUserWordsByDifficulty("easy", false, restCount);
+            resultWords = resultWords.concat(easyWords);
+            restCount = restCount - easyWords.length;
+            if (restCount > 0) {
+                const newWords = await getUnlearnedUserWords(restCount);
+                resultWords = resultWords.concat(newWords);
+            }
+        }
+    }
+
+    return resultWords;
+};
+
+const getAggregatedUserWordsByDifficulty = async (difficulty, isCorrect, count = 10) => {
     const user = JSON.parse(localStorage.getItem('user'));
 
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${user.userId}/aggregatedWords?filter={"$and":[{"userWord.difficulty":"hard", "userWord.optional.isCorrect":"${String(isCorrect)}"}]}`, {
+    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${user.userId}/aggregatedWords?wordsPerPage=${count}&filter={"$and":[{"userWord.difficulty":"${difficulty}", "userWord.optional.isCorrect":"${String(isCorrect)}"}]}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${user.token}`,
@@ -27,10 +49,10 @@ const getAggregatedUserWordsByDifficulty = async (difficulty, isCorrect) => {
     throw new Error('Не удалось получить слова');
 };
 
-const getUnlearnedUserWords = async (page = 0) => {
+const getUnlearnedUserWords = async (count = 10) => {
     const user = JSON.parse(localStorage.getItem('user'));
 
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${user.userId}/aggregatedWords?page=${page}&filter={"$or":[{"userWord":null}]}`, {
+    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${user.userId}/aggregatedWords?wordsPerPage=${count}&filter={"$or":[{"userWord":null}]}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${user.token}`,
@@ -85,23 +107,32 @@ const createUserWord = async (difficulty, wordId, isCorrect) => {
 };
 
 function buildUserBody(difficulty, isCorrect) {
-    let date;
+    if (isCorrect) {
+        return {
+            difficulty,
+            optional: {
+                isCorrect
+            }
+        };
+    }
+
+    let count;
 
     switch (difficulty) {
         case 'easy': {
-            date = moment().add(7, 'days').format('DD.MM.YYYY');
+            count = 1;
             break;
         }
         case 'normal': {
-            date = moment().add(1, 'days').format('DD.MM.YYYY');
+            count = 2;
             break;
         }
         case 'hard': {
-            date = moment().format('DD.MM.YYYY');
+            count = 3;
             break;
         }
         default: {
-            date = moment().format('DD.MM.YYYY');
+            count = 3;
         }
     }
 
@@ -109,7 +140,7 @@ function buildUserBody(difficulty, isCorrect) {
         difficulty,
         optional: {
             isCorrect,
-            date
+            count
         }
     };
 }
