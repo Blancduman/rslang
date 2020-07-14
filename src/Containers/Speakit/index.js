@@ -32,7 +32,7 @@ const Speakit = () => {
     if (inactive && correctAnswer.size < 10) {
       setTimeout(() => setTimer(timer + 1), 1000);
     }
-  }, [timer, inactive]);
+  }, [timer, inactive, correctAnswer]);
 
   const createList = () => {
     result.forEach((value) => {
@@ -44,7 +44,9 @@ const Speakit = () => {
     if (result.length) {
       setPicture(result[0].image);
       setLetter(result[0].wordTranslate);
-      createList();
+      result.forEach((value) => {
+        setErrorAnswer((prev) => new Set(prev.add(`${value.word} ${value.transcription} ${value.wordTranslate}`)));
+      });
       setCorrectAnswer((prev) => new Set(prev.clear()));
     }
   }, [result]);

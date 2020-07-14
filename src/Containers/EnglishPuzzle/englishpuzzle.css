@@ -132,6 +132,10 @@
   align-items: center;
 }
 
+.english-puzzle__control {
+  margin: 0px 10px;
+}
+
 .english-puzzle__options_sound {
   height: 35px;
   margin: 5px;

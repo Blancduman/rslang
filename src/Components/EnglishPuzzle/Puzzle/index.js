@@ -59,7 +59,7 @@ const Puzzle = ({
 
   useEffect(() => {
     if (rows[11].items.length === 0 && checkBtns !== 'noAnswer') {
-      switchNoAnswer(false);
+      switchNoAnswer(true);
       switchCheck(true);
       const answer = [];
       const obj = rows[numberSentence + 1].items;
@@ -67,7 +67,7 @@ const Puzzle = ({
       Object.entries(obj).map(([, text]) => answer.push(text.content));
       compareWords({ true: correct, false: answer });
     }
-  }, [rows]);
+  }, [rows, checkBtns, data, compareWords, numberSentence, switchCheck, switchNoAnswer]);
 
   return (
     <div

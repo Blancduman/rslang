@@ -42,17 +42,6 @@ const EnglishPuzzle = () => {
   const [translate, setTranslate] = useState('');
   const [right, setRight] = useState(false);
 
-  const switchData = (value) => {
-    const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
-    const game = getRows(initialWords);
-    setRows(game);
-    for (let i = 0; i < count; i += 1) {
-      const test = result[i].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');
-      const initialWordsTest = test.map((item) => ({ id: uuidv4(), content: item }));
-      game[i + 1].items = initialWordsTest;
-    }
-  };
-
     useEffect(() => {
     function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
       const datesArr = JSON.parse(dates);
@@ -69,7 +58,7 @@ const EnglishPuzzle = () => {
     if (count === 9) {
       updateStatistics('englishpuzzle', englishPuzzle);
     }
-  }, [count]);
+  }, [count, listCorrect]);
 
   useEffect(() => {
     getWordsSpeakit(level.group, level.page).then((value) => {
@@ -86,6 +75,16 @@ const EnglishPuzzle = () => {
   }, [level.group, level.page]);
 
   useEffect(() => {
+    const switchData = (value) => {
+      const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
+      const game = getRows(initialWords);
+      setRows(game);
+      for (let i = 0; i < count; i += 1) {
+        const test = result[i].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');
+        const initialWordsTest = test.map((item) => ({ id: uuidv4(), content: item }));
+        game[i + 1].items = initialWordsTest;
+      }
+    };
     if (checkBtns === 'noAnswer') {
       const items = [];
       switchData(items);
@@ -112,7 +111,7 @@ const EnglishPuzzle = () => {
       }
       switchData(items);
     }
-  }, [checkBtns]);
+  }, [checkBtns, autoPronunciation, count, result]);
 
   const showActualPage = () => {
     switch (stage) {
