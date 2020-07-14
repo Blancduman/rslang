@@ -7,5 +7,5 @@ npm-debug*
 # Untracked general purpose directories:
 dist
 node_modules
-
+build
 
