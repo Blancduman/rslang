@@ -31,7 +31,7 @@ const LearningWords = (props) => {
   };
 
   const correctAnswer = async () => {
-    await handleAnswer(words[showWordIndex]._id, !isIncorrectAnswer);
+    handleAnswer(words[showWordIndex]._id, !isIncorrectAnswer);
     if (showWordIndex === maxShowWordIndex) {
       if (maxShowWordIndex < options.maxWordsPerDay) {
         if (showWordIndex === maxShowWordIndex && maxShowWordIndex < words.length - 1) {
