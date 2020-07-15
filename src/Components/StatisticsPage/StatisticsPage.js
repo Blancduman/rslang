@@ -12,6 +12,10 @@ export default function StatisticsPage() {
   const [sprintData, setSprintData] = useState([]);
   const [audiochallengeData, setAudiochallengeData] = useState([]);
   const [audiochallengeGames, setAudiochallengeGames] = useState(0);
+  const [speakitData, setSpeakitData] = useState([]);
+  const [speakitGames, setSpeakitGames] = useState(0);
+  const [englishPuzzleData, setEnglishPuzzleData] = useState([]);
+  const [englishPuzzleGames, setEnglishPuzzleGames] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -46,6 +50,26 @@ export default function StatisticsPage() {
         setAudiochallengeData(statistic);
       } catch (e) {
         setAudiochallengeData([]);
+      }
+      try {
+        const dataSpeakit = await getStatisticsRequest();
+        const statistic = JSON.parse(dataSpeakit.speakit.dates);
+        const { gamesCount } = dataSpeakit.speakit;
+        delete statistic.id;
+        setSpeakitGames(gamesCount);
+        setSpeakitData(statistic);
+      } catch (e) {
+        setSpeakitData([]);
+      }
+      try {
+        const dataEnglishPuzzle = await getStatisticsRequest();
+        const statistic = JSON.parse(dataEnglishPuzzle.englishpuzzle.dates);
+        const { gamesCount } = dataEnglishPuzzle.englishpuzzle;
+        delete statistic.id;
+        setEnglishPuzzleGames(gamesCount);
+        setEnglishPuzzleData(statistic);
+      } catch (e) {
+        setEnglishPuzzleData([]);
       }
     })();
   }, []);
@@ -84,7 +108,7 @@ export default function StatisticsPage() {
         <Col className="gutter-row">
           <h3>Спринт</h3>
             <h4>
-                {`Игр сыграно: ${data.length}`}
+                {`Игр сыграно: ${sprintData.length}`}
             </h4>
           <StatisticChart data={sprintData} game="sprint" />
         </Col>
@@ -96,6 +120,20 @@ export default function StatisticsPage() {
             {audiochallengeGames}
           </h4>
           <StatisticChart data={audiochallengeData} game="audiochallenge" />
+        </Col>
+        <Col>
+          <h3>Скажи это</h3>
+          <h4>
+            {`Игр сыграно: ${speakitGames}`}
+          </h4>
+          <StatisticChart data={speakitData} game="speakit" />
+        </Col>
+        <Col>
+          <h3>Головоломка</h3>
+          <h4>
+            {`Игр сыграно: ${englishPuzzleGames}`}
+          </h4>
+          <StatisticChart data={englishPuzzleData} game="englishpuzzle" />
         </Col>
       </Row>
     </div>

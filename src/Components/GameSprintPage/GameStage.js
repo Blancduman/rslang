@@ -7,6 +7,8 @@ import { useKeyPress } from 'use-hooks/dist/commonjs/use-key-press';
 import { loadWords } from '../../Services/wordsService';
 import Loading from '../Loading';
 import { createUniqueKey, getWordTranslateFromArrayWithChance, reproduceAudioBySource } from '../../utls';
+import fail from '../../assets/audio/error.mp3';
+import success from '../../assets/audio/correct.mp3';
 
 const GameStage = ({
   setStage, score, setScore, level,
@@ -48,14 +50,14 @@ const GameStage = ({
     });
     setWinSequence(newWinSequence);
     setMultiplier(newMultiplier);
-    reproduceAudioBySource('../src/assets/audio/correct.mp3');
+    reproduceAudioBySource(success);
   };
 
   const handleIncorrectAnswer = () => {
     setScore((prev) => ({ ...prev, incorrect: prev.incorrect.concat(word) }));
     setWinSequence([false, false, false, false]);
     setMultiplier(10);
-    reproduceAudioBySource('../src/assets/audio/error.mp3');
+    reproduceAudioBySource(fail);
   };
 
   const handleAnswer = (code) => {

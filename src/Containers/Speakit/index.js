@@ -26,6 +26,13 @@ const Speakit = () => {
   const [correctAnswer, setCorrectAnswer] = useState(new Set());
   const [errorAnswer, setErrorAnswer] = useState(new Set());
   const [selectGroup, setSelectGroup] = useState(0);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (inactive && correctAnswer.size < 10) {
+      setTimeout(() => setTimer(timer + 1), 1000);
+    }
+  }, [timer, inactive, correctAnswer]);
 
   const createList = () => {
     result.forEach((value) => {
@@ -37,7 +44,9 @@ const Speakit = () => {
     if (result.length) {
       setPicture(result[0].image);
       setLetter(result[0].wordTranslate);
-      createList();
+      result.forEach((value) => {
+        setErrorAnswer((prev) => new Set(prev.add(`${value.word} ${value.transcription} ${value.wordTranslate}`)));
+      });
       setCorrectAnswer((prev) => new Set(prev.clear()));
     }
   }, [result]);
@@ -51,7 +60,7 @@ const Speakit = () => {
       case 'starting': {
         return (
           <Layout className="speakit__start-screen">
-            <h1 className="speakit__title">Мини-игра &quot;Говорить на нем&quot;</h1>
+            <h1 className="speakit__title">Мини-игра &quot;Скажи это&quot;</h1>
             <div className="speakit__start-screen_content">
               <Header
                 className="speakit__start-screen_level"
@@ -64,6 +73,7 @@ const Speakit = () => {
                   setStage('game');
                   setErrorAnswer((prev) => new Set(prev.clear()));
                   createList();
+                  setTimer(0);
                 }}
               >
                 Старт
@@ -119,6 +129,8 @@ const Speakit = () => {
               addErrorAnswer={setErrorAnswer}
               numberGroup={selectGroup}
               main={setStage}
+              timer={timer}
+              setTimer={setTimer}
             />
           </main>
         );

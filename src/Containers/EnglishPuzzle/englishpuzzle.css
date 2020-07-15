@@ -1,6 +1,6 @@
 .english-puzzle__wrapper {
   padding: 0px 50px;
-  width: 900px;
+  max-width: 900px;
 }
 
 .english-puzzle__header {
@@ -20,7 +20,8 @@
   background-image: url('../../assets/img/EnglishPuzzle/puzzle.svg');
   background-position: 0px 0px;
   background-repeat: no-repeat;
-  background-size: 50px;
+  background-size: 100px;
+  background-color: transparent;
 }
 
 .english-puzzle__title {
@@ -43,14 +44,14 @@
 
 .english-puzzle {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;  
 }
 
 .english-puzzle__sentences {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 30px;
@@ -70,7 +71,7 @@
 
 .english-puzzle__initial_words {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
   width: inherit;
@@ -91,7 +92,7 @@
   text-align: center;
   padding: 0px 20px;
   margin: 0px 3px;
-  max-width: 150px;
+  max-width: 160px;
   height: 25px;
   z-index: 1;
 }
@@ -131,6 +132,10 @@
   align-items: center;
 }
 
+.english-puzzle__control {
+  margin: 0px 10px;
+}
+
 .english-puzzle__options_sound {
   height: 35px;
   margin: 5px;
@@ -158,38 +163,138 @@
   background-color: red;
 }
 
-@media (max-width: 1150px) and (min-width: 960px) {
+@media (max-width: 1000px) and (min-width: 520px) {
   .english-puzzle__wrapper {
-    padding: 0px 30px;
-    width: 700px;
+    padding: 0px 10px;
   }
 
-  .english-puzzle__initial_word {
-    font-size: 12px;
-    padding: 15px;
+  .english-puzzle__start-screen {
+    background-image: none;
   }
-}
 
-@media (max-width: 969px) and (min-width: 820px) {
-  .english-puzzle__wrapper {
-    padding: 0px 5px;
-    width: 550px;
+  .english-puzzle__options {
+    min-width: 400px;
   }
 
   .english-puzzle__options_sound {
     font-size: 12px;
   }
 
-  .english-puzzle__list_title {
-    font-size: 12px;
+  .english-puzzle__translate {
+    font-size: 10px;
   }
 
-  .english-puzzle__translate {
-    font-size: 12px;
+  .english-puzzle__sentences {
+    min-width: 400px;
   }
 
   .english-puzzle__initial_word {
-    font-size: 12px;
-    padding: 10px;
+    height: 25px;
+    font-size: 10px;
+    letter-spacing: .03em;
+    padding: 0px 5px;
+    margin: 0px 2px;
+  }
+
+  .english-puzzle__initial_word:not(.english-puzzle__first-word)::after,
+  .english-puzzle__initial_word:not(.english-puzzle__last-word)::before {
+    width: 5px;
+    height: 5px;
+  }
+
+  .english-puzzle__initial_word:not(.english-puzzle__first-word)::after {
+    left: -3px
+  }
+
+  .english-puzzle__initial_word:not(.english-puzzle__last-word)::before {
+    right: -3px
+  }
+
+  .english-puzzle__list_title {
+    font-size: 10px;
+    padding: 0px;
+  }
+
+  .english-puzzle__buttons.english-puzzle__initial_word:not(.english-puzzle__last-word)::before {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 519px) and (min-width: 320px) {
+  .english-puzzle__wrapper {
+    padding: 0px 2px;
+  }
+
+  .english-puzzle__start-screen {
+    background-image: none;
+  }
+
+  .english-puzzle__title {
+    font-size: 18px;
+  }
+
+  .english-puzzle__header .ant-col.ant-form-item-label,
+  .english-puzzle__header .ant-col.ant-form-item-control {
+    text-align: center;
+  }
+
+  .english-puzzle__start-screen_content {
+    width: 220px;
+  }
+
+  .english-puzzle__options {
+    width: 260px;
+    margin-top: 10px;
+  }
+
+  .english-puzzle__options_sound {
+    font-size: 10px;
+  }
+
+  .english-puzzle__options_sound {
+    height: 25px;
+  }
+
+  .english-puzzle__translate {
+    font-size: 10px;
+  }
+
+  .english-puzzle__sentences {
+    width: 260px;
+    flex-wrap: wrap;
+    height: 25px;
+  }
+
+  .english-puzzle__initial_word {
+    height: 20px;
+    font-size: 8px;
+    letter-spacing: .03em;
+    padding: 0px 2px;
+    margin: 0px 1px;
+    font-weight: 200;
+  }
+
+  .english-puzzle__initial_word:not(.english-puzzle__first-word)::after,
+  .english-puzzle__initial_word:not(.english-puzzle__last-word)::before {
+    width: 0px;
+    height: 0px;
+  }
+
+  .english-puzzle__list_title {
+    font-size: 8px;
+    letter-spacing: -.3em;
+  }
+
+  .english-puzzle__buttons .ant-btn.ant-btn-primary.ant-btn-round {
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .english-puzzle__initial_word {
+    max-width: 80px;
+  }
+
+  .english-puzzle__buttons {
+    margin-top: 25px;
   }
 }

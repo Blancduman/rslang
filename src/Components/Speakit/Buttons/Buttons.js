@@ -19,6 +19,8 @@ const Buttons = ({
   addErrorAnswer,
   numberGroup,
   main,
+  setTimer,
+  timer,
 }) => {
   const [visual, setVisual] = useState(false);
 
@@ -44,7 +46,10 @@ const Buttons = ({
         <Button
           key="submit"
           type="primary"
-          onClick={nextGame}
+          onClick={() => {
+            nextGame();
+            setTimer(0);
+          }}
         >
           Следующий уровень
         </Button>
@@ -64,6 +69,7 @@ const Buttons = ({
         showCorrectAnswer={showCorrectAnswer}
         addCorrectAnswer={addCorrectAnswer}
         addErrorAnswer={addErrorAnswer}
+        setTimer={setTimer}
       />
       <Modal
         visible={visual}
@@ -82,6 +88,7 @@ const Buttons = ({
         <Result
           showCorrectAnswer={showCorrectAnswer}
           showErrorAnswer={showErrorAnswer}
+          timer={timer}
         />
       </Modal>
     </div>
@@ -106,6 +113,8 @@ Buttons.propTypes = {
   addCorrectAnswer: PropTypes.func.isRequired,
   addErrorAnswer: PropTypes.func.isRequired,
   main: PropTypes.func.isRequired,
+  setTimer: PropTypes.func.isRequired,
+  timer: PropTypes.number.isRequired,
 };
 
 export default Buttons;

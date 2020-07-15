@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 export const updateStatisticsRequest = async (stats) => {
   try {
     const { userId, token } = JSON.parse(localStorage.getItem('user'));
@@ -11,7 +13,10 @@ export const updateStatisticsRequest = async (stats) => {
       body: JSON.stringify(stats),
     });
   } catch (e) {
-    throw new Error(`Не удалось записать статистику - ${e.message}`);
+    notification.open({
+      message: 'Не удалось записать статистику',
+      description: 'Ошибка работы сервера',
+    });
   }
 };
 
@@ -29,7 +34,10 @@ export const getStatisticsRequest = async () => {
     const content = await rawResponse.json();
     return content.optional;
   } catch (e) {
-    throw new Error(`Не удалось получить статистику - ${e.message}`);
+    notification.open({
+      message: 'Не удалось получить статистику',
+      description: 'Ошибка работы сервера',
+    });
   }
 };
 

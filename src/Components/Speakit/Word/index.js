@@ -21,11 +21,6 @@ const Word = ({
   removeErrorAnswer,
 }) => {
   const [right, setRight] = useState('');
-  const voice = (text) => {
-    changeLetter(wordTranslate);
-    changePicture(image);
-    speechRecognition(text);
-  };
 
   useEffect(() => {
     if (checkPronunciations.toLowerCase() === word.toLowerCase()) {
@@ -39,7 +34,7 @@ const Word = ({
     if (checkPronunciations !== word && checkPronunciations.length) {
       changeLetter(checkPronunciations);
     }
-  }, [checkPronunciations]);
+  }, [checkPronunciations, addCorrectAnswer, changeLetter, changePicture, wordTranslate, image, removeErrorAnswer, transcription, word]);
 
   useEffect(() => {
     if (!cardOff) {
@@ -48,12 +43,16 @@ const Word = ({
   }, [cardOff]);
 
   const handleMouseShowCard = () => {
-    voice(word);
+    changeLetter(wordTranslate);
+    changePicture(image);
+    speechRecognition(word);
   };
 
   const handleKeyShowCard = (event) => {
     if (event.key === 'Enter') {
-      voice(word);
+      changeLetter(wordTranslate);
+      changePicture(image);
+      speechRecognition(word);
     }
   };
   return (

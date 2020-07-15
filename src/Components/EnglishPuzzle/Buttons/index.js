@@ -77,6 +77,7 @@ const Buttons = ({
     if (showListCorrect.size === 10) {
       return (
         <Button
+          className="english-puzzle__control"
           key="submit"
           type="primary"
           onClick={nextGame}
@@ -87,6 +88,7 @@ const Buttons = ({
     }
     return (
       <Button
+        className="english-puzzle__control"
         key="submit"
         type="primary"
         onClick={repeat}
@@ -100,6 +102,7 @@ const Buttons = ({
     if (noAnswer) {
       return (
         <Button
+          className="english-puzzle__control"
           type="primary"
           shape="round"
           onClick={() => {
@@ -119,6 +122,7 @@ const Buttons = ({
     if (check) {
       return (
         <Button
+          className="english-puzzle__control"
           type="primary"
           shape="round"
           onClick={() => {
@@ -151,6 +155,7 @@ const Buttons = ({
     if (second) {
       return (
         <Button
+          className="english-puzzle__control"
           type="primary"
           shape="round"
           onClick={() => {

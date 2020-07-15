@@ -59,15 +59,17 @@ const Puzzle = ({
 
   useEffect(() => {
     if (rows[11].items.length === 0 && checkBtns !== 'noAnswer') {
-      switchNoAnswer(false);
-      switchCheck(true);
+      switchNoAnswer(true);
+      if (rows[numberSentence + 1].items.length > 0) {
+        switchCheck(true);
+      }
       const answer = [];
       const obj = rows[numberSentence + 1].items;
       const correct = data[numberSentence].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');
       Object.entries(obj).map(([, text]) => answer.push(text.content));
       compareWords({ true: correct, false: answer });
     }
-  }, [rows]);
+  }, [rows, checkBtns, data, compareWords, numberSentence, switchCheck, switchNoAnswer]);
 
   return (
     <div

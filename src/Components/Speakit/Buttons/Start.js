@@ -52,7 +52,7 @@ const Start = ({
   useEffect(() => {
     resetTranscript();
     voice(finalTranscript);
-  }, [finalTranscript]);
+  }, [finalTranscript, voice, resetTranscript]);
 
   if (!browserSupportsSpeechRecognition) return null;
 

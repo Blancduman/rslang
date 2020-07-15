@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Layout } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { getWordsSpeakit } from '../../Services/getWordsSpeakit';
@@ -8,6 +8,8 @@ import Puzzle from '../../Components/EnglishPuzzle/Puzzle';
 import Buttons from '../../Components/EnglishPuzzle/Buttons';
 import Options from '../../Components/EnglishPuzzle/Options';
 import Sound from '../../utls/Speakit/Sound/Sound';
+import { updateStatistics } from '../../Services/statistics';
+import { gameDate } from '../../utls';
 
 const levels = {
   0: 'Первый',
@@ -40,16 +42,36 @@ const EnglishPuzzle = () => {
   const [translate, setTranslate] = useState('');
   const [right, setRight] = useState(false);
 
-  const switchData = (value) => {
-    const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
-    const game = getRows(initialWords);
-    setRows(game);
-    for (let i = 0; i < count; i += 1) {
-      const test = result[i].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');
-      const initialWordsTest = test.map((item) => ({ id: uuidv4(), content: item }));
-      game[i + 1].items = initialWordsTest;
-    }
-  };
+  const englishPuzzleStatistic = useCallback(({ gamesCount = 0, dates = '[]' }) => {
+    const datesArr = JSON.parse(dates);
+    datesArr.push({
+      date: gameDate(),
+      'Правильные ответы': listCorrect.size,
+    });
+    if (datesArr.length > 10) datesArr.shift();
+    return {
+      gamesCount: gamesCount + 1,
+      dates: JSON.stringify(datesArr),
+    };
+  }, [listCorrect])
+
+  useEffect(() => {
+  // function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
+  //   const datesArr = JSON.parse(dates);
+  //   datesArr.push({
+  //     date: gameDate(),
+  //     'Правильные ответы': listCorrect.size,
+  //   });
+  //   if (datesArr.length > 10) datesArr.shift();
+  //   return {
+  //     gamesCount: gamesCount + 1,
+  //     dates: JSON.stringify(datesArr),
+  //   };
+  // }
+  if (count === 9) {
+    updateStatistics('englishpuzzle', englishPuzzleStatistic);
+  }
+  }, [count, englishPuzzleStatistic]);
 
   useEffect(() => {
     getWordsSpeakit(level.group, level.page).then((value) => {
@@ -66,6 +88,16 @@ const EnglishPuzzle = () => {
   }, [level.group, level.page]);
 
   useEffect(() => {
+    const switchData = (value) => {
+      const initialWords = value.map((item) => ({ id: uuidv4(), content: item }));
+      const game = getRows(initialWords);
+      setRows(game);
+      for (let i = 0; i < count; i += 1) {
+        const test = result[i].textExample.replace(/(<(\/?[^>]+)>)/g, '').split(' ');
+        const initialWordsTest = test.map((item) => ({ id: uuidv4(), content: item }));
+        game[i + 1].items = initialWordsTest;
+      }
+    };
     if (checkBtns === 'noAnswer') {
       const items = [];
       switchData(items);
@@ -92,7 +124,7 @@ const EnglishPuzzle = () => {
       }
       switchData(items);
     }
-  }, [checkBtns]);
+  }, [checkBtns, autoPronunciation, count, result]);
 
   const showActualPage = () => {
     switch (stage) {

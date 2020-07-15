@@ -10,8 +10,8 @@ const Header = ({
     <Form.Item label="Уровень сложности">
       <Select
         defaultValue="Первый"
-        className="level-dropdown"
-        style={{ width: 200 }}
+        className="speakit__start-screen_level-dropdown"
+        style={{ width: 100 }}
         onChange={(value) => {
           const level = value.split(',');
           switchGame({ group: parseInt(level[0], 10), page: parseInt(level[1], 10) });
