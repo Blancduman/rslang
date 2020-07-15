@@ -1,0 +1,14 @@
+.statistics-list {
+    padding-left: 0;
+    list-style: none;
+    height: 6rem;
+    overflow: auto;
+}
+
+.statistics-list__item {
+    display: flex;
+}
+
+.statistics-list__icon {
+    margin-right: 1rem;
+}

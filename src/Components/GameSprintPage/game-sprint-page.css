@@ -3,11 +3,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     padding: 2rem;
     background: url("../../assets/img/sprint.svg") no-repeat right;
     background-size: 76vh;
+}
+
+.game-sprint__label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .ant-card-grid.game-sprint__card-layout {
@@ -29,4 +34,16 @@
 .game-sprint__button {
     margin: 0 0.5rem;
     color: white;
+}
+
+.game-sprint__star-icon {
+    font-size: 1.5rem;
+}
+
+.game-sprint__button_right {
+    background: darkgreen;
+}
+
+.game-sprint__button_wrong {
+    background: darkred;
 }

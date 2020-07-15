@@ -40,11 +40,7 @@ const SettingsModal = (props) => {
         <Button
           key="ok"
           type="primary"
-          onClick={() => {
-            if (settings.cardSettings.length) {
-              onOk(settings);
-            }
-          }}
+          onClick={() => onOk(settings)}
         >
           Сохранить
         </Button>,
@@ -96,7 +92,6 @@ const SettingsModal = (props) => {
             onChange={(newValue) => {
               setSettings({
                 ...settings,
-                cardSettings: newValue,
                 translateWord: newValue.includes('translateWord'),
                 wordExplaining: newValue.includes('wordExplaining'),
                 sentenceExample: newValue.includes('sentenceExample'),
