@@ -47,12 +47,14 @@ const LearningCard = (props) => {
   const renderCard = () => {
     const words = displayText !== undefined ? displayText.replace(/<b>(\w|\W)*<\/b>/g, '[...] ').split(' ') : [];
 
-    return words.map((w) => {
+    return words.map((w, idx) => {
+      const key = `${w}_${idx}_${word}`;
+
       if (w.includes('[...]')) {
         return (
           <AnswerInputField
             word={word}
-            key={w}
+            key={key}
             userAnsweredCorrect={() => {
               userAnsweredCorrect();
               makeANoise(displayText.replace(/<b>(\w|\W)*<\/b>/g, word));
@@ -66,7 +68,7 @@ const LearningCard = (props) => {
       return (
         <Typography.Text
           className="learning-words__card_word"
-          key={w}
+          key={key}
           onClick={() => makeANoise(w)}
         >
           {w}
