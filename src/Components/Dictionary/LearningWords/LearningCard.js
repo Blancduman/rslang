@@ -45,7 +45,7 @@ const LearningCard = (props) => {
   };
 
   const renderCard = () => {
-    const words = displayText.replace(/<b>(\w|\W)*<\/b>/g, '[...] ').split(' ');
+    const words = displayText !== undefined ? displayText.replace(/<b>(\w|\W)*<\/b>/g, '[...] ').split(' ') : [];
 
     return words.map((w) => {
       if (w.includes('[...]')) {
@@ -105,9 +105,9 @@ const LearningCard = (props) => {
 };
 
 LearningCard.propTypes = {
-  displayText: PropTypes.string.isRequired,
-  word: PropTypes.string.isRequired,
-  displayTextTranslate: PropTypes.string.isRequired,
+  displayText: PropTypes.string,
+  word: PropTypes.string,
+  displayTextTranslate: PropTypes.string,
   userAnsweredCorrect: PropTypes.func.isRequired,
   userAnsweredIncorrect: PropTypes.func.isRequired,
   isFinished: PropTypes.bool.isRequired,

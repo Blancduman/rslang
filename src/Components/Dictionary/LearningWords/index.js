@@ -4,6 +4,7 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import LearningCard from './LearningCard';
 import WordRating from './WordRating';
 import './learning-words.css';
+import { handleAnswer } from '../../../Services/ankiService';
 
 const LearningWords = (props) => {
   const { words, options } = props;
@@ -13,10 +14,12 @@ const LearningWords = (props) => {
   const [showWordIndex, setShowWordIndex] = useState(0);
   const [maxShowWordIndex, setMaxShowWordIndex] = useState(0);
   const [isWordFinished, setIsWordFinished] = useState(false);
+  const [isIncorrectAnswer, setIsIncorrectAnswer] = useState(false);
 
   const goNextWord = () => {
     if (showWordIndex < words.length - 1) {
       setShowWordIndex(showWordIndex + 1);
+      setIsIncorrectAnswer(false);
     }
   };
 
@@ -27,7 +30,8 @@ const LearningWords = (props) => {
     }
   };
 
-  const correctAnswer = () => {
+  const correctAnswer = async () => {
+    await handleAnswer(words[showWordIndex]._id, !isIncorrectAnswer);
     if (showWordIndex === maxShowWordIndex) {
       if (maxShowWordIndex < options.maxWordsPerDay) {
         if (showWordIndex === maxShowWordIndex && maxShowWordIndex < words.length - 1) {
@@ -40,7 +44,10 @@ const LearningWords = (props) => {
     }
   };
 
-  const incorrectAnswer = () => {};
+  const incorrectAnswer = () => {
+    setIsIncorrectAnswer(true);
+    handleAnswer(words[showWordIndex]._id, false);
+  };
 
   useEffect(() => {
     if (isWordFinished) {
@@ -66,9 +73,9 @@ const LearningWords = (props) => {
       <div className="learning-words">
         <LeftOutlined className={showWordIndex === 0 ? 'hidden' : ''} onClick={goBackWord} />
         <LearningCard
-          displayText={words[showWordIndex].textExample}
-          word={words[showWordIndex].word}
-          displayTextTranslate={words[showWordIndex].textExampleTranslate}
+          displayText={words[showWordIndex] && words[showWordIndex].textExample}
+          word={words[showWordIndex] && words[showWordIndex].word}
+          displayTextTranslate={words[showWordIndex] && words[showWordIndex].textExampleTranslate}
           userAnsweredCorrect={correctAnswer}
           userAnsweredIncorrect={incorrectAnswer}
           isFinished={showWordIndex < maxShowWordIndex}
@@ -78,12 +85,12 @@ const LearningWords = (props) => {
         <RightOutlined className={showWordIndex === maxShowWordIndex ? 'hidden' : ''} onClick={goNextWord} />
       </div>
       <div className="learning-words__card_translate-word">
-        <p>{words[showWordIndex].wordTranslate}</p>
+        <p>{words[showWordIndex] && words[showWordIndex].wordTranslate}</p>
         <WordRating
           onAgain={() => {}}
-          onHard={() => {}}
-          onFine={() => {}}
-          onEasy={() => {}}
+          onHard={() => { handleAnswer(words[showWordIndex]._id, false, 'hard'); }}
+          onFine={() => { handleAnswer(words[showWordIndex]._id, false, 'normal'); }}
+          onEasy={() => { handleAnswer(words[showWordIndex]._id, false, 'easy'); }}
           hide={showWordIndex === maxShowWordIndex - 1 && options.ratingWord}
           notAgain={maxShowWordIndex}
         />
@@ -98,7 +105,7 @@ LearningWords.propTypes = {
     audioExample: PropTypes.string.isRequired,
     audioMeaning: PropTypes.string.isRequired,
     group: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     textExample: PropTypes.string.isRequired,

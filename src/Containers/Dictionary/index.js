@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
 import Loading from '../../Components/Loading';
 import LearningWords from '../../Components/Dictionary/LearningWords';
 import ProgressLine from '../../Components/Dictionary/ProgressLine';
-import { SettingsModal, SettingsButton } from '../../Components/Dictionary/Settings';
+import { SettingsButton, SettingsModal } from '../../Components/Dictionary/Settings';
 import { getUserSettings, putUserSettings } from '../../Services/UserSettings';
-import { getWords } from '../../Services/getWords';
 import './dictionary.css';
+import { getWordsToLearn } from '../../Services/ankiService';
 
 const { TabPane } = Tabs;
 
@@ -60,7 +60,7 @@ const Dictionary = () => {
 
   useEffect(() => {
     async function gettingWords() {
-      const words = await getWords(0, 0);
+      const words = await getWordsToLearn(options.wordsPerDay);
       setLearningWords(words);
     }
     if (auth) gettingWords();
