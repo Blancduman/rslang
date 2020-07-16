@@ -56,18 +56,6 @@ const EnglishPuzzle = () => {
   }, [listCorrect])
 
   useEffect(() => {
-  // function englishPuzzle({ gamesCount = 0, dates = '[]' }) {
-  //   const datesArr = JSON.parse(dates);
-  //   datesArr.push({
-  //     date: gameDate(),
-  //     'Правильные ответы': listCorrect.size,
-  //   });
-  //   if (datesArr.length > 10) datesArr.shift();
-  //   return {
-  //     gamesCount: gamesCount + 1,
-  //     dates: JSON.stringify(datesArr),
-  //   };
-  // }
   if (count === 9) {
     updateStatistics('englishpuzzle', englishPuzzleStatistic);
   }
