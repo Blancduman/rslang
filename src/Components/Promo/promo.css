@@ -1,0 +1,42 @@
+.ant-layout.promo_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    background: transparent;
+}
+
+.promo_description {
+    margin: 0 0 15px 0;
+    padding: 0 10px 10px 10px;
+    width: 40%;
+    min-height: 120px;
+    border-radius: 20px;
+    background-color: transparent;
+    color: black;
+}
+
+.promo_description h1 {
+    font-size: 1.6rem;
+    color: black;
+}
+
+.promo__video {
+    margin: 10px 0 10px 0;
+    width: 50%;
+    height: 25vw;
+    box-shadow: 4px 4px 10px #000000, -4px -4px 10px #3B4451;
+}
+
+@media (max-width: 1225px) {
+
+    .promo_description {
+        width: 100%;
+    }
+
+    .promo__video {
+        width: 95%;
+        height: 50vw;
+    }
+}
+

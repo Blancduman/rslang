@@ -1,0 +1,197 @@
+.savanna-background {
+  height: 100%;
+  z-index: 0;
+  background-image: url("../../assets/img/savannah-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.savanna-wrapper {
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.savanna-header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.savanna-header__sound {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.savanna-header__health-container {
+  display: flex;
+  color: white;
+}
+
+@media screen and (max-width: 780px) {
+  .savanna-header__health-container {
+    flex-direction: column;
+  }
+}
+
+.savanna-header__life-container {
+  display: flex;
+  height: 30px;
+  width: 150px;
+}
+
+.savanna-header__life {
+  display: flex;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.savanna-header__score-container {
+  margin-right: 30px;
+  min-width: 90px;
+}
+
+.score-container__title, .score-container__score {
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 20px;
+}
+
+.savanna-header__timer-container {
+  margin-right: 30px;
+}
+
+.timer-container__timer {
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 20px;
+}
+
+.savanna-game-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.savanna-game-field__question {
+  position: absolute;
+  animation-timing-function: linear;
+  animation-duration: 4s;
+  animation-name: fall;
+  animation-fill-mode: forwards;
+}
+
+.savanna-game-field__question h1 {
+  font-size: 50px;
+  color: white;
+}
+
+@keyframes fall {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: 185px;
+  }
+}
+
+.savanna-game-field__answers {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 260px;
+}
+
+.answers__answer {
+  font-size: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.answers__answer, 
+.answers__answer:active, 
+.answers__answer:focus {
+    outline: none;
+}
+
+.right-answer {
+  background-color: rgba(25, 238, 18, 0.65);
+}
+
+.false-answer {
+  background-color: red;
+}
+
+.ant-modal-title {
+  text-align: center;
+}
+
+.ant-modal-close {
+  display: none;
+}
+
+.game-savannah__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 2rem;
+  background-image: url("../../assets/img/savannah-start-page.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ant-card-grid.game-savannah__card-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+}
+
+.ant-card-grid.game-savannah__card-layout h1 {
+  text-align: center;
+}
+
+.ant-card-grid.game-savannah__card-layout form .ant-form-item {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card-grid.game-savannah__card-layout form .ant-form-item .ant-col {
+  text-align: center!important;
+}
+
+.ant-card-grid.game-savannah__card-layout form .ant-form-item .ant-form-item-control {
+  display: flex;
+  align-items: center;
+}
+
+.ant-btn {
+  margin-bottom: 5px;
+}
+
+.savannah__statistiks_list {
+  cursor: pointer;
+}
+
+.savannah__statistiks_list:hover {
+  background-color: #a2e9ff;
+}
+
+@media screen and (max-width: 780px) {
+  .ant-card-grid.game-savannah__card-layout {
+    width: 250px;
+  }
+}

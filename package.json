@@ -1,0 +1,42 @@
+{
+  "name": "rs-lang-10",
+  "version": "0.1.0",
+  "private": true,
+  "author": "RS-Lang team 10",
+  "dependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.3.3",
+    "moment": "^2.27.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-speech-recognition": "^2.0.4",
+    "recharts": "^1.8.5",
+    "use-hooks": "^2.0.0-rc.5",
+    "uuid": "^8.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

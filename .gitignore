@@ -1,0 +1,11 @@
+# Untracked general purpose files:
+.idea
+.vscode
+npm-debug*
+
+**/files
+# Untracked general purpose directories:
+dist
+node_modules
+build
+

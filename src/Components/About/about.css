@@ -1,0 +1,105 @@
+.ant-layout.about_wrapper {
+    width: 100%;
+    background: #f1e691;
+}
+
+.about_wrapper p {
+    color: black;
+}
+
+.about_title {
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.about_title h1 {
+    color: #1b386d;
+}
+
+.about_persons_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    width: 310px;
+    height: 370px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #5cb5b1;
+    box-shadow: 4px 4px 14px rgba(27, 26, 26, 0.37), -4px -4px 14px rgba(31, 30, 29, 0.603);
+}
+
+.about_card_header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.about_card_block-name {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 10px;
+}
+
+.about_card_name {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about_card_block-name h3,
+.about_card_block-name h4 {
+    color: #ffffff;
+    padding: 0;
+    text-align: left;
+}
+
+.about_card_position p {
+    color:black;
+    text-align: left;
+}
+
+.about_card_avatar img {
+    border-radius: 50%;
+    width: 115px;
+    height: 115px;
+}
+
+.about_card_about_person {
+    font-style: italic;
+    text-align: justify;
+}
+
+.about_card_about_person::first-letter,
+.about_card_contribution::first-letter {
+    margin-left: 20px;
+}
+
+.about_card_contribution {
+    text-align: justify;
+}
+
+.about_card_contribution p{
+    color: #ffffff;
+}
+
+.about_card_link_git_hub {
+    display: flex;
+    justify-content: center;
+}
+
+.about_card_link_git_hub button {
+    z-index: 0;
+}
+
+@media (max-width: 400px) {
+    .about_card {
+        width: 240px;
+        font-size: 14px;
+    }
+}
