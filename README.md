@@ -1,8 +1,8 @@
 # RS Lang
 
-| Deadline         | Repo name | 
-| ---------------- | ----------- | 
-| 05.07.2020 23:59 | rslang   |  
+| Deadline         | Repo name |
+| ---------------- | --------- |
+| 05.07.2020 23:59 | rslang    |
 
 **RS Lang** – приложение для изучения иностранных слов с методикой интервального повторения, отслеживанием индивидуального прогресса и мини-играми.
 
@@ -200,7 +200,88 @@
 - Метод интервального повторения https://habr.com/ru/post/196448/
 - Ссылка на скачивание Anki https://apps.ankiweb.net/
 - Настройки программы Anki https://englishteacup.org/slovarnyj_zapas/programma-anki-nastrojka-kolod
-- Получение подробного описания слова (например значение слова, транскрипция, часть речи, синонимы, антонимы, примеры использования в предложении) https://www.wordsapi.com/
+- Получение подробного описания слова (например значение слова, транскрипция, часть речи, синонимы, антонимы, примеры использования в предложении) https://dictionary.skyeng.ru/doc/api/external. API полностью бесплатна и не требует регистрации.
+
+### Пример получени подробной информации о слове
+
+Сам запрос:
+
+https://dictionary.skyeng.ru/api/public/v1/words/search?search=cat (`?search=${ вставить нужное слово }`)
+
+Пример в коде:
+
+```javascript
+const getWordDetalization = async (word) => {
+  const rawResponse = await fetch(
+    `https://dictionary.skyeng.ru/api/public/v1/words/search?search=${word}`
+  );
+
+  const content = await rawResponse.json();
+
+  console.log(content);
+};
+
+getWordDetalization('cat');
+```
+
+Возвращаемый JSON:
+
+```json
+[
+  {
+    "id": 174834,
+    "text": "CAT",
+    "meanings": [
+      {
+        "id": 248983,
+        "partOfSpeechCode": "abb",
+        "translation": {
+          "text": "программно-техническое средство ",
+          "note": null
+        },
+        "previewUrl": "//d2zkmv5t5kao9.cloudfront.net/images/7f116a91c1912c5cc24b2f44d0b945f3.png?w=96",
+        "imageUrl": "//d2zkmv5t5kao9.cloudfront.net/images/7f116a91c1912c5cc24b2f44d0b945f3.png?w=640",
+        "transcription": "kæt",
+        "soundUrl": "//d2fmfepycn0xw0.cloudfront.net?gender=male&accent=british&text=CAT"
+      }
+    ]
+  },
+  {
+    "id": 1560,
+    "text": "cat",
+    "meanings": [
+      {
+        "id": 65977,
+        "partOfSpeechCode": "n",
+        "translation": {
+          "text": "кот",
+          "note": "кошка"
+        },
+        "previewUrl": "//d2zkmv5t5kao9.cloudfront.net/images/55bd5010ef32706be7b7e371673c1b1c.jpeg?w=96",
+        "imageUrl": "//d2zkmv5t5kao9.cloudfront.net/images/55bd5010ef32706be7b7e371673c1b1c.jpeg?w=640",
+        "transcription": "kæt",
+        "soundUrl": "//d2fmfepycn0xw0.cloudfront.net?gender=male&accent=british&text=cat"
+      },
+      ...
+    ]
+  }
+]
+```
+
+Внизу документации по ссылке (https://dictionary.skyeng.ru/doc/api/external) есть расшифровки сокращений.
+
+Например во вкладке Models есть расшифровка части речи:
+
+partOfSpeechCode (string):
+
+- n - noun,
+- v - verb,
+- j - adjective,
+  
+  ....
+- phi - idiom.
+
+#### Замечание: первое значение в meanings не всегда может быть тем переводом, что вам нужен. Будьте внимательны.
 
 ## Примеры получения исходных данных
 
@@ -372,9 +453,11 @@ userId: 5ec8942878c1e84b43e871ac
 group: 0
 wordsPerPage: 3
 filter: {
-"userWord.difficulty":"strong"
+	"$or": [
+	{"userWord.difficulty":"strong"},
+	{"userWord":null}
+	]
 }
-onlyUserWords: false
 ```
 <details> 
   <summary>должен вернуть такой ответ:</summary>
@@ -458,21 +541,26 @@ userId: 5ec8942878c1e84b43e871ac
 group: 0
 wordsPerPage: 3
 filter: {
-  "$and": [
+  "$or": [
     {
-      "$or": [
+      "$and": [
         {
-          "userWord.difficulty": "strong"
-        },
-        {
-          "userWord.difficulty": "easy"
+          "$or": [
+            {
+              "userWord.difficulty": "strong"
+            },
+            {
+              "userWord.difficulty": "easy"
+            }
+          ]
         }
       ]
+    },
+    {
+      "userWord": null
     }
   ]
 }
-
-onlyUserWords: false
 ```
 <details> 
   <summary>должен вернуть такой ответ:</summary>
@@ -565,8 +653,10 @@ Download
 
 Для преобразования строки filter в валидный query-параметр можно использовать следующую функцию: [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)  
 
-В фильтре также можно обращаться к полям optional объекта userWord:  
-`"userWord.optional.key":value`  
+Примеры фильтров:  
+ - Получить все слова у которых difficulte="hard" **И** optional.key="value" `{"$and":[{"userWord.difficulty":"hard", "userWord.optional.key":"value"}]}`
+ - Получить все слова у которых difficulty="easy" **ИЛИ** или нет соответствующего userWord `{"$or":[{"userWord.difficulty":"easy"},{"userWord":null}]}`
+ - Получить все слова у которых (difficulty="easy" **И** optional.repeat=true) **ИЛИ**  или нет соответствующего userWord `{"$or":[{"$and":[{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]},{"userWord":null}]}`
 
 Эндпоинт `/users/{id}/aggregatedWords/{wordId}` позволяет получить агрегированый объект конкретного слова.  
 
@@ -593,3 +683,4 @@ REST сервис возвращает только JSON, без изображ�
 
 ## Документ для вопросов
 - документ для вопросов, связанных с выполнением задания: https://docs.google.com/spreadsheets/d/13rqjNCjiTsQw95gfoubgDjUmdotgbIk3J_WxAiHbYBE/edit#gid=0
+
