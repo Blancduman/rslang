@@ -152,10 +152,6 @@
   background-position: center;
 }
 
-.game-savannah__container .ant-card {
-  opacity: 85%;
-}
-
 .ant-card-grid.game-savannah__card-layout {
   display: flex;
   flex-direction: column;
